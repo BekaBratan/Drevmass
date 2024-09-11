@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Drevmass</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="firstScreenTitle">Избавьтесь от боли в спине раз и навсегда!</string>
+    <string name="firstScreenDescription">Здоровье спины – это один из основных показателей комфорта жизни</string>
+    <string name="secondScreenTitle">Наша цель</string>
+    <string name="secondScreenDescription">Здоровье спины – это один из основных показателей комфорта жизни</string>
+    <string name="thirdScreenTitle">Спина требует  ежедневного ухода!</string>
+    <string name="thirdScreenDescription">Здоровье спины – это один из основных показателей комфорта жизни.</string>
 </resources>
