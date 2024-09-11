@@ -2,4 +2,39 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="dark_1000">#181715</color>
+    <color name="dark_900">#302C28</color>
+    <color name="dark_alpha_650">#A6302C28</color>
+    <color name="dark_alpha_300">#4D302C28</color>
+    <color name="dark_alpha_200">#33302C28</color>
+    <color name="dark_alpha_40">#0A302C28</color>
+
+    <color name="white_1000">#FFFFFF</color>
+    <color name="white_alpha_900">#F0FFFFFF</color>
+    <color name="white_alpha_600">#99FFFFFF</color>
+    <color name="white_alpha_400">#66FFFFFF</color>
+
+    <color name="brand_1000">#A18F6E</color>
+    <color name="brand_900">#B4A27F</color>
+    <color name="brand_700">#D2C7B2</color>
+    <color name="brand_600">#CCC8C0</color>
+    <color name="brand_500">#D5D0CD</color>
+    <color name="brand_400">#EEEAE8</color>
+    <color name="brand_300">#F2F0EF</color>
+    <color name="brand_alpha_900">#F9F9F9</color>
+
+    <color name="gray_800">#787878</color>
+    <color name="gray_700">#979797</color>
+    <color name="gray_600">#A0A0A0</color>
+    <color name="gray_500">#DFDDDC</color>
+    <color name="gray_400">#EBEAEA</color>
+    <color name="gray_100">#F6F6F6</color>
+
+    <color name="orange_1000">#FEA23E</color>
+    <color name="orange_900">#FEC564</color>
+
+    <color name="coral_1000">#F95C5C</color>
+    <color name="blue_1000">#007AFE</color>
+    <color name="green_1000">#3ABC5B</color>
 </resources>
