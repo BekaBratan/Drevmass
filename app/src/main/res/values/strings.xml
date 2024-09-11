@@ -8,4 +8,6 @@
     <string name="secondScreenDescription">Здоровье спины – это один из основных показателей комфорта жизни</string>
     <string name="thirdScreenTitle">Спина требует  ежедневного ухода!</string>
     <string name="thirdScreenDescription">Здоровье спины – это один из основных показателей комфорта жизни.</string>
+    <string name="enter">Войти</string>
+    <string name="register">Регистрация</string>
 </resources>
