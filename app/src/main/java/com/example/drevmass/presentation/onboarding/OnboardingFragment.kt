@@ -7,7 +7,9 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
+import com.example.drevmass.R
 import com.example.drevmass.databinding.FragmentOnboardingBinding
 import com.example.drevmass.presentation.onboarding.screens.FirstScreen
 import com.example.drevmass.presentation.onboarding.screens.SecondScreen
@@ -141,6 +143,14 @@ class OnboardingFragment : Fragment() {
             }
 
             rightOverlayStory.setOnClickListener { multiProgressBar.next() }
+
+            btnEnter.setOnClickListener {
+                findNavController().navigate(R.id.action_onboardingFragment_to_loginFragment)
+            }
+
+            btnRegister.setOnClickListener {
+                findNavController().navigate(R.id.action_onboardingFragment_to_registrationFragment)
+            }
         }
     }
 }

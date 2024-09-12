@@ -6,8 +6,19 @@
     <string name="firstScreenDescription">Здоровье спины – это один из основных показателей комфорта жизни</string>
     <string name="secondScreenTitle">Наша цель</string>
     <string name="secondScreenDescription">Здоровье спины – это один из основных показателей комфорта жизни</string>
-    <string name="thirdScreenTitle">Спина требует  ежедневного ухода!</string>
+    <string name="thirdScreenTitle">Спина требует ежедневного ухода!</string>
     <string name="thirdScreenDescription">Здоровье спины – это один из основных показателей комфорта жизни.</string>
     <string name="enter">Войти</string>
-    <string name="register">Регистрация</string>
+    <string name="registration">Регистрация</string>
+    <string name="authorizeMsg">Мы с вами научимся заниматься на тренажере-массажере для спины Древмасс.</string>
+    <string name="registerPassHint">Придумайте пороль</string>
+    <string name="nameHint">Ваше имя</string>
+    <string name="emailHint">Email</string>
+    <string name="phoneHint">Номер телефона</string>
+    <string name="next">Продолжить</string>
+    <string name="linkLogin">Уже есть аккаунт?\u0020</string>
+    <string name="returnMsg">С возвращением!</string>
+    <string name="password">Пороль</string>
+    <string name="forgotPass">Забыли пороль?</string>
+    <string name="linkRegistration">Еще нет аккаунта?\u0020</string>
 </resources>

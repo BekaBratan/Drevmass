@@ -67,7 +67,7 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnEnter"
             android:layout_width="0dp"
-            android:layout_height="57dp"
+            android:layout_height="56dp"
             android:background="@drawable/sh_btn_enter"
             android:text="@string/enter"
             android:layout_weight="1"
@@ -76,11 +76,11 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnRegister"
             android:layout_width="0dp"
-            android:layout_height="57dp"
+            android:layout_height="56dp"
             android:layout_weight="1"
             android:background="@drawable/sh_btn_register"
             android:layout_marginStart="8dp"
-            android:text="@string/register"
+            android:text="@string/registration"
             android:textColor="@color/brand_900"/>
 
     </LinearLayout>
