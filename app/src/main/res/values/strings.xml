@@ -21,4 +21,5 @@
     <string name="password">Пороль</string>
     <string name="forgotPass">Забыли пороль?</string>
     <string name="linkRegistration">Еще нет аккаунта?\u0020</string>
+    <string name="wrongEmailOrPassword">Неверный логин или пароль</string>
 </resources>

@@ -2,11 +2,17 @@ package com.example.drevmass.presentation.authorization
 
 import android.annotation.SuppressLint
 import android.graphics.Rect
+import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.text.InputType
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
 import com.example.drevmass.R
@@ -17,6 +23,7 @@ class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
     private var keypadHeight = 0
     private var isKeypadOpen = false
+    private var isPasswordVisible = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,7 +34,7 @@ class LoginFragment : Fragment() {
         return binding.root
     }
 
-    @SuppressLint("UseCompatLoadingForColorStateLists")
+    @SuppressLint("UseCompatLoadingForColorStateLists", "ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -73,11 +80,39 @@ class LoginFragment : Fragment() {
             }
 
             tvLink.setOnClickListener { findNavController().navigate(R.id.action_loginFragment_to_registrationFragment) }
+
+            binding.etPassword.setOnTouchListener { v, event ->
+                if (event.action == MotionEvent.ACTION_UP) {
+                    val drawableEnd = binding.etPassword.compoundDrawables[2]
+                    if (event.rawX >= (binding.etPassword.right - drawableEnd.bounds.width())) {
+                        // Toggle password visibility
+                        togglePasswordVisibility()
+                        return@setOnTouchListener true
+                    }
+                }
+                false
+            }
         }
     }
 
     private fun isAllFilled(): Boolean {
         return binding.etEmail.text.toString().isNotEmpty() &&
                 binding.etPassword.text.toString().isNotEmpty()
+    }
+
+
+    private fun togglePasswordVisibility() {
+        if (isPasswordVisible) {
+            // Hide the password
+            binding.etPassword.transformationMethod = PasswordTransformationMethod()
+            binding.etPassword.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_lock, 0, R.drawable.ic_show, 0)
+        } else {
+            // Show the password
+            binding.etPassword.transformationMethod = HideReturnsTransformationMethod()
+            binding.etPassword.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_lock, 0, R.drawable.ic_hide, 0)
+        }
+        // Move the cursor to the end of the text
+        binding.etPassword.setSelection(binding.etPassword.text.length)
+        isPasswordVisible = !isPasswordVisible
     }
 }

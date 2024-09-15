@@ -16,6 +16,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
+    <include
+        android:id="@+id/notificationBar"
+        layout="@layout/notification_bar"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <TextView
         android:id="@+id/tvRegistration"
         android:layout_width="match_parent"
@@ -83,7 +91,7 @@
             android:backgroundTint="@color/gray_500"
             android:textColorHint="@color/gray_600"
             android:drawableStart="@drawable/ic_lock"
-            android:drawableTint="@color/brand_900"
+            android:drawableEnd="@drawable/ic_show"
             android:drawablePadding="12dp"/>
 
         <TextView

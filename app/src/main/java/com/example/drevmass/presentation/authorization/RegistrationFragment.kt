@@ -3,8 +3,11 @@ package com.example.drevmass.presentation.authorization
 import android.annotation.SuppressLint
 import android.graphics.Rect
 import android.os.Bundle
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
@@ -17,6 +20,7 @@ class RegistrationFragment : Fragment() {
     private lateinit var binding: FragmentRegistrationBinding
     private var keypadHeight = 0
     private var isKeypadOpen = false
+    private var isPasswordVisible = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,7 +31,7 @@ class RegistrationFragment : Fragment() {
         return binding.root
     }
 
-    @SuppressLint("UseCompatLoadingForColorStateLists")
+    @SuppressLint("UseCompatLoadingForColorStateLists", "ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -95,6 +99,18 @@ class RegistrationFragment : Fragment() {
             }
 
             tvLink.setOnClickListener { findNavController().navigate(R.id.action_registrationFragment_to_loginFragment) }
+
+            binding.etPassword.setOnTouchListener { v, event ->
+                if (event.action == MotionEvent.ACTION_UP) {
+                    val drawableEnd = binding.etPassword.compoundDrawables[2]
+                    if (event.rawX >= (binding.etPassword.right - drawableEnd.bounds.width())) {
+                        // Toggle password visibility
+                        togglePasswordVisibility()
+                        return@setOnTouchListener true
+                    }
+                }
+                false
+            }
         }
     }
 
@@ -105,4 +121,18 @@ class RegistrationFragment : Fragment() {
                 binding.etPassword.text.toString().isNotEmpty()
     }
 
+    private fun togglePasswordVisibility() {
+        if (isPasswordVisible) {
+            // Hide the password
+            binding.etPassword.transformationMethod = PasswordTransformationMethod()
+            binding.etPassword.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_lock, 0, R.drawable.ic_show, 0)
+        } else {
+            // Show the password
+            binding.etPassword.transformationMethod = HideReturnsTransformationMethod()
+            binding.etPassword.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_lock, 0, R.drawable.ic_hide, 0)
+        }
+        // Move the cursor to the end of the text
+        binding.etPassword.setSelection(binding.etPassword.text.length)
+        isPasswordVisible = !isPasswordVisible
+    }
 }
