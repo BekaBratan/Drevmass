@@ -17,6 +17,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
 import com.example.drevmass.R
 import com.example.drevmass.databinding.FragmentLoginBinding
+import com.example.drevmass.presentation.utils.provideNavigationHost
 
 class LoginFragment : Fragment() {
 
@@ -37,6 +38,10 @@ class LoginFragment : Fragment() {
     @SuppressLint("UseCompatLoadingForColorStateLists", "ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        provideNavigationHost()?.hideBottomNavigationBar(true)
+        provideNavigationHost()?.fullScreenMode(true)
+
+        binding.btnContinue.setOnClickListener { findNavController().navigate(R.id.courseFragment)}
 
         binding.root.viewTreeObserver.addOnGlobalLayoutListener {
             val rect = Rect()
@@ -114,5 +119,29 @@ class LoginFragment : Fragment() {
         // Move the cursor to the end of the text
         binding.etPassword.setSelection(binding.etPassword.text.length)
         isPasswordVisible = !isPasswordVisible
+    }
+
+    override fun onStart() {
+        super.onStart()
+        provideNavigationHost()?.apply {
+            provideNavigationHost()?.hideBottomNavigationBar(true)
+            provideNavigationHost()?.fullScreenMode(true)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        provideNavigationHost()?.apply {
+            provideNavigationHost()?.hideBottomNavigationBar(true)
+            provideNavigationHost()?.fullScreenMode(true)
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        provideNavigationHost()?.apply {
+            provideNavigationHost()?.hideBottomNavigationBar(true)
+            provideNavigationHost()?.fullScreenMode(true)
+        }
     }
 }

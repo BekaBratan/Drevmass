@@ -15,8 +15,24 @@
         app:defaultNavHost="true"
         app:navGraph = "@navigation/nav_graph"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigationBarMainActivity"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationBarMainActivity"
+        android:layout_width="match_parent"
+        android:layout_height="63dp"
+        android:animateLayoutChanges="false"
+        android:background="@color/white"
+        android:clickable="false"
+        app:itemIconTint="@color/bottom_nav_background"
+        app:itemTextColor="@color/bottom_nav_background"
+        app:itemRippleColor="@color/transparent"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_menu"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

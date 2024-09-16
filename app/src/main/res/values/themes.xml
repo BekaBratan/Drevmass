@@ -1,11 +1,53 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Drevmass" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/white</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:textCursorDrawable">@color/woody</item>
+        <item name="android:textColorHighlight">@color/woody_opacity</item>
+        <item name="colorControlNormal">@color/woody_opacity</item>
+        <item name="colorControlActivated">@color/woody</item>
+        <item name="colorAccent">@color/woody</item>
     </style>
 
     <style name="Theme.Drevmass" parent="Base.Theme.Drevmass">
         <item name="android:statusBarColor">@color/dark_1000</item>
     </style>
+
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_in_bottom</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>
+    </style>
+
+    <style name="BottomSheetDialogTheme" parent="Theme.MaterialComponents.Dialog">
+        <item name="bottomSheetStyle">@drawable/error_log_reg_style_top_radius_32dp</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="hintEnabled">true</item>
+        <item name="android:topLeftRadius">15dp</item>
+        <item name="android:topRightRadius">15dp</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="backgroundColor">@color/black</item>
+        <item name="colorButtonNormal">@color/black</item>
+        <item name="strokeColor">@color/black</item>
+        <item name="track">@color/black</item>
+        <!-- Text -->
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Secondary brand color. -->
+
+
+        <item name="colorSecondary">@color/black</item>
+        <item name="colorSecondaryVariant">@color/primary_50</item>
+        <item name="seekBarStyle">@color/primary_500</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSwitchThumbNormal">@color/grey_300</item>
+        <!-- Status bar color. -->
+        <item name="iconTint">@color/grey_800</item>
+    </style>
+
+    <style name="Theme.Navigation_bar" parent="Base.Theme.Drevmass" />
 </resources>
