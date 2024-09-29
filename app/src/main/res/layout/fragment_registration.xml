@@ -75,7 +75,6 @@
             android:backgroundTint="@color/gray_500"
             android:textColorHint="@color/gray_600"
             android:drawableStart="@drawable/ic_profile"
-            android:drawableTint="@color/brand_900"
             android:drawablePadding="12dp"/>
 
         <EditText
@@ -91,7 +90,6 @@
             android:backgroundTint="@color/gray_500"
             android:textColorHint="@color/gray_600"
             android:drawableStart="@drawable/ic_mail"
-            android:drawableTint="@color/brand_900"
             android:drawablePadding="12dp"/>
 
         <EditText
@@ -101,13 +99,13 @@
             android:paddingVertical="20dp"
             android:ems="10"
             android:inputType="phone"
+            android:maxLength="15"
             android:textSize="17sp"
             android:fontFamily="@font/sfprotextsemibold"
             android:hint="@string/phoneHint"
             android:backgroundTint="@color/gray_500"
             android:textColorHint="@color/gray_600"
             android:drawableStart="@drawable/ic_phone"
-            android:drawableTint="@color/brand_900"
             android:drawablePadding="12dp"/>
 
         <EditText

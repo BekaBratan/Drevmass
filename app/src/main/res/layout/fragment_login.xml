@@ -75,7 +75,6 @@
             android:backgroundTint="@color/gray_500"
             android:textColorHint="@color/gray_600"
             android:drawableStart="@drawable/ic_mail"
-            android:drawableTint="@color/brand_900"
             android:drawablePadding="12dp"/>
 
         <EditText
