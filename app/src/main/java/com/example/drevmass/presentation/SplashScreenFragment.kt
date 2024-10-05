@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.drevmass.R
+import com.example.drevmass.presentation.utils.provideNavigationHost
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -23,10 +24,36 @@ class SplashScreenFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        provideNavigationHost()?.hideBottomNavigationBar(true)
+        provideNavigationHost()?.fullScreenMode(true)
 
         lifecycleScope.launch {
             delay(3000)
             findNavController().navigate(R.id.action_splashScreenFragment_to_onboardingFragment)
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        provideNavigationHost()?.apply {
+            provideNavigationHost()?.hideBottomNavigationBar(true)
+            provideNavigationHost()?.fullScreenMode(true)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        provideNavigationHost()?.apply {
+            provideNavigationHost()?.hideBottomNavigationBar(true)
+            provideNavigationHost()?.fullScreenMode(true)
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        provideNavigationHost()?.apply {
+            provideNavigationHost()?.hideBottomNavigationBar(true)
+            provideNavigationHost()?.fullScreenMode(true)
         }
     }
 }

@@ -19,6 +19,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
 import com.example.drevmass.R
 import com.example.drevmass.databinding.FragmentRegistrationBinding
+import com.example.drevmass.presentation.utils.provideNavigationHost
 
 @Suppress("DEPRECATION")
 class RegistrationFragment : Fragment() {
@@ -40,6 +41,8 @@ class RegistrationFragment : Fragment() {
     @SuppressLint("UseCompatLoadingForColorStateLists", "ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        provideNavigationHost()?.hideBottomNavigationBar(true)
+        provideNavigationHost()?.fullScreenMode(true)
 
         binding.root.viewTreeObserver.addOnGlobalLayoutListener {
             val rect = Rect()
@@ -269,6 +272,30 @@ class RegistrationFragment : Fragment() {
         isPasswordVisible = !isPasswordVisible
     }
 
+
+    override fun onStart() {
+        super.onStart()
+        provideNavigationHost()?.apply {
+            provideNavigationHost()?.hideBottomNavigationBar(true)
+            provideNavigationHost()?.fullScreenMode(true)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        provideNavigationHost()?.apply {
+            provideNavigationHost()?.hideBottomNavigationBar(true)
+            provideNavigationHost()?.fullScreenMode(true)
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        provideNavigationHost()?.apply {
+            provideNavigationHost()?.hideBottomNavigationBar(true)
+            provideNavigationHost()?.fullScreenMode(true)
+        }
+
     private fun clearText(editText: EditText) {
         editText.text.clear()
         val drawableStart = editText.compoundDrawables[0]
@@ -300,5 +327,6 @@ class RegistrationFragment : Fragment() {
 
     private fun isValidEmail(email: String): Boolean {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches()
+
     }
 }
