@@ -14,6 +14,7 @@ import com.example.drevmass.databinding.FragmentOnboardingBinding
 import com.example.drevmass.presentation.onboarding.screens.FirstScreen
 import com.example.drevmass.presentation.onboarding.screens.SecondScreen
 import com.example.drevmass.presentation.onboarding.screens.ThirdScreen
+import com.example.drevmass.presentation.utils.provideNavigationHost
 import com.genius.multiprogressbar.MultiProgressBar
 
 
@@ -34,6 +35,8 @@ class OnboardingFragment : Fragment() {
     @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        provideNavigationHost()?.hideBottomNavigationBar(true)
+        provideNavigationHost()?.fullScreenMode(true)
 
         val fragmentList = arrayListOf(
             FirstScreen(),
@@ -151,6 +154,30 @@ class OnboardingFragment : Fragment() {
             btnRegister.setOnClickListener {
                 findNavController().navigate(R.id.action_onboardingFragment_to_registrationFragment)
             }
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        provideNavigationHost()?.apply {
+            provideNavigationHost()?.hideBottomNavigationBar(true)
+            provideNavigationHost()?.fullScreenMode(true)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        provideNavigationHost()?.apply {
+            provideNavigationHost()?.hideBottomNavigationBar(true)
+            provideNavigationHost()?.fullScreenMode(true)
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        provideNavigationHost()?.apply {
+            provideNavigationHost()?.hideBottomNavigationBar(true)
+            provideNavigationHost()?.fullScreenMode(true)
         }
     }
 }

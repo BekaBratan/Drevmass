@@ -3,4 +3,10 @@
     <style name="style_corner_for_img_16dp" parent="">
         <item name="cornerSize">16dp</item>
     </style>
+
+    <style name="MyPoints">
+        <item name="android:textSize">15sp</item>
+        <item name="android:letterSpacing">-0.03</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
 </resources>

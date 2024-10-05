@@ -37,4 +37,48 @@
     <color name="coral_1000">#F95C5C</color>
     <color name="blue_1000">#007AFE</color>
     <color name="green_1000">#3ABC5B</color>
+
+    <!--BottomNavigationBar-->
+    <color name="nav_bar1">#302C28</color>
+    <color name="nav_bar2">#7A7A7A</color>
+    <color name="toolbar_color">#EFEBEC</color>
+
+    <color name="woody">#B5A380</color>
+    <color name="woody1">#E0DEDD</color>
+    <color name="woody_light">#CCB995</color>
+    <color name="woody_opacity">#7FB5A380</color>
+    <color name="divider_add">#D6D1CE</color>
+    <color name="beige_30">#ECE6DD</color>
+    <color name="bg_additional_F3F1F0">#F3F1F0</color>
+    <color name="bg_secondary_EFEBE9">#EFEBE9</color>
+    <color name="grey_black">#302C28</color>
+
+    <!--GREY-->
+    <color name="grey_50">#F9FAFB</color>
+    <color name="grey_100">#F3F4F6</color>
+    <color name="grey_200">#E5E7EB</color>
+    <color name="grey_300">#D1D5DB</color>
+    <color name="grey_400">#9CA3AF</color>
+    <color name="grey_800">#1F2937</color>
+    <color name="grey_900">#111827</color>
+    <color name="grey">#989898</color>
+    <color name="fui_transparent">#00000000</color>
+
+    <!--PRIMARY-->
+    <color name="primary_50">#F8EEFF</color>
+    <color name="primary_500">#6D1EE7</color>
+
+    <color name="grey_a1a1a1">#a1a1a1</color>
+    <color name="beige_edeae8">#edeae8</color>
+    <color name="beige_d1c8b5">#d1c8b5</color>
+    <color name="beige_ecebeb">#ecebeb</color>
+    <color name="red_brown">#715758</color>
+    <color name="blue_007AFF">#007AFF</color>
+    <color name="succes_green">#3ABD5B</color>
+    <color name="grey_787878">#787878</color>
+    <color name="switch_off">#e0dedd</color>
+    <color name="switch_on">#b2a484</color>
+    <color name="update">#B5A380</color>
+    <color name="shimmer_rc">#eeebe9</color>
+    <color name="transparent">#00000000</color>
 </resources>
