@@ -7,11 +7,13 @@ import android.os.Bundle
 import android.text.InputType
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
+import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
@@ -19,6 +21,7 @@ import com.example.drevmass.R
 import com.example.drevmass.databinding.FragmentLoginBinding
 import com.example.drevmass.presentation.utils.provideNavigationHost
 
+@Suppress("DEPRECATION")
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
@@ -97,6 +100,39 @@ class LoginFragment : Fragment() {
                 }
                 false
             }
+
+            binding.run {
+                etEmail.addTextChangedListener {
+                    if (etEmail.text.toString().isNotEmpty()) {
+                        setDrawableEnd(etEmail)
+                    }
+                }
+
+                etEmail.setOnFocusChangeListener { _, event ->
+                    if (event) {
+                        normalEditText(etEmail)
+                        if (etEmail.text.toString().isNotEmpty()){
+                            setDrawableEnd(etEmail)
+                        }
+                    } else {
+                        removeDrawableEnd(etEmail)
+                        if (!isValidEmail(etEmail.text.toString()) && etEmail.text.toString().isNotEmpty()) {
+                            wrongEditText(etEmail)
+                        }
+                    }
+                }
+
+                etEmail.setOnTouchListener { _, event ->
+                    if (event.action == MotionEvent.ACTION_UP) {
+                        val drawableEnd = binding.etPassword.compoundDrawables[2]
+                        if (event.rawX >= (binding.etPassword.right - drawableEnd.bounds.width())) {
+                            clearText(etEmail)
+                            return@setOnTouchListener true
+                        }
+                    }
+                    false
+                }
+            }
         }
     }
 
@@ -121,6 +157,7 @@ class LoginFragment : Fragment() {
         isPasswordVisible = !isPasswordVisible
     }
 
+
     override fun onStart() {
         super.onStart()
         provideNavigationHost()?.apply {
@@ -143,5 +180,38 @@ class LoginFragment : Fragment() {
             provideNavigationHost()?.hideBottomNavigationBar(true)
             provideNavigationHost()?.fullScreenMode(true)
         }
+
+    private fun clearText(editText: EditText) {
+        editText.text.clear()
+        val drawableStart = editText.compoundDrawables[0]
+        editText.setCompoundDrawablesWithIntrinsicBounds(drawableStart, null, null, null)
+    }
+
+    private fun setDrawableEnd(editText: EditText) {
+        val drawableStart = editText.compoundDrawables[0]
+        val drawableEnd = ContextCompat.getDrawable(requireContext(), R.drawable.ic_clear)
+        editText.setCompoundDrawablesWithIntrinsicBounds(drawableStart, null, drawableEnd, null)
+    }
+
+    private fun removeDrawableEnd(editText: EditText) {
+        val drawableStart = editText.compoundDrawables[0]
+        editText.setCompoundDrawablesWithIntrinsicBounds(drawableStart, null, null, null)
+    }
+
+    @SuppressLint("UseCompatLoadingForColorStateLists", "UseCompatTextViewDrawableApis")
+    private fun wrongEditText(editText: EditText) {
+        editText.compoundDrawableTintList = resources.getColorStateList(R.color.coral_1000)
+        editText.backgroundTintList = resources.getColorStateList(R.color.coral_1000)
+    }
+
+    @SuppressLint("UseCompatTextViewDrawableApis", "UseCompatLoadingForColorStateLists")
+    private fun normalEditText(editText: EditText) {
+        editText.compoundDrawableTintList = null
+        editText.backgroundTintList = resources.getColorStateList(R.color.gray_500)
+    }
+
+    private fun isValidEmail(email: String): Boolean {
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches()
+
     }
 }
