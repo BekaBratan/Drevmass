@@ -76,4 +76,24 @@
         android:name="com.example.drevmass.presentation.profile.PromocodeFragment"
         android:label="fragment_promocode"
         tools:layout="@layout/fragment_promocode" />
+    <fragment
+        android:id="@+id/myDataFragment"
+        android:name="com.example.drevmass.presentation.profile.myData.MyDataFragment"
+        android:label="fragment_my_data"
+        tools:layout="@layout/fragment_my_data" />
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.example.drevmass.presentation.profile.changePassword.ChangePasswordFragment"
+        android:label="fragment_change_password"
+        tools:layout="@layout/fragment_change_password" />
+    <fragment
+        android:id="@+id/informationFragment"
+        android:name="com.example.drevmass.presentation.profile.information.InformationFragment"
+        android:label="fragment_information"
+        tools:layout="@layout/fragment_information" />
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="com.example.drevmass.presentation.profile.notification.NotificationFragment"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_notification" />
 </navigation>

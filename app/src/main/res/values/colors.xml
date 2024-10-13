@@ -81,4 +81,7 @@
     <color name="update">#B5A380</color>
     <color name="shimmer_rc">#eeebe9</color>
     <color name="transparent">#00000000</color>
+    <color name="red">#FF0004</color>
+    <color name="error">#FA5C5C</color>
+    <color name="btn_sign_in">#B5A380</color>
 </resources>

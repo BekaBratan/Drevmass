@@ -71,4 +71,5 @@ dependencies {
 
     // MultiProgressBar
     implementation("io.github.geniusrus:multiprogressbar:1.3.2")
+
 }
