@@ -29,5 +29,8 @@
     <string name="forgotPassMsg">Введите email для сброса пароля.</string>
     <string name="recoverPassMsg">На почту kate.shel@mail.ru мы отправили инструкцию для сброса пароля.</string>
     <string name="itsClear">Понятно</string>
+    <string name="costExample">12 900 ₽</string>
+    <string name="catalog">Каталог</string>
+    <string name="byPopularity">По популярности</string>
 
 </resources>
