@@ -48,7 +48,7 @@
     </fragment>
     <fragment
         android:id="@+id/courseFragment"
-        android:name="com.example.drevmass.presentation.CourseFragment"
+        android:name="com.example.drevmass.presentation.course.CourseFragment"
         android:label="fragment_course"
         tools:layout="@layout/fragment_course" />
     <fragment
@@ -96,4 +96,9 @@
         android:name="com.example.drevmass.presentation.profile.notification.NotificationFragment"
         android:label="fragment_notification"
         tools:layout="@layout/fragment_notification" />
+    <fragment
+        android:id="@+id/courseInfoFragment"
+        android:name="com.example.drevmass.presentation.course.CourseInfoFragment"
+        android:label="fragment_course_info"
+        tools:layout="@layout/fragment_course_info" />
 </navigation>

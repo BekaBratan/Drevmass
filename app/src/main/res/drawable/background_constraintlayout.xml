@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#FFFFFF" /> <!-- Цвет фона, вы можете изменить на свой -->
+    <corners
+        android:topRightRadius="24dp"
+        android:topLeftRadius="24dp"/>
+    <stroke
+        android:width="0dp"
+        android:color="@color/fui_transparent" />
+</shape>

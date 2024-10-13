@@ -295,6 +295,7 @@ class RegistrationFragment : Fragment() {
             provideNavigationHost()?.hideBottomNavigationBar(true)
             provideNavigationHost()?.fullScreenMode(true)
         }
+    }
 
     private fun clearText(editText: EditText) {
         editText.text.clear()

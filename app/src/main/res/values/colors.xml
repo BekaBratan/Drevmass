@@ -84,4 +84,12 @@
     <color name="red">#FF0004</color>
     <color name="error">#FA5C5C</color>
     <color name="btn_sign_in">#B5A380</color>
+
+    <!--ADDITIONAL COLORS-->
+    <color name="white_fade">#45FFFFFF</color>
+    <color name="white_fade2">#99FFFFFF</color>
+    <color name="black_fade">#45302C28</color>
+
+    <color name="grey_E0DEDD">#E0DEDD</color>
+    <color name="switchOff">#E0DEDD</color>
 </resources>
