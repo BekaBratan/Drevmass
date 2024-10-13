@@ -38,81 +38,94 @@ class RegistrationFragment : Fragment() {
         return binding.root
     }
 
-    @SuppressLint("UseCompatLoadingForColorStateLists", "ClickableViewAccessibility")
+    @SuppressLint("UseCompatLoadingForColorStateLists", "ClickableViewAccessibility",
+        "SuspiciousIndentation"
+    )
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         provideNavigationHost()?.hideBottomNavigationBar(true)
         provideNavigationHost()?.fullScreenMode(true)
 
-        binding.root.viewTreeObserver.addOnGlobalLayoutListener {
-            val rect = Rect()
-            binding.root.getWindowVisibleDisplayFrame(rect)
-            val screenHeight = binding.root.rootView.height
-            keypadHeight = screenHeight - rect.bottom
-
-            if (keypadHeight > screenHeight * 0.15) {
-                // Keyboard is open
-                isKeypadOpen = true
-                if (isAllFilled())
-                    binding.btnContinue.translationY = -keypadHeight.toFloat() + 56 + 68 + 32 // move the button up
-            } else {
-                // Keyboard is closed
-                isKeypadOpen = false
-                binding.btnContinue.translationY = 0f // move the button up
-            }
-        }
-
         binding.run {
+
+            root.viewTreeObserver.addOnGlobalLayoutListener {
+                val rect = Rect()
+                root.getWindowVisibleDisplayFrame(rect)
+                val screenHeight = root.rootView.height
+                keypadHeight = screenHeight - rect.bottom
+
+                if (keypadHeight > screenHeight * 0.15) {
+                    // Keyboard is open
+                    isKeypadOpen = true
+                    if (isAllFilled())
+                        btnContinue.isEnabled = true
+                        btnContinue.translationY = -keypadHeight.toFloat() + 56 + 68 + 32 // move the button up
+                } else {
+                    // Keyboard is closed
+                    isKeypadOpen = false
+                    btnContinue.translationY = 0f // move the button up
+                }
+            }
+
+
             etEmail.addTextChangedListener {
                 if (isAllFilled()) {
                     btnContinue.backgroundTintList = resources.getColorStateList(R.color.brand_900)
+                    btnContinue.isEnabled = true
                     if (isKeypadOpen)
-                        binding.btnContinue.translationY = -keypadHeight.toFloat() + 56 + 68 + 32 // move the button up
+                        btnContinue.translationY = -keypadHeight.toFloat() + 56 + 68 + 32 // move the button up
                 } else {
                     btnContinue.backgroundTintList = resources.getColorStateList(R.color.brand_700)
-                    binding.btnContinue.translationY = 0f // move the button up
+                    btnContinue.isEnabled = false
+                    btnContinue.translationY = 0f // move the button up
                 }
             }
 
             etPassword.addTextChangedListener {
                 if (isAllFilled()) {
                     btnContinue.backgroundTintList = resources.getColorStateList(R.color.brand_900)
+                    btnContinue.isEnabled = true
                     if (isKeypadOpen)
-                        binding.btnContinue.translationY = -keypadHeight.toFloat() + 56 + 68 + 32 // move the button up
+                        btnContinue.translationY = -keypadHeight.toFloat() + 56 + 68 + 32 // move the button up
                 } else {
                     btnContinue.backgroundTintList = resources.getColorStateList(R.color.brand_700)
-                    binding.btnContinue.translationY = 0f // move the button up
+                    btnContinue.isEnabled = false
+                    btnContinue.translationY = 0f // move the button up
                 }
             }
 
             etName.addTextChangedListener {
                 if (isAllFilled()) {
                     btnContinue.backgroundTintList = resources.getColorStateList(R.color.brand_900)
+                    btnContinue.isEnabled = true
                     if (isKeypadOpen)
-                        binding.btnContinue.translationY = -keypadHeight.toFloat() + 56 + 68 + 32 // move the button up
+                        btnContinue.translationY = -keypadHeight.toFloat() + 56 + 68 + 32 // move the button up
                 } else {
                     btnContinue.backgroundTintList = resources.getColorStateList(R.color.brand_700)
-                    binding.btnContinue.translationY = 0f // move the button up
+                    btnContinue.isEnabled = false
+                    btnContinue.translationY = 0f // move the button up
                 }
             }
 
             etPhone.addTextChangedListener {
                 if (isAllFilled()) {
                     btnContinue.backgroundTintList = resources.getColorStateList(R.color.brand_900)
+                    btnContinue.isEnabled = true
                     if (isKeypadOpen)
-                        binding.btnContinue.translationY = -keypadHeight.toFloat() + 56 + 68 + 32 // move the button up
+                        btnContinue.translationY = -keypadHeight.toFloat() + 56 + 68 + 32 // move the button up
                 } else {
                     btnContinue.backgroundTintList = resources.getColorStateList(R.color.brand_700)
-                    binding.btnContinue.translationY = 0f // move the button up
+                    btnContinue.isEnabled = false
+                    btnContinue.translationY = 0f // move the button up
                 }
             }
 
             tvLink.setOnClickListener { findNavController().navigate(R.id.action_registrationFragment_to_loginFragment) }
 
-            binding.etPassword.setOnTouchListener { v, event ->
+            etPassword.setOnTouchListener { v, event ->
                 if (event.action == MotionEvent.ACTION_UP) {
-                    val drawableEnd = binding.etPassword.compoundDrawables[2]
-                    if (event.rawX >= (binding.etPassword.right - drawableEnd.bounds.width())) {
+                    val drawableEnd = etPassword.compoundDrawables[2]
+                    if (event.rawX >= (etPassword.right - drawableEnd.bounds.width())) {
                         // Toggle password visibility
                         togglePasswordVisibility()
                         return@setOnTouchListener true
@@ -121,94 +134,92 @@ class RegistrationFragment : Fragment() {
                 false
             }
 
-            binding.run {
-                etEmail.addTextChangedListener {
-                    if (etEmail.text.toString().isNotEmpty()){
-                        setDrawableEnd(etEmail)
-                    }
-                }
-
-                etEmail.setOnFocusChangeListener { _, event ->
-                    if (event) {
-                        normalEditText(etEmail)
-                        if (etEmail.text.toString().isNotEmpty()){
-                            setDrawableEnd(etEmail)
-                        }
-                    } else {
-                        removeDrawableEnd(etEmail)
-                        if (!isValidEmail(etEmail.text.toString()) && etEmail.text.toString().isNotEmpty()) {
-                            wrongEditText(etEmail)
-                        }
-                    }
-                }
-
-                etEmail.setOnTouchListener { _, event ->
-                    if (event.action == MotionEvent.ACTION_UP) {
-                        val drawableEnd = binding.etPassword.compoundDrawables[2]
-                        if (event.rawX >= (binding.etPassword.right - drawableEnd.bounds.width())) {
-                            clearText(etEmail)
-                            return@setOnTouchListener true
-                        }
-                    }
-                    false
-                }
-
-                etName.addTextChangedListener {
-                    if (etName.text.toString().isNotEmpty()){
-                        setDrawableEnd(etName)
-                    }
-                }
-
-                etName.setOnFocusChangeListener { _, event ->
-                    if (event) {
-                        if (etName.text.toString().isNotEmpty()){
-                            setDrawableEnd(etName)
-                        }
-                    } else {
-                        removeDrawableEnd(etName)
-                    }
-                }
-
-                etName.setOnTouchListener { _, event ->
-                    if (event.action == MotionEvent.ACTION_UP) {
-                        val drawableEnd = binding.etPassword.compoundDrawables[2]
-                        if (event.rawX >= (binding.etPassword.right - drawableEnd.bounds.width())) {
-                            clearText(etName)
-                            return@setOnTouchListener true
-                        }
-                    }
-                    false
-                }
-
-                etPhone.addTextChangedListener {
-                    if (etPhone.text.toString().isNotEmpty()){
-                        setDrawableEnd(etPhone)
-                    }
-                }
-
-                etPhone.setOnFocusChangeListener { _, event ->
-                    if (event) {
-                        if (etPhone.text.toString().isNotEmpty()){
-                            setDrawableEnd(etPhone)
-                        }
-                    } else {
-                        removeDrawableEnd(etPhone)
-                    }
-                }
-
-                etPhone.setOnTouchListener { _, event ->
-                    if (event.action == MotionEvent.ACTION_UP) {
-                        val drawableEnd = binding.etPassword.compoundDrawables[2]
-                        if (event.rawX >= (binding.etPassword.right - drawableEnd.bounds.width())) {
-                            clearText(etPhone)
-                            return@setOnTouchListener true
-                        }
-                    }
-                    false
+            etEmail.addTextChangedListener {
+                if (etEmail.text.toString().isNotEmpty()){
+                    setDrawableEnd(etEmail)
                 }
             }
 
-            binding.etPhone.addTextChangedListener(object : PhoneNumberFormattingTextWatcher() {
+            etEmail.setOnFocusChangeListener { _, event ->
+                if (event) {
+                    normalEditText(etEmail)
+                    if (etEmail.text.toString().isNotEmpty()){
+                        setDrawableEnd(etEmail)
+                    }
+                } else {
+                    removeDrawableEnd(etEmail)
+                    if (!isValidEmail(etEmail.text.toString()) && etEmail.text.toString().isNotEmpty()) {
+                        wrongEditText(etEmail)
+                    }
+                }
+            }
+
+            etEmail.setOnTouchListener { _, event ->
+                if (event.action == MotionEvent.ACTION_UP) {
+                    val drawableEnd = etPassword.compoundDrawables[2]
+                    if (event.rawX >= (etPassword.right - drawableEnd.bounds.width())) {
+                        clearText(etEmail)
+                        return@setOnTouchListener true
+                    }
+                }
+                false
+            }
+
+            etName.addTextChangedListener {
+                if (etName.text.toString().isNotEmpty()){
+                    setDrawableEnd(etName)
+                }
+            }
+
+            etName.setOnFocusChangeListener { _, event ->
+                if (event) {
+                    if (etName.text.toString().isNotEmpty()){
+                        setDrawableEnd(etName)
+                    }
+                } else {
+                    removeDrawableEnd(etName)
+                }
+            }
+
+            etName.setOnTouchListener { _, event ->
+                if (event.action == MotionEvent.ACTION_UP) {
+                    val drawableEnd = etPassword.compoundDrawables[2]
+                    if (event.rawX >= (etPassword.right - drawableEnd.bounds.width())) {
+                        clearText(etName)
+                        return@setOnTouchListener true
+                    }
+                }
+                false
+            }
+
+            etPhone.addTextChangedListener {
+                if (etPhone.text.toString().isNotEmpty()){
+                    setDrawableEnd(etPhone)
+                }
+            }
+
+            etPhone.setOnFocusChangeListener { _, event ->
+                if (event) {
+                    if (etPhone.text.toString().isNotEmpty()){
+                        setDrawableEnd(etPhone)
+                    }
+                } else {
+                    removeDrawableEnd(etPhone)
+                }
+            }
+
+            etPhone.setOnTouchListener { _, event ->
+                if (event.action == MotionEvent.ACTION_UP) {
+                    val drawableEnd = etPassword.compoundDrawables[2]
+                    if (event.rawX >= (etPassword.right - drawableEnd.bounds.width())) {
+                        clearText(etPhone)
+                        return@setOnTouchListener true
+                    }
+                }
+                false
+            }
+
+            etPhone.addTextChangedListener(object : PhoneNumberFormattingTextWatcher() {
                 private var isUpdating = false
                 private val phoneNumberPattern = "+# ### ### ####"
 

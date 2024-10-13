@@ -53,7 +53,7 @@
         tools:layout="@layout/fragment_course" />
     <fragment
         android:id="@+id/catalogFragment"
-        android:name="com.example.drevmass.presentation.CatalogFragment"
+        android:name="com.example.drevmass.presentation.catalog.CatalogFragment"
         android:label="fragment_catalog"
         tools:layout="@layout/fragment_catalog" />
     <fragment
