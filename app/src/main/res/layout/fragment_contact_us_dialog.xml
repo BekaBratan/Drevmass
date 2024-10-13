@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/info_bonus_program_back_gr"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingBottom="@dimen/dp_25"
+    tools:context=".presentation.profile.bottomSheetDialog.ContactUsDialog">
+
+    <TextView
+        android:id="@+id/tv_title_contact_us"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Связаться с нами"
+        android:textSize="@dimen/sp_20"
+        android:textColor="@color/black"
+        android:fontFamily="@font/sfprodisplaysemibold"
+        android:layout_margin="@dimen/dp_24"/>
+
+    <RelativeLayout
+        android:id="@+id/phone_block"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/item_border"
+        android:paddingStart="16dp"
+        android:paddingTop="20dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title_contact_us">
+
+        <ImageView
+            android:id="@+id/ic_phone"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/ic_phone_32" />
+
+        <TextView
+            android:id="@+id/tv_promocode"
+            android:layout_width="247dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="12dp"
+            android:layout_toEndOf="@id/ic_phone"
+            android:fontFamily="sans-serif-medium"
+            android:text="Позвонить"
+            android:textColor="@color/grey_black"
+            android:textSize="17sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/support_center_block"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="@dimen/dp_8"
+        android:background="@drawable/item_border"
+        android:paddingStart="16dp"
+        android:paddingTop="20dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/phone_block">
+
+        <ImageView
+            android:id="@+id/ic_support_center"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/ic_message_32" />
+
+        <TextView
+            android:id="@+id/tv_support_center"
+            android:layout_width="247dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="12dp"
+            android:layout_toEndOf="@id/ic_support_center"
+            android:fontFamily="sans-serif-medium"
+            android:text="Служба поддержки"
+            android:textColor="@color/grey_black"
+            android:textSize="17sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/whatsapp_block"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="@dimen/dp_30"
+        android:background="@drawable/item_border"
+        android:paddingStart="16dp"
+        android:paddingTop="20dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/support_center_block">
+
+        <ImageView
+            android:id="@+id/ic_whatsapp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/ic_whatsapp_32" />
+
+        <TextView
+            android:id="@+id/tv_whatsapp"
+            android:layout_width="247dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="12dp"
+            android:layout_toEndOf="@id/ic_whatsapp"
+            android:fontFamily="sans-serif-medium"
+            android:text="WhatsApp"
+            android:textColor="@color/grey_black"
+            android:textSize="17sp" />
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

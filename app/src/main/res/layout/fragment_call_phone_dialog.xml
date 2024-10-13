@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/transparent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingBottom="@dimen/dp_25"
+    tools:context=".presentation.profile.bottomSheetDialog.CallPhoneDialog">
+
+    <TextView
+        android:id="@+id/contact_phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="8 800 700 37 79"
+        android:fontFamily="@font/sfprodisplaysemibold"
+        android:textSize="@dimen/sp_20"
+        android:textColor="@color/black"
+        android:layout_marginTop="@dimen/dp_18"
+        android:layout_marginBottom="@dimen/dp_18"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:background="@drawable/contact_phone_border"
+        android:padding="@dimen/dp_16"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/cansel_contact_phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/contact_phone_number"
+        android:text="Отмена"
+        android:fontFamily="@font/sfprodisplaysemibold"
+        android:textSize="@dimen/sp_20"
+        android:textColor="@color/blue_007AFF"
+        android:layout_marginTop="@dimen/dp_18"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:background="@drawable/contact_phone_border"
+        android:padding="@dimen/dp_16"
+        android:gravity="center" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

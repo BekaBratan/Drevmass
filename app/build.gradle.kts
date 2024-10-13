@@ -71,4 +71,7 @@ dependencies {
 
     // MultiProgressBar
     implementation("io.github.geniusrus:multiprogressbar:1.3.2")
+
+    implementation("com.kyleduo.switchbutton:library:2.1.0")
+
 }

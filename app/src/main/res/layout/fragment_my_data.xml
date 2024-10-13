@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".presentation.profile.myData.MyDataFragment">
+
+    <!--Top navigation-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fragment_my_data_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include
+            android:id="@+id/toolbar_myData_included"
+            layout="@layout/toolbar_my_data"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_my_data_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_60">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
+            android:paddingBottom="@dimen/dp_30">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:errorTextAppearance="@style/ErrorTextAppearance"
+                android:hint="Имя">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditText_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="15sp"
+                    android:paddingTop="@dimen/dp_10"
+                    android:inputType="textNoSuggestions"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout_phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textInputLayout_name"
+                android:layout_marginTop="@dimen/dp_16"
+                app:errorTextAppearance="@style/ErrorTextAppearance"
+                android:hint="Номер телефона">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditText_phone_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="15sp"
+                    android:paddingTop="@dimen/dp_10"
+                    android:inputType="phone"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textInputLayout_phone_number"
+                android:layout_marginTop="@dimen/dp_16"
+                app:errorTextAppearance="@style/ErrorTextAppearance"
+                android:hint="Email">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditText_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="15sp"
+                    android:paddingTop="@dimen/dp_10"
+                    android:inputType="textEmailAddress"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout_dateOfBirth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textInputLayout_email"
+                android:layout_marginTop="@dimen/dp_16"
+                android:hint="Дата рождения">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditText_dateOfBirth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="15sp"
+                    android:paddingTop="@dimen/dp_10"
+                    android:inputType="textEmailAddress"
+                    android:drawableRight="@drawable/baseline_calendar_today_24"
+                    android:drawableTint="@color/woody"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/gender_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textInputLayout_dateOfBirth"
+                android:layout_marginTop="@dimen/dp_16"
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/dp_4">
+
+                <TextView
+                    android:id="@+id/tv_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="Пол"
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/sp_13"
+                    android:fontFamily="@font/sfprodisplaysemibold"/>
+
+                <RadioGroup
+                    android:id="@+id/radioGroup_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:gravity="center"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_gender"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/dp_12"
+                    android:background="@drawable/radio_group_background">
+
+                    <RadioButton
+                        android:id="@+id/rb_not_identified"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="@dimen/dp_2"
+                        android:layout_marginStart="@dimen/dp_2"
+                        android:button="@color/transparent"
+                        android:background="@drawable/radio_selector"
+                        android:checked="true"
+                        android:text="Не указано"
+                        android:fontFamily="@font/sfprodisplaysemibold"
+                        android:textSize="13sp"
+                        android:textColor="@color/black"/>
+
+                    <RadioButton
+                        android:id="@+id/rb_male"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="@dimen/dp_2"
+                        android:button="@color/transparent"
+                        android:background="@drawable/radio_selector"
+                        android:checked="false"
+                        android:text="Мужской"
+                        android:fontFamily="@font/sfprodisplaysemibold"
+                        android:textSize="13sp"
+                        android:textColor="@color/black"/>
+
+                    <RadioButton
+                        android:id="@+id/rb_female"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="@dimen/dp_2"
+                        android:layout_marginEnd="@dimen/dp_2"
+                        android:button="@color/transparent"
+                        android:background="@drawable/radio_selector"
+                        android:checked="false"
+                        android:text="Женский"
+                        android:fontFamily="@font/sfprodisplaysemibold"
+                        android:textSize="13sp"
+                        android:textColor="@color/black"/>
+                </RadioGroup>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/userParameters_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/gender_layout"
+                android:layout_marginTop="16dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout_height"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="@dimen/dp_16"
+                    android:layout_marginEnd="@dimen/dp_12"
+                    app:errorTextAppearance="@style/ErrorTextAppearance"
+                    android:hint="Рост">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textInputEditText_height"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="15sp"
+                        android:paddingTop="@dimen/dp_10"
+                        android:inputType="textNoSuggestions"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout_weight"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/guideline"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="@dimen/dp_16"
+                    android:layout_marginStart="12dp"
+                    app:errorTextAppearance="@style/ErrorTextAppearance"
+                    android:hint="Вес">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textInputEditText_weight"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="15sp"
+                        android:paddingTop="@dimen/dp_10"
+                        android:inputType="textNoSuggestions"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/userActivity_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/userParameters_layout"
+                android:layout_marginTop="@dimen/dp_16"
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/dp_4">
+
+                <TextView
+                    android:id="@+id/tv_activity_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="Ваша активность"
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/sp_13"
+                    android:fontFamily="@font/sfprodisplaysemibold"/>
+
+                <RadioGroup
+                    android:id="@+id/radioGroup_activity"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:gravity="center"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_activity_name"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/dp_12"
+                    android:background="@drawable/radio_group_background">
+
+                    <RadioButton
+                        android:id="@+id/rb_small_activity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="@dimen/dp_2"
+                        android:layout_marginStart="@dimen/dp_2"
+                        android:button="@color/transparent"
+                        android:background="@drawable/radio_selector"
+                        android:checked="true"
+                        android:text="Низкая"
+                        android:fontFamily="@font/sfprodisplaysemibold"
+                        android:textSize="13sp"
+                        android:textColor="@color/black"/>
+
+                    <RadioButton
+                        android:id="@+id/rb_medium_activity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="@dimen/dp_2"
+                        android:button="@color/transparent"
+                        android:background="@drawable/radio_selector"
+                        android:checked="false"
+                        android:text="Средняя"
+                        android:fontFamily="@font/sfprodisplaysemibold"
+                        android:textSize="13sp"
+                        android:textColor="@color/black"/>
+
+                    <RadioButton
+                        android:id="@+id/rb_high_activity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="@dimen/dp_2"
+                        android:layout_marginEnd="@dimen/dp_2"
+                        android:button="@color/transparent"
+                        android:background="@drawable/radio_selector"
+                        android:checked="false"
+                        android:text="Высокая"
+                        android:fontFamily="@font/sfprodisplaysemibold"
+                        android:textSize="13sp"
+                        android:textColor="@color/black"/>
+                </RadioGroup>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <TextView
+                android:id="@+id/tv_delete_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/userActivity_layout"
+                android:gravity="left"
+                android:text="Удалить аккаунт"
+                android:textColor="@color/red"
+                android:fontFamily="@font/sfprodisplaysemibold"
+                android:letterSpacing="0.025"
+                android:layout_marginTop="16dp"
+                android:paddingTop="@dimen/dp_12"
+                android:paddingBottom="@dimen/dp_12"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_save_user_data_updates"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_delete_account"
+                android:layout_marginTop="@dimen/dp_16"
+                android:background="@drawable/btn_default_sign_in"
+                android:fontFamily="@font/sfprodisplaysemibold"
+                android:paddingTop="@dimen/dp_14"
+                android:paddingBottom="@dimen/dp_14"
+                android:text="Сохранить изменения"
+                android:textAllCaps="false"
+                android:textSize="17sp"
+                app:cornerRadius="@dimen/dp_50"
+                android:textColor="@color/white"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

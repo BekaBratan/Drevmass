@@ -1,0 +1,652 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="@color/toolbar_color"
+    tools:context=".presentation.course.CourseInfoFragment">
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="0dp"
+        android:theme="@style/CollapsingToolbar"
+        tools:ignore="MissingConstraints">
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/CollapsingToolbar"
+            app:collapsedTitleGravity="center"
+            app:collapsedTitleTextAppearance="@style/CollapsedTitleText"
+            app:collapsedTitleTextColor="@color/black"
+            app:contentScrim="#FFFFFF"
+            app:expandedTitleGravity="center"
+            app:expandedTitleTextAppearance="@style/ExpandedTitleText"
+            app:layout_collapseMode="pin"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:scrimAnimationDuration="@integer/m3_sys_shape_corner_small_corner_family"
+            app:statusBarScrim="#FFFFFF">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/toolbar_color">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="400dp"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:src="@drawable/example_course_banner_artem" />
+
+                    <ImageView
+                        android:id="@+id/imgCourseBanner"
+                        android:layout_width="match_parent"
+                        android:layout_height="400dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_fade_opacity_gradient_black"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageButton
+                        android:id="@+id/btnBackCourseFragment"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="50dp"
+                        android:backgroundTint="@color/transparent"
+                        android:src="@drawable/ic_back_24"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageButton
+                        android:id="@+id/btnShareCourseFragment"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginEnd="@dimen/dp_16"
+                        android:backgroundTint="@color/transparent"
+                        android:src="@drawable/ic_share_white"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/btnBackCourseFragment" />
+
+                    <TextView
+                        android:id="@+id/tvTitleCourse"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="13.5dp"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:maxLines="30"
+                        android:text="Каталог"
+                        android:layout_marginHorizontal="@dimen/dp_16"
+                        android:textColor="@color/white"
+                        android:textSize="28sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@+id/sectionLinerLayoutDescription"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:text="Авторская методика Древмасс" />
+
+                    <LinearLayout
+                        android:id="@+id/sectionLinerLayoutDescription"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="14.5dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toTopOf="@id/btnStartCourse"
+                        app:layout_constraintStart_toStartOf="@+id/tvTitleCourse">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/ic_play_course" />
+
+                        <TextView
+                            android:id="@+id/tvCountLesson"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/dp_6"
+                            android:fontFamily="@font/sfprotextbold"
+                            android:gravity="start"
+                            android:textColor="@color/white"
+                            tools:text="8" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/dp_2"
+                            android:fontFamily="@font/sfprotextregular"
+                            android:gravity="start"
+                            android:text="уроков"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/dp_4"
+                            android:fontFamily="@font/sfprotextsemibold"
+                            android:gravity="start"
+                            android:text="·"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:id="@+id/tvTimeLesson"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/dp_4"
+                            android:fontFamily="@font/sfprotextbold"
+                            android:gravity="start"
+                            android:text="134"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/dp_2"
+                            android:fontFamily="@font/sfprotextregular"
+                            android:gravity="start"
+                            android:text="мин"
+                            android:textColor="@color/white" />
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnStartCourse"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginHorizontal="@dimen/dp_16"
+                        android:layout_marginBottom="@dimen/dp_16"
+                        android:background="@drawable/btn_default_sign_in"
+                        android:backgroundTint="@color/white_fade"
+                        android:stateListAnimator="@null"
+                        android:text="Начать курс"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_17"
+                        app:layout_constraintBottom_toTopOf="@id/cardView"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cardView"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/background_constraintlayout"
+                        android:elevation="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbarDescriptionSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:visibility="invisible"
+                android:layout_marginTop="@dimen/dp_24"
+                app:collapsedTitleGravity="center"
+                android:layout_marginStart="-15dp"
+                app:collapsedTitleTextColor="@color/black"
+                app:expandedTitleGravity="center"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:layout_collapseMode="pin"
+                app:scrimAnimationDuration="@integer/m3_sys_shape_corner_small_corner_family">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/toolbarCourseFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvTitleCourseCollapsing"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sfprotextsemibold"
+                        android:textColor="@color/black"
+                        android:textSize="17dp"
+                        android:gravity="center"
+                        android:lines="1"
+                        android:ellipsize="end"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/btnBackCourseCollapsing"
+                        app:layout_constraintEnd_toStartOf="@id/btnShareCourseCollapsing"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageButton
+                        android:id="@+id/btnBackCourseCollapsing"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="@dimen/dp_8"
+                        android:backgroundTint="@color/transparent"
+                        android:src="@drawable/ic_back_woody"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageButton
+                        android:id="@+id/btnShareCourseCollapsing"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginEnd="@dimen/dp_16"
+                        android:backgroundTint="@color/transparent"
+                        android:src="@drawable/ic_share_24"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.appbar.MaterialToolbar>
+
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:backgroundTint="@color/white"
+            android:minHeight="700dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <LinearLayout
+                android:id="@+id/sectionAdditionalInformation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/sectionProgressCourse"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_72"
+                    android:visibility="gone"
+                    android:layout_marginHorizontal="@dimen/dp_16"
+                    android:layout_marginBottom="@dimen/dp_12"
+                    android:background="@drawable/style_background_20dp_corner_2dp"
+                    android:backgroundTint="@color/bg_secondary_EFEBE9">
+
+                    <TextView
+                        android:id="@+id/textProgressLessons"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginHorizontal="@dimen/dp_16"
+                        android:layout_marginVertical="@dimen/dp_12"
+                        android:fontFamily="@font/sfprotextsemibold"
+                        android:lineSpacingExtra="@dimen/dp_2"
+                        android:text="Пройдено уроков"
+                        android:textColor="@color/black"
+                        android:textSize="15dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvProgressStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:fontFamily="@font/sfprotextsemibold"
+                        android:text="1 из 3"
+                        android:textColor="@color/black"
+                        android:textSize="15dp"
+                        app:layout_constraintBottom_toBottomOf="@id/textProgressLessons"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/textProgressLessons" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_height="6dp"
+                        app:cardBackgroundColor="@color/divider_add"
+                        app:cardCornerRadius="20dp"
+                        android:layout_marginBottom="@dimen/dp_16"
+                        android:layout_marginTop="@dimen/dp_12"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/tvProgressStatus"
+                        app:layout_constraintStart_toStartOf="@id/textProgressLessons"
+                        app:layout_constraintTop_toBottomOf="@+id/textProgressLessons">
+
+                        <ProgressBar
+                            android:id="@+id/progressBarCourse"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </androidx.cardview.widget.CardView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvDescriptionCourse"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/dp_16"
+                        android:fontFamily="@font/sfprotextregular"
+                        android:lineSpacingExtra="@dimen/dp_4"
+                        android:maxLines="3"
+                        tools:text="Курс Основы здорового позвоночника представляет собой комплексное программа, разработанная специалистами в области здоровья позвоночника и физической реабилитации. Она включает в себя разнообразные упражнения, техники растяжки, коррекции осанки и рекомендации по поддержанию здоровья спины в повседневной жизни. Курс направлен на то, чтобы помочь людям укрепить мышцы спины, улучшить гибкость и поддержать правильное положение позвоночника."
+                        android:textColor="@color/grey_787878"
+                        android:textSize="16dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:id="@+id/btnShowAllTextDescription"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="@id/tvDescriptionCourse"
+                        app:layout_constraintEnd_toEndOf="@id/tvDescriptionCourse">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/ic_fade_right" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:paddingStart="8dp"
+                            android:paddingEnd="16dp"
+                            android:background="@color/white"
+                            android:fontFamily="@font/sfprotextregular"
+                            android:gravity="start"
+                            android:text="подробнее"
+                            android:textColor="@color/blue_007AFF"
+                            android:textSize="@dimen/dp_16" />
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/tvBonusSectionCourse"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_72"
+                    android:layout_marginHorizontal="@dimen/dp_16"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/style_background_20dp_corner_2dp"
+                    android:backgroundTint="@color/grey_E0DEDD">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_tree_fade"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/tvCountDescriptionBonus"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginHorizontal="@dimen/dp_20"
+                        android:layout_marginVertical="@dimen/dp_20"
+                        android:fontFamily="@font/sfprotextsemibold"
+                        android:lineSpacingExtra="@dimen/dp_2"
+                        android:text="Начислим 500 бонусов за прохождение курса"
+                        android:textColor="@color/black"
+                        android:textSize="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/tvBonusSpace"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:id="@+id/tvBonusSpace"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/style_background_39dp"
+                        android:backgroundTint="@color/bg_secondary_EFEBE9"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/tvCountBonusForCourse"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/dp_8"
+                            android:fontFamily="@font/sfprotextbold"
+                            android:gravity="end"
+                            android:textColor="@color/black"
+                            tools:text="+1000" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|end"
+                            android:layout_margin="@dimen/dp_2"
+                            android:background="@drawable/ic_bonus"
+                            android:backgroundTint="@color/woody" />
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/sectionCalendarCourse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dp_16"
+                    android:layout_marginTop="@dimen/dp_24"
+                    android:background="@drawable/style_background_20dp_corner_2dp">
+
+                    <LinearLayout
+                        android:id="@+id/sectionSwitchCalendarCourse"
+                        android:layout_width="match_parent"
+                        android:layout_height="64dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="@dimen/dp_16"
+                            android:layout_marginStart="@dimen/dp_16"
+                            android:src="@drawable/ic_calendar" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/dp_8"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/sfprotextsemibold"
+                            android:gravity="center_vertical|start"
+                            android:text="Календарь занятий"
+                            android:textColor="@color/black"
+                            android:textSize="17sp" />
+
+                        <com.kyleduo.switchbutton.SwitchButton
+                            android:id="@+id/btnSwitchCalendarSystem"
+                            style="@style/SwitchButtonStyle"
+                            android:layout_width="67dp"
+                            android:layout_height="36dp"
+                            android:layout_marginEnd="8dp"
+                            android:checked="false"
+                            app:kswThumbColor="@color/white"
+                            app:kswTintColor="@color/woody"
+                            app:kswBackDrawable="@drawable/switch_thumb_color"
+                            app:layout_constraintBottom_toBottomOf="@+id/text3"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/text3" />
+                    </LinearLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/sectionPlannerCalendar"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:visibility="gone"
+                        android:paddingHorizontal="@dimen/dp_16"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/sectionSwitchCalendarCourse">
+
+                        <LinearLayout
+                            android:id="@+id/btnSelectDayCourse"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingTop="@dimen/dp_8"
+                            android:paddingBottom="@dimen/dp_12"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:id="@+id/textView2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:minWidth="200dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/sfprotextregular"
+                                android:text="Дни занятий"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/dp_17" />
+
+                            <TextView
+                                android:id="@+id/tvDayCourse"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical|end"
+                                android:minWidth="100dp"
+                                android:textAlignment="textEnd"
+                                android:layout_marginEnd="4dp"
+                                android:layout_weight="2"
+                                android:fontFamily="@font/sfprotextmedium"
+                                android:text="Пн"
+                                android:textColor="@color/woody"
+                                android:textSize="@dimen/dp_17" />
+
+                            <ImageView
+                                android:id="@+id/imageView6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:src="@drawable/ic_right" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/btnSelectTimeCourse"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:orientation="horizontal"
+                            android:paddingVertical="@dimen/dp_12"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/btnSelectDayCourse">
+
+                            <TextView
+                                android:id="@+id/textTime"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/sfprotextregular"
+                                android:text="Время"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/dp_17" />
+
+                            <TextView
+                                android:id="@+id/tvTimeCourse"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginEnd="4dp"
+                                android:fontFamily="@font/sfprotextmedium"
+                                android:text="9:00"
+                                android:textColor="@color/woody"
+                                android:textSize="@dimen/dp_17" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:src="@drawable/ic_right" />
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textNamingCourse"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_16"
+                android:layout_marginTop="@dimen/dp_24"
+                android:layout_marginBottom="13.5dp"
+                android:text="Курсы"
+                android:textColor="@color/black"
+                android:textSize="22dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sectionAdditionalInformation" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvLessonsDrevmass"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/dp_16"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textNamingCourse" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

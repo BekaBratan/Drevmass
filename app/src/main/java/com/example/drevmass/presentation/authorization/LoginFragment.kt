@@ -44,7 +44,7 @@ class LoginFragment : Fragment() {
         provideNavigationHost()?.hideBottomNavigationBar(true)
         provideNavigationHost()?.fullScreenMode(true)
 
-        binding.btnContinue.setOnClickListener { findNavController().navigate(R.id.courseFragment)}
+        binding.btnContinue.setOnClickListener { findNavController().navigate(R.id.courseFragment) }
 
         binding.root.viewTreeObserver.addOnGlobalLayoutListener {
             val rect = Rect()
@@ -56,7 +56,8 @@ class LoginFragment : Fragment() {
                 // Keyboard is open
                 isKeypadOpen = true
                 if (isAllFilled())
-                    binding.btnContinue.translationY = -keypadHeight.toFloat() + 56 + 68 + 32 // move the button up
+                    binding.btnContinue.translationY =
+                        -keypadHeight.toFloat() + 56 + 68 + 32 // move the button up
             } else {
                 // Keyboard is closed
                 isKeypadOpen = false
@@ -69,7 +70,8 @@ class LoginFragment : Fragment() {
                 if (isAllFilled()) {
                     btnContinue.backgroundTintList = resources.getColorStateList(R.color.brand_900)
                     if (isKeypadOpen)
-                        binding.btnContinue.translationY = -keypadHeight.toFloat() + 56 + 68 + 32 // move the button up
+                        binding.btnContinue.translationY =
+                            -keypadHeight.toFloat() + 56 + 68 + 32 // move the button up
                 } else {
                     btnContinue.backgroundTintList = resources.getColorStateList(R.color.brand_700)
                     binding.btnContinue.translationY = 0f // move the button up
@@ -80,7 +82,8 @@ class LoginFragment : Fragment() {
                 if (isAllFilled()) {
                     btnContinue.backgroundTintList = resources.getColorStateList(R.color.brand_900)
                     if (isKeypadOpen)
-                        binding.btnContinue.translationY = -keypadHeight.toFloat() + 56 + 68 + 32 // move the button up
+                        binding.btnContinue.translationY =
+                            -keypadHeight.toFloat() + 56 + 68 + 32 // move the button up
                 } else {
                     btnContinue.backgroundTintList = resources.getColorStateList(R.color.brand_700)
                     binding.btnContinue.translationY = 0f // move the button up
@@ -111,12 +114,14 @@ class LoginFragment : Fragment() {
                 etEmail.setOnFocusChangeListener { _, event ->
                     if (event) {
                         normalEditText(etEmail)
-                        if (etEmail.text.toString().isNotEmpty()){
+                        if (etEmail.text.toString().isNotEmpty()) {
                             setDrawableEnd(etEmail)
                         }
                     } else {
                         removeDrawableEnd(etEmail)
-                        if (!isValidEmail(etEmail.text.toString()) && etEmail.text.toString().isNotEmpty()) {
+                        if (!isValidEmail(etEmail.text.toString()) && etEmail.text.toString()
+                                .isNotEmpty()
+                        ) {
                             wrongEditText(etEmail)
                         }
                     }
@@ -146,11 +151,21 @@ class LoginFragment : Fragment() {
         if (isPasswordVisible) {
             // Hide the password
             binding.etPassword.transformationMethod = PasswordTransformationMethod()
-            binding.etPassword.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_lock, 0, R.drawable.ic_show, 0)
+            binding.etPassword.setCompoundDrawablesWithIntrinsicBounds(
+                R.drawable.ic_lock,
+                0,
+                R.drawable.ic_show,
+                0
+            )
         } else {
             // Show the password
             binding.etPassword.transformationMethod = HideReturnsTransformationMethod()
-            binding.etPassword.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_lock, 0, R.drawable.ic_hide, 0)
+            binding.etPassword.setCompoundDrawablesWithIntrinsicBounds(
+                R.drawable.ic_lock,
+                0,
+                R.drawable.ic_hide,
+                0
+            )
         }
         // Move the cursor to the end of the text
         binding.etPassword.setSelection(binding.etPassword.text.length)
@@ -180,6 +195,7 @@ class LoginFragment : Fragment() {
             provideNavigationHost()?.hideBottomNavigationBar(true)
             provideNavigationHost()?.fullScreenMode(true)
         }
+    }
 
     private fun clearText(editText: EditText) {
         editText.text.clear()
@@ -212,6 +228,5 @@ class LoginFragment : Fragment() {
 
     private fun isValidEmail(email: String): Boolean {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches()
-
-    }
+        }
 }
