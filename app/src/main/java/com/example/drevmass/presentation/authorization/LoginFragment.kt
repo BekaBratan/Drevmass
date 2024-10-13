@@ -123,6 +123,7 @@ class LoginFragment : Fragment() {
                     removeDrawableEnd(etEmail)
                     if (!isValidEmail(etEmail.text.toString()) && etEmail.text.toString().isNotEmpty()) {
                         wrongEditText(etEmail)
+
                     }
                 }
             }
@@ -155,11 +156,21 @@ class LoginFragment : Fragment() {
         if (isPasswordVisible) {
             // Hide the password
             binding.etPassword.transformationMethod = PasswordTransformationMethod()
-            binding.etPassword.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_lock, 0, R.drawable.ic_show, 0)
+            binding.etPassword.setCompoundDrawablesWithIntrinsicBounds(
+                R.drawable.ic_lock,
+                0,
+                R.drawable.ic_show,
+                0
+            )
         } else {
             // Show the password
             binding.etPassword.transformationMethod = HideReturnsTransformationMethod()
-            binding.etPassword.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_lock, 0, R.drawable.ic_hide, 0)
+            binding.etPassword.setCompoundDrawablesWithIntrinsicBounds(
+                R.drawable.ic_lock,
+                0,
+                R.drawable.ic_hide,
+                0
+            )
         }
         // Move the cursor to the end of the text
         binding.etPassword.setSelection(binding.etPassword.text.length)
