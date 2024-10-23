@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.catalog.productDetail.ProductDetailFragment">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="4dp"
+            android:paddingBottom="32dp"
+            android:clipToPadding="false">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imgProduct"
+                android:layout_width="match_parent"
+                android:layout_height="222dp"
+                app:layout_constraintTop_toTopOf="parent"
+                android:scaleType="centerCrop"
+                app:shapeAppearanceOverlay="@style/style_corner_for_img_24dp"
+                android:src="@drawable/img_product_example"/>
+
+            <TextView
+                android:id="@+id/tvProductTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/imgProduct"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/app_name"
+                android:fontFamily="@font/sfprotextregular"
+                android:textSize="17sp"
+                android:textColor="@color/dark_900"/>
+
+            <TextView
+                android:id="@+id/tvProductPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tvProductTitle"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/app_name"
+                android:fontFamily="@font/sfprotextbold"
+                android:textSize="28sp"
+                android:textColor="@color/dark_900"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnToCart"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@drawable/sh_btn_radius50dp"
+                android:backgroundTint="@color/brand_900"
+                android:text="@string/toCart"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:textAllCaps="false"
+                android:textColor="@color/white_1000"
+                android:textSize="17sp"
+                android:fontFamily="@font/sfprotextsemibold"
+                app:layout_constraintTop_toBottomOf="@+id/tvProductPrice"/>
+
+            <LinearLayout
+                android:id="@+id/llBtnCourse"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                app:layout_constraintTop_toBottomOf="@+id/btnToCart"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginHorizontal="16dp">
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_course_28"
+                    android:background="@color/fui_transparent"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/howToUse"
+                    android:textColor="@color/brand_900"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/sfprotextsemibold"
+                    android:layout_marginStart="10dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llSizes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:background="@drawable/sh_border_24dp"
+                app:layout_constraintTop_toBottomOf="@+id/llBtnCourse"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginHorizontal="16dp"
+                android:paddingVertical="8dp"
+                android:paddingHorizontal="16dp">
+
+                <LinearLayout
+                    android:id="@+id/llHeight"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_weight_28"
+                        android:background="@color/fui_transparent"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/height"
+                        android:textColor="@color/gray_800"
+                        android:textSize="15sp"
+                        android:fontFamily="@font/sfprotextregular"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/heightSample"
+                        android:textColor="@color/dark_1000"
+                        android:textSize="15sp"
+                        android:fontFamily="@font/sfprotextsemibold"
+                        android:layout_marginStart="10dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llSize"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_size_24"
+                        android:background="@color/fui_transparent"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/size"
+                        android:textColor="@color/gray_800"
+                        android:textSize="15sp"
+                        android:fontFamily="@font/sfprotextregular"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sizeSample"
+                        android:textColor="@color/dark_1000"
+                        android:textSize="15sp"
+                        android:fontFamily="@font/sfprotextsemibold"
+                        android:layout_marginStart="10dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvProductDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/llSizes"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/descriprion"
+                android:fontFamily="@font/sfprotextsemibold"
+                android:textSize="20sp"
+                android:textColor="@color/dark_900"/>
+
+            <TextView
+                android:id="@+id/tvProductDescriptionText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tvProductDescription"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="12dp"
+                android:text="@string/descriprionSample"
+                android:fontFamily="@font/sfprotextregular"
+                android:textSize="16sp"
+                android:textColor="@color/gray_800"/>
+
+            <TextView
+                android:id="@+id/tvBuyWithIt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tvProductDescriptionText"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/buyWithIt"
+                android:fontFamily="@font/sfprotextsemibold"
+                android:textSize="20sp"
+                android:textColor="@color/dark_900"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tvBuyWithIt"
+                android:layout_marginTop="16dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal"
+                tools:listitem="@layout/item_product_similar"
+                android:paddingHorizontal="10dp"
+                android:clipToPadding="false"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

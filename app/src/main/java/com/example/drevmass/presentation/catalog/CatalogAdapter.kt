@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.drevmass.databinding.ItemProductHorizontalBinding
 import com.example.drevmass.databinding.ItemProductTileBinding
 import com.example.drevmass.databinding.ItemProductVerticalBinding
+import com.example.drevmass.presentation.utils.RcViewItemClickIdCallback
 
 class CatalogAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -17,22 +18,7 @@ class CatalogAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         private const val VIEW_TYPE_LAYOUT_3 = 3
     }
 
-    private var currentList: List<String> = listOf(
-        "name1",
-        "name2",
-        "name3",
-        "name4",
-        "name5",
-        "name6",
-        "name7",
-        "name8",
-        "name9",
-        "name10",
-        "name11",
-        "name12",
-        "name13",
-        "name14",
-    )
+    private var currentList: List<String> = emptyList()
 
     fun submitList(list: List<String>) {
         currentList = list
@@ -52,26 +38,40 @@ class CatalogAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    class TileViewHolder(private var binding: ItemProductTileBinding): RecyclerView.ViewHolder(binding.root) {
+    private var listenerClickAtItem: RcViewItemClickIdCallback? = null
+    fun setOnItemClickListener(listener: RcViewItemClickIdCallback) {
+        this.listenerClickAtItem = listener
+    }
+
+    inner class TileViewHolder(private var binding: ItemProductTileBinding): RecyclerView.ViewHolder(binding.root) {
         fun onBind(itemName: String) {
             binding.run {
                 tvProductName.text = itemName
             }
-        }
-    }
-
-    class VerticalViewHolder(private var binding: ItemProductVerticalBinding): RecyclerView.ViewHolder(binding.root) {
-        fun onBind(itemName: String) {
-            binding.run {
-                tvProductName.text = itemName
+            itemView.setOnClickListener {
+                listenerClickAtItem?.onClick(adapterPosition)
             }
         }
     }
 
-    class HorizontalViewHolder(private var binding: ItemProductHorizontalBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class VerticalViewHolder(private var binding: ItemProductVerticalBinding): RecyclerView.ViewHolder(binding.root) {
         fun onBind(itemName: String) {
             binding.run {
                 tvProductName.text = itemName
+            }
+            itemView.setOnClickListener {
+                listenerClickAtItem?.onClick(adapterPosition)
+            }
+        }
+    }
+
+    inner class HorizontalViewHolder(private var binding: ItemProductHorizontalBinding): RecyclerView.ViewHolder(binding.root) {
+        fun onBind(itemName: String) {
+            binding.run {
+                tvProductName.text = itemName
+            }
+            itemView.setOnClickListener {
+                listenerClickAtItem?.onClick(adapterPosition)
             }
         }
     }

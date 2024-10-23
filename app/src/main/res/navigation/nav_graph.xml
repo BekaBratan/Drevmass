@@ -55,7 +55,11 @@
         android:id="@+id/catalogFragment"
         android:name="com.example.drevmass.presentation.catalog.CatalogFragment"
         android:label="fragment_catalog"
-        tools:layout="@layout/fragment_catalog" />
+        tools:layout="@layout/fragment_catalog" >
+        <action
+            android:id="@+id/action_catalogFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/basketFragment"
         android:name="com.example.drevmass.presentation.BasketFragment"
@@ -76,4 +80,9 @@
         android:name="com.example.drevmass.presentation.profile.PromocodeFragment"
         android:label="fragment_promocode"
         tools:layout="@layout/fragment_promocode" />
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="com.example.drevmass.presentation.catalog.productDetail.ProductDetailFragment"
+        android:label="fragment_product_detail"
+        tools:layout="@layout/fragment_product_detail" />
 </navigation>
