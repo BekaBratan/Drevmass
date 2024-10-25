@@ -98,7 +98,12 @@
         tools:layout="@layout/fragment_notification" />
     <fragment
         android:id="@+id/courseInfoFragment"
-        android:name="com.example.drevmass.presentation.course.CourseInfoFragment"
+        android:name="com.example.drevmass.presentation.course.courseInfo.CourseInfoFragment"
         android:label="fragment_course_info"
         tools:layout="@layout/fragment_course_info" />
+    <fragment
+        android:id="@+id/favoriteCourseFragment"
+        android:name="com.example.drevmass.presentation.course.favouriteCourse.FavoriteCourseFragment"
+        android:label="fragment_favorite_course"
+        tools:layout="@layout/fragment_favorite_course" />
 </navigation>

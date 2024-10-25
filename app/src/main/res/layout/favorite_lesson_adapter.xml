@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/style_backgroun_24dp_corner_2dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginEnd="@dimen/dp_8">
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imgCoursePhoto"
+        android:layout_width="match_parent"
+        android:layout_height="148dp"
+        android:scaleType="centerCrop"
+        android:layout_margin="@dimen/dp_8"
+        app:shapeAppearanceOverlay="@style/CustomRoundedImageView16dp"
+        android:src="@drawable/img_background_banner_course"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageButton
+        android:id="@+id/btnPlayLesson"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_play_lesson"
+        android:background="@color/transparent"
+        app:layout_constraintTop_toTopOf="@id/imgCoursePhoto"
+        app:layout_constraintBottom_toBottomOf="@id/imgCoursePhoto"
+        app:layout_constraintStart_toStartOf="@id/imgCoursePhoto"
+        app:layout_constraintEnd_toEndOf="@id/imgCoursePhoto"/>
+
+    <ImageButton
+        android:id="@+id/btnFavoriteLessons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/transparent"
+        android:padding="@dimen/dp_13"
+        android:background="@color/white"
+        android:src="@drawable/ic_favorite_unselected"
+        app:layout_constraintEnd_toEndOf="@+id/imgCoursePhoto"
+        app:layout_constraintTop_toTopOf="@+id/imgCoursePhoto" />
+    <LinearLayout
+        android:id="@+id/sectionLinerLayoutDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginBottom="14.5dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@id/imgCoursePhoto"
+        app:layout_constraintTop_toBottomOf="@+id/imgCoursePhoto">
+
+        <ImageView
+            android:id="@+id/imgCheckLesson"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_check"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/tvCountLesson"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/dp_4"
+            android:fontFamily="@font/sfprotextmedium"
+            android:gravity="start"
+            android:textColor="@color/grey"
+            tools:text="8" />
+
+        <TextView
+            android:id="@+id/tvCountLessonDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/dp_2"
+            android:fontFamily="@font/sfprotextmedium"
+            android:gravity="start"
+            android:textColor="@color/grey" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/dp_4"
+            android:fontFamily="@font/sfprotextmedium"
+            android:gravity="start"
+            android:text="·"
+            android:textColor="@color/grey" />
+
+        <TextView
+            android:id="@+id/tvTimeLesson"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/dp_4"
+            android:fontFamily="@font/sfprotextmedium"
+            android:gravity="start"
+            android:text="134"
+            android:textColor="@color/grey" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/dp_2"
+            android:fontFamily="@font/sfprotextmedium"
+            android:gravity="start"
+            android:text="мин"
+            android:textColor="@color/grey" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tvCourseFULLTiltle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Деревянный роликовый тренажер-массажер для спины Древмасс. Полная комплектация и сборка массажера"
+        android:fontFamily="@font/sfprotextsemibold"
+        android:textSize="@dimen/dp_17"
+        android:textColor="@color/black"
+        android:lines="2"
+        android:ellipsize="end"
+        android:textAlignment="textStart"
+        app:layout_constraintTop_toBottomOf="@id/sectionLinerLayoutDescription"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginHorizontal="@dimen/dp_16"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
