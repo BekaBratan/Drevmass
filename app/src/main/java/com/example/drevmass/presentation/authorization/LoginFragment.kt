@@ -12,11 +12,15 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.marginBottom
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.drevmass.R
+import com.example.drevmass.data.model.LoginRequest
+import com.example.drevmass.data.util.SharedProvider
 import com.example.drevmass.databinding.FragmentLoginBinding
 import com.example.drevmass.presentation.utils.provideNavigationHost
 
@@ -24,6 +28,8 @@ import com.example.drevmass.presentation.utils.provideNavigationHost
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
+    private val viewModel: LoginViewModel by viewModels()
+
     private var keypadHeight = 0f
     private var translationHeight = 0f
     private var isKeypadOpen = false
@@ -46,9 +52,26 @@ class LoginFragment : Fragment() {
         provideNavigationHost()?.hideBottomNavigationBar(true)
         provideNavigationHost()?.fullScreenMode(true)
 
+        val sharedProvider = SharedProvider(requireContext())
         binding.run {
 
-            btnContinue.setOnClickListener { findNavController().navigate(R.id.courseFragment)}
+            btnContinue.setOnClickListener {
+                val loginRequest = LoginRequest(
+                    deviceToken = "deviceToken",
+                    email = etEmail.text.toString(),
+                    password = etPassword.text.toString()
+                )
+                viewModel.login(loginRequest)
+            }
+
+            viewModel.authorizationResponse.observe(viewLifecycleOwner) {
+                sharedProvider.saveToken(it.access_token.toString())
+                findNavController().navigate(R.id.courseFragment)
+            }
+
+            viewModel.errorResponse.observe(viewLifecycleOwner) {
+                Toast.makeText(requireContext(), "$it", Toast.LENGTH_SHORT).show()
+            }
 
             root.viewTreeObserver.addOnGlobalLayoutListener {
                 val rect = Rect()
