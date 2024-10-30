@@ -64,6 +64,11 @@
 
     <style name="Theme.Navigation_bar" parent="Base.Theme.Drevmass" />
 
+    <style name="ThemeOverlay.Drevmass.FullscreenContainer" parent="">
+        <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
+        <item name="fullscreenTextColor">@color/light_blue_A200</item>
+
+
     <style name="ErrorTextAppearance" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@color/red</item>
     </style>
@@ -142,5 +147,6 @@
         <item name="android:paddingRight">10dp</item>
         <item name="android:paddingTop">4dp</item>
         <item name="android:paddingBottom">4dp</item>
+
     </style>
 </resources>

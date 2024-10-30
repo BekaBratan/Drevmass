@@ -13,7 +13,7 @@
         android:layout_height="0dp"
         android:name="androidx.navigation.fragment.NavHostFragment"
         app:defaultNavHost="true"
-        app:navGraph = "@navigation/nav_graph"
+        app:navGraph="@navigation/nav_graph"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigationBarMainActivity"
         app:layout_constraintStart_toStartOf="parent"

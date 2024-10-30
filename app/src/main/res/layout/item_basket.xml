@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingVertical="16dp"
+    android:orientation="horizontal"
+    android:gravity="bottom">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivProduct"
+        android:layout_width="148dp"
+        android:layout_height="88dp"
+        app:shapeAppearanceOverlay="@style/style_corner_for_img_16dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/img_product_example"/>
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginStart="12dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/tvProductName"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textSize="15sp"
+            android:textColor="@color/dark_900"
+            android:fontFamily="@font/sfprotextregular"
+            android:text="@string/thirdScreenTitle"
+            android:layout_weight="1"
+            tools:ignore="NestedWeights" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvProductCost"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textColor="@color/dark_900"
+                android:fontFamily="@font/sfprotextbold"
+                android:text="@string/costExample"
+                android:layout_weight="1"/>
+
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="32dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/sh_btn_radius100dp"
+                android:paddingHorizontal="8dp">
+
+                <ImageButton
+                    android:id="@+id/btnMinus"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:background="@drawable/ic_minus_16"/>
+
+                <TextView
+                    android:id="@+id/tvProductCount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textColor="@color/dark_900"
+                    android:fontFamily="@font/sfprotextsemibold"
+                    android:text="1"
+                    android:textAlignment="center"
+                    android:layout_weight="1"/>
+
+                <ImageButton
+                    android:id="@+id/btnPlus"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:background="@drawable/ic_plus_16"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
