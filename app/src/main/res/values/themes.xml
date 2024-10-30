@@ -11,6 +11,12 @@
         <item name="colorControlNormal">@color/woody_opacity</item>
         <item name="colorControlActivated">@color/woody</item>
         <item name="colorAccent">@color/woody</item>
+        <item name="textInputStyle">
+            @style/MyCustomTextInputStyle
+        </item>
+        <item name="editTextStyle">
+            @style/MyCustomEditTextStyle
+        </item>
     </style>
 
     <style name="Theme.Drevmass" parent="Base.Theme.Drevmass">
@@ -47,11 +53,100 @@
         <item name="colorSwitchThumbNormal">@color/grey_300</item>
         <!-- Status bar color. -->
         <item name="iconTint">@color/grey_800</item>
+
+        <item name="textInputStyle">
+            @style/MyCustomTextInputStyle
+        </item>
+        <item name="editTextStyle">
+            @style/MyCustomEditTextStyle
+        </item>
     </style>
 
     <style name="Theme.Navigation_bar" parent="Base.Theme.Drevmass" />
+
     <style name="ThemeOverlay.Drevmass.FullscreenContainer" parent="">
         <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
         <item name="fullscreenTextColor">@color/light_blue_A200</item>
+
+
+    <style name="ErrorTextAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/red</item>
+    </style>
+
+    <style name="CustomRoundedImageView24dp" >
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">24dp</item> <!-- Adjust the corner radius as needed -->
+    </style>
+    <style name="CustomRoundedImageView16dp" >
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item> <!-- Adjust the corner radius as needed -->
+    </style>
+    <style name="CustomRoundedImageView32dp" >
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">24dp</item> <!-- Adjust the corner radius as needed -->
+    </style>
+    <style name="CustomRoundedProgressBar">
+        <item name="android:progressDrawable">@drawable/custom_rounded_progress_bar</item>
+    </style>
+    <style name="ExpandedTitleText" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/sp_17</item>
+        <item name="android:fontFamily">@font/sfprotextbold</item>
+        <!-- Другие атрибуты шрифта, если необходимо -->
+    </style>
+
+    <style name="CollapsedTitleText" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/sp_17</item>
+        <item name="android:fontFamily">@font/sfprotextbold</item>
+        <!-- Другие атрибуты шрифта, если необходимо -->
+    </style>
+
+    <style name="CollapsingToolbar" parent="Widget.Design.CollapsingToolbar">
+        <!-- Другие атрибуты темы -->
+        <item name="expandedTitleMargin">32dp</item>
+        <item name="statusBarScrim" tools:targetApi="M">@color/white</item>
+        <item name="android:statusBarColor" tools:targetApi="M">@color/white</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+
+    <style name="SwitchCustom" parent="Widget.Material3.CompoundButton.MaterialSwitch">
+        <item name="thumbIcon">@drawable/btn_filled_sign_in</item>
+        <item name="thumbColor">@color/black</item>
+    </style>
+    <style name="MyCustomTextInputStyle" parent="Widget.Design.TextInputLayout">
+        <item name="android:textColorHint">@color/grey_a1a1a1</item>
+    </style>
+
+    <style name="MyCustomEditTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/sfprodisplaysemibold</item>
+        <item name="android:textSize">@dimen/sp_17</item>
+    </style>
+
+    <style name="CustomTimePickerDialogTheme" parent="ThemeOverlay.MaterialComponents.Dialog">
+        <!-- Цвет фона диалога -->
+        <item name="android:windowBackground">@color/woody_opacity</item>
+        <!-- Цвет текста времени -->
+        <item name="android:textColorPrimary">@color/grey_50</item>
+        <!-- Цвет кнопки "OK" -->
+        <item name="colorPrimary">@color/woody</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Цвет кнопки "Cancel" -->
+        <item name="colorSecondary">@color/grey_black</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <!-- Цвет заголовка диалога -->
+        <item name="android:textColor">@color/black</item>
+        <!-- Цвет фона диалогового окна -->
+        <item name="android:colorBackground">@color/white</item>
+        <item name="colorAccent">@color/grey_50</item>
+    </style>
+
+    <style name="SwitchButtonStyle">
+        <item name="android:switchStyle">@color/woody</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+
     </style>
 </resources>

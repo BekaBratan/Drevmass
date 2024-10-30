@@ -48,7 +48,7 @@
     </fragment>
     <fragment
         android:id="@+id/courseFragment"
-        android:name="com.example.drevmass.presentation.CourseFragment"
+        android:name="com.example.drevmass.presentation.course.CourseFragment"
         android:label="fragment_course"
         tools:layout="@layout/fragment_course" />
     <fragment
@@ -84,6 +84,7 @@
         android:name="com.example.drevmass.presentation.profile.PromocodeFragment"
         android:label="fragment_promocode"
         tools:layout="@layout/fragment_promocode" />
+    
     <fragment
         android:id="@+id/productDetailFragment"
         android:name="com.example.drevmass.presentation.catalog.productDetail.ProductDetailFragment"
@@ -94,4 +95,31 @@
         android:name="com.example.drevmass.presentation.basket.make_order.MakeOrderFragment"
         android:label="fragment_make_order"
         tools:layout="@layout/fragment_make_order" />
+
+    <fragment
+        android:id="@+id/myDataFragment"
+        android:name="com.example.drevmass.presentation.profile.myData.MyDataFragment"
+        android:label="fragment_my_data"
+        tools:layout="@layout/fragment_my_data" />
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.example.drevmass.presentation.profile.changePassword.ChangePasswordFragment"
+        android:label="fragment_change_password"
+        tools:layout="@layout/fragment_change_password" />
+    <fragment
+        android:id="@+id/informationFragment"
+        android:name="com.example.drevmass.presentation.profile.information.InformationFragment"
+        android:label="fragment_information"
+        tools:layout="@layout/fragment_information" />
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="com.example.drevmass.presentation.profile.notification.NotificationFragment"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_notification" />
+    <fragment
+        android:id="@+id/courseInfoFragment"
+        android:name="com.example.drevmass.presentation.course.CourseInfoFragment"
+        android:label="fragment_course_info"
+        tools:layout="@layout/fragment_course_info" />
+
 </navigation>

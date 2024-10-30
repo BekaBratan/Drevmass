@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Цвет thumb, когда переключатель выключен (false) -->
+    <item android:state_checked="false">
+        <shape android:shape="rectangle">
+            <corners android:radius="16.5dp" />
+            <solid android:color="#E0DEDD" />
+        </shape>
+    </item>
+    <!-- Цвет thumb, когда переключатель включен (true) -->
+    <item android:state_checked="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="16.5dp" />
+            <solid android:color="@color/woody" />
+        </shape>
+    </item>
+</selector>

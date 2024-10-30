@@ -81,9 +81,23 @@
     <color name="update">#B5A380</color>
     <color name="shimmer_rc">#eeebe9</color>
     <color name="transparent">#00000000</color>
+
     <color name="light_blue_600">#FF039BE5</color>
     <color name="light_blue_900">#FF01579B</color>
     <color name="light_blue_A200">#FF40C4FF</color>
     <color name="light_blue_A400">#FF00B0FF</color>
     <color name="black_overlay">#66000000</color>
+
+    <color name="red">#FF0004</color>
+    <color name="error">#FA5C5C</color>
+    <color name="btn_sign_in">#B5A380</color>
+
+    <!--ADDITIONAL COLORS-->
+    <color name="white_fade">#45FFFFFF</color>
+    <color name="white_fade2">#99FFFFFF</color>
+    <color name="black_fade">#45302C28</color>
+
+    <color name="grey_E0DEDD">#E0DEDD</color>
+    <color name="switchOff">#E0DEDD</color>
+
 </resources>
