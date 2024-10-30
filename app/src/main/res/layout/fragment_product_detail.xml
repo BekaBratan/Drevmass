@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="4dp"
-            android:paddingBottom="32dp"
+            android:paddingBottom="88dp"
             android:clipToPadding="false">
 
             <com.google.android.material.imageview.ShapeableImageView
@@ -150,6 +150,12 @@
 
                 </LinearLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:background="@drawable/divider_dash_1dp"
+                    android:layout_marginVertical="1dp"/>
+
                 <LinearLayout
                     android:id="@+id/llSize"
                     android:layout_width="match_parent"
@@ -220,9 +226,10 @@
                 android:text="@string/buyWithIt"
                 android:fontFamily="@font/sfprotextsemibold"
                 android:textSize="20sp"
-                android:textColor="@color/dark_900"/>
+                android:textColor="@color/dark_1000"/>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvSimilarProducts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/tvBuyWithIt"
@@ -236,5 +243,41 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/btnToCart2"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@drawable/sh_btn_radius50dp"
+        android:backgroundTint="@color/brand_900"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:paddingHorizontal="24dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/toCart"
+            android:textAllCaps="false"
+            android:textColor="@color/white_1000"
+            android:textSize="17sp"
+            android:fontFamily="@font/sfprotextsemibold"/>
+
+        <TextView
+            android:id="@+id/tvProductPrice2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/costExample"
+            android:textAllCaps="false"
+            android:textColor="@color/white_1000"
+            android:textSize="17sp"
+            android:fontFamily="@font/sfprotextsemibold"
+            android:textAlignment="textEnd"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

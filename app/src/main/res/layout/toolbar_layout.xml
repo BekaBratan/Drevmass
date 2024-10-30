@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="42dp"
     android:orientation="horizontal"
-    android:gravity="center_vertical">
+    android:gravity="center_vertical"
+    android:background="@color/white_1000">
 
     <ImageButton
         android:id="@+id/left_button"
