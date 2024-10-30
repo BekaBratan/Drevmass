@@ -1,14 +1,9 @@
-package com.example.drevmass.presentation.course
+package com.example.drevmass.presentation.course.courseInfo
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.drevmass.R
 import com.example.drevmass.databinding.FragmentCourseInfoAdapterBinding
-import com.example.drevmass.databinding.FragmentCourseInfoBinding
 
 class CourseInfoAdapter : RecyclerView.Adapter<CourseInfoAdapter.RcViewHolder>() {
 
@@ -18,7 +13,7 @@ class CourseInfoAdapter : RecyclerView.Adapter<CourseInfoAdapter.RcViewHolder>()
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): CourseInfoAdapter.RcViewHolder {
+    ): RcViewHolder {
         return RcViewHolder(
             FragmentCourseInfoAdapterBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -28,7 +23,7 @@ class CourseInfoAdapter : RecyclerView.Adapter<CourseInfoAdapter.RcViewHolder>()
         )
     }
 
-    override fun onBindViewHolder(holder: CourseInfoAdapter.RcViewHolder , position: Int) {
+    override fun onBindViewHolder(holder: RcViewHolder, position: Int) {
 
     }
 

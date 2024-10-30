@@ -1,0 +1,342 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:backgroundTint="@color/white"
+    android:fitsSystemWindows="true"
+    tools:context=".presentation.course.lessons.LessonFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="0dp"
+        android:theme="@style/CollapsingToolbar"
+        tools:ignore="MissingConstraints">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/CollapsingToolbar"
+            app:collapsedTitleGravity="center"
+            app:collapsedTitleTextAppearance="@style/CollapsedTitleText"
+            app:collapsedTitleTextColor="@color/black"
+            app:contentScrim="#FFFFFF"
+            app:expandedTitleGravity="center"
+            app:expandedTitleTextAppearance="@style/ExpandedTitleText"
+            app:layout_collapseMode="pin"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:scrimAnimationDuration="@integer/m3_sys_shape_corner_small_corner_family"
+            app:statusBarScrim="#FFFFFF">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                    <ImageButton
+                        android:id="@+id/btnBackLessonFragment"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_back_woody"
+                        android:layout_marginStart="@dimen/dp_4"
+                        android:background="@color/transparent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <LinearLayout
+                        android:id="@+id/btnShareFavoriteFragment"
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:orientation="horizontal"
+                        android:padding="6dp"
+                        app:layout_constraintBottom_toBottomOf="@id/btnBackLessonFragment"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/btnBackLessonFragment">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:backgroundTint="@color/transparent"
+                            android:src="@drawable/ic_share_24" />
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/tvTitleCourse"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:textColor="@color/black"
+                        android:textSize="17dp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/btnShareFavoriteFragment"
+                        app:layout_constraintStart_toEndOf="@+id/btnBackLessonFragment"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Урок 1" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imgBannerLesson"
+                    android:layout_width="match_parent"
+                    android:layout_height="215dp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/constraintLayout"
+                    app:shapeAppearanceOverlay="@style/CustomRoundedImageView32dp" />
+
+                <ImageButton
+                    android:id="@+id/btnPlayLesson"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/transparent"
+                    android:padding="@dimen/dp_60"
+                    android:src="@drawable/ic_play_lesson"
+                    app:layout_constraintBottom_toBottomOf="@id/imgBannerLesson"
+                    app:layout_constraintEnd_toEndOf="@id/imgBannerLesson"
+                    app:layout_constraintStart_toStartOf="@id/imgBannerLesson"
+                    app:layout_constraintTop_toTopOf="@id/imgBannerLesson" />
+
+                <LinearLayout
+                    android:id="@+id/sectionLinerLayoutDescription"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_16"
+                    android:layout_marginTop="@dimen/dp_18"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imgBannerLesson">
+
+                    <ImageView
+                        android:id="@+id/imgCheckLesson"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_timer" />
+
+                    <TextView
+                        android:id="@+id/tvCountLesson"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/dp_6"
+                        android:fontFamily="@font/sfprotextbold"
+                        android:gravity="start"
+                        android:textColor="@color/grey"
+                        tools:text="8" />
+
+                    <TextView
+                        android:id="@+id/tvCountLessonDescription"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/dp_2"
+                        android:fontFamily="@font/sfprotextregular"
+                        android:gravity="start"
+                        android:text="мин"
+                        android:textColor="@color/grey" />
+
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/btnLessonFavoriteFragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/dp_16"
+                    android:backgroundTint="@color/transparent"
+                    android:src="@drawable/ic_favorite_woody_unselected"
+                    app:layout_constraintBottom_toBottomOf="@id/sectionLinerLayoutDescription"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/sectionLinerLayoutDescription" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbarDescriptionSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-19dp"
+                android:background="@color/white"
+                android:visibility="invisible"
+                app:expandedTitleGravity="center"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:layout_collapseMode="pin"
+                app:scrimAnimationDuration="@integer/m3_sys_shape_corner_small_corner_family">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayoutCollapsing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:id="@+id/btnBackLessonFragmentCollapsing"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginStart="@dimen/dp_8"
+                        android:orientation="horizontal"
+                        android:padding="6dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_weight="1"
+                            android:layout_gravity="center_vertical|center_horizontal"
+                            android:src="@drawable/ic_back_woody" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/btnShareFavoriteFragmentCollapsing"
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:orientation="horizontal"
+                        android:padding="6dp"
+                        app:layout_constraintBottom_toBottomOf="@id/btnBackLessonFragmentCollapsing"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/btnBackLessonFragmentCollapsing">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:backgroundTint="@color/transparent"
+                            android:src="@drawable/ic_share_24" />
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/tvTitleCourseCollapsing"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:textColor="@color/black"
+                        android:textSize="17dp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/btnLessonFavoriteFragmentCollapsing"
+                        app:layout_constraintStart_toEndOf="@+id/btnBackLessonFragmentCollapsing"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Урок 1" />
+
+                    <ImageButton
+                        android:id="@+id/btnLessonFavoriteFragmentCollapsing"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:backgroundTint="@color/transparent"
+                        android:orientation="horizontal"
+                        android:paddingVertical="6dp"
+                        android:src="@drawable/ic_favorite_woody_unselected"
+                        app:layout_constraintBottom_toBottomOf="@+id/btnBackLessonFragmentCollapsing"
+                        app:layout_constraintEnd_toStartOf="@id/btnShareFavoriteFragmentCollapsing"
+                        app:layout_constraintTop_toTopOf="@+id/btnBackLessonFragmentCollapsing" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.appbar.MaterialToolbar>
+
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTextTitleLesson"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_16"
+                android:fontFamily="@font/sfprotextbold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp_22"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Деревянный роликовый тренажер-массажер для спины Древмасс. Полная комплектация и сборка массажера" />
+
+            <TextView
+                android:id="@+id/tvTextDescriptionLesson"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_16"
+                android:layout_marginTop="@dimen/dp_12"
+                android:fontFamily="@font/sfprotextregular"
+                android:textColor="@color/grey_787878"
+                android:textSize="@dimen/dp_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvTextTitleLesson"
+                tools:text="Деревянный роликовый тренажер-массажер для спины Древмасс. Полная комплектация и сборка массажера" />
+
+            <TextView
+                android:id="@+id/textAboutUsesProduct"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_16"
+                android:layout_marginTop="@dimen/dp_32"
+                android:fontFamily="@font/sfprotextsemibold"
+                android:text="Товары используемые на видео"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp_20"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvTextDescriptionLesson" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCourseDrevmass"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_marginTop="@dimen/dp_24"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textAboutUsesProduct"
+                tools:listitem="@layout/lesson_product_adapter" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+

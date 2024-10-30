@@ -1,4 +1,4 @@
-package com.example.drevmass.presentation.course
+package com.example.drevmass.presentation.course.courseInfo
 
 import android.app.TimePickerDialog
 import android.content.Intent
