@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.basket.make_order.MakeOrderFragment">
+
+    <TextView
+        android:id="@+id/tvRecipient"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/recipient"
+        android:textSize="22sp"
+        android:fontFamily="@font/sfprodisplaybold"
+        android:textColor="@color/dark_900"
+        android:layout_marginTop="66dp"
+        android:layout_marginHorizontal="16dp"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <com.kyleduo.switchbutton.SwitchButton
+        android:id="@+id/switchRecipient"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_gravity="center_vertical"
+        android:checked="false"
+        app:kswBackColor="@color/bg_secondary_EFEBE9"
+        app:kswBackRadius="8dp"
+        app:kswThumbColor="@color/white_1000"
+        app:kswThumbRadius="7dp"
+        app:kswThumbRangeRatio="2"
+        app:kswThumbMargin="2dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvRecipient"/>
+
+    <LinearLayout
+        android:id="@+id/llRecipient"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/tvRecipient">
+
+        <TextView
+            android:id="@+id/tvRecipientMe"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:textSize="13sp"
+            android:fontFamily="@font/sfprotextsemibold"
+            android:textColor="@color/dark_1000"
+            android:text="@string/recipientMe"/>
+
+        <TextView
+            android:id="@+id/tvRecipientOther"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:textSize="13sp"
+            android:fontFamily="@font/sfprotextmedium"
+            android:textColor="@color/dark_1000"
+            android:text="@string/recipientOther"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvNameHint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/name"
+        android:textSize="13sp"
+        android:fontFamily="@font/sfprotextmedium"
+        android:textColor="@color/gray_700"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="-14dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/etName"/>
+
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="20dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textSize="17sp"
+        android:fontFamily="@font/sfprotextsemibold"
+        android:hint="@string/name"
+        android:backgroundTint="@color/gray_500"
+        android:textColorHint="@color/gray_600"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llRecipient"/>
+
+    <TextView
+        android:id="@+id/tvPhoneHint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/phoneHint"
+        android:textSize="13sp"
+        android:fontFamily="@font/sfprotextmedium"
+        android:textColor="@color/gray_700"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="-14dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/etPhone"/>
+
+    <EditText
+        android:id="@+id/etPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="20dp"
+        android:ems="10"
+        android:inputType="phone"
+        android:textSize="17sp"
+        android:fontFamily="@font/sfprotextsemibold"
+        android:hint="@string/phoneHint"
+        android:backgroundTint="@color/gray_500"
+        android:textColorHint="@color/gray_600"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etName"/>
+
+    <TextView
+        android:id="@+id/tvEmailHint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/emailHint"
+        android:textSize="13sp"
+        android:fontFamily="@font/sfprotextmedium"
+        android:textColor="@color/gray_700"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="-14dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/etEmail"/>
+
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="20dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:textSize="17sp"
+        android:fontFamily="@font/sfprotextsemibold"
+        android:hint="@string/emailHint"
+        android:backgroundTint="@color/gray_500"
+        android:textColorHint="@color/gray_600"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etPhone"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSendRequest"
+        android:enabled="false"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/sh_btn_radius50dp"
+        android:backgroundTint="@color/brand_700"
+        android:text="@string/sendRequest"
+        android:textAllCaps="false"
+        android:textColor="@color/white_1000"
+        android:textSize="15sp"
+        android:fontFamily="@font/sfprotextsemibold"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

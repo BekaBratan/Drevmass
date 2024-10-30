@@ -7,10 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.drevmass.R
 import com.example.drevmass.databinding.FragmentCatalogBinding
+import com.example.drevmass.presentation.utils.RcViewItemClickIdCallback
 import com.example.drevmass.presentation.utils.provideNavigationHost
 
 class CatalogFragment : Fragment() {
@@ -32,6 +34,12 @@ class CatalogFragment : Fragment() {
         provideNavigationHost()?.fullScreenMode(false)
 
         val adapter = CatalogAdapter()
+        adapter.setOnItemClickListener(object : RcViewItemClickIdCallback {
+            override fun onClick(id: Int) {
+                // Open product detail
+                findNavController().navigate(R.id.productDetailFragment)
+            }
+        })
         adapter.submitList(
             listOf(
                 "name1",

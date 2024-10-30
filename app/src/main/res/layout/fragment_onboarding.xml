@@ -68,7 +68,7 @@
             android:id="@+id/btnEnter"
             android:layout_width="0dp"
             android:layout_height="56dp"
-            android:background="@drawable/sh_btn_enter"
+            android:background="@drawable/sh_btn_radius50dp"
             android:text="@string/enter"
             android:layout_weight="1"
             android:textColor="@color/white_1000"/>
@@ -78,7 +78,7 @@
             android:layout_width="0dp"
             android:layout_height="56dp"
             android:layout_weight="1"
-            android:background="@drawable/sh_btn_register"
+            android:background="@drawable/sh_border_50dp"
             android:layout_marginStart="8dp"
             android:text="@string/registration"
             android:textColor="@color/brand_900"/>

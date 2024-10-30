@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/sh_top_24dp"
+    android:paddingHorizontal="24dp"
+    android:paddingBottom="24dp"
+    android:paddingTop="32dp"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context=".presentation.basket.make_order.MakeOrderBottomsheet">
+
+    <ImageButton
+        android:layout_width="112dp"
+        android:layout_height="112dp"
+        android:src="@drawable/ill_epmty_order_112"
+        android:background="@color/fui_transparent"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/orderConfirmed"
+        android:textColor="@color/dark_900"
+        android:textSize="22sp"
+        android:fontFamily="@font/sfprodisplaybold"
+        android:textAlignment="center"
+        android:layout_marginTop="24dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/orderConfirmedDescription"
+        android:textColor="@color/gray_800"
+        android:textSize="16sp"
+        android:fontFamily="@font/sfprotextregular"
+        android:textAlignment="center"
+        android:layout_marginTop="8dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnContinue"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/sh_btn_radius50dp"
+        android:backgroundTint="@color/brand_900"
+        android:text="@string/itsClear"
+        android:textAllCaps="false"
+        android:textColor="@color/white_1000"
+        android:textSize="15sp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/sfprotextsemibold"/>
+
+</LinearLayout>

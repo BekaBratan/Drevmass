@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import androidx.core.content.ContextCompat
+import androidx.core.view.marginBottom
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
 import com.example.drevmass.R
@@ -23,7 +24,8 @@ import com.example.drevmass.presentation.utils.provideNavigationHost
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
-    private var keypadHeight = 0
+    private var keypadHeight = 0f
+    private var translationHeight = 0f
     private var isKeypadOpen = false
     private var isPasswordVisible = false
 
@@ -51,19 +53,21 @@ class LoginFragment : Fragment() {
             root.viewTreeObserver.addOnGlobalLayoutListener {
                 val rect = Rect()
                 root.getWindowVisibleDisplayFrame(rect)
-                val screenHeight = root.rootView.height
+                val screenHeight = root.rootView.height.toFloat()
                 keypadHeight = screenHeight - rect.bottom
+                translationHeight = -keypadHeight.toFloat() + btnContinue.height.toFloat() + btnContinue.marginBottom.toFloat()
 
                 if (keypadHeight > screenHeight * 0.15) {
                     // Keyboard is open
                     isKeypadOpen = true
-                    if (isAllFilled())
+                    if (isAllFilled()) {
                         btnContinue.isEnabled = true
-                        btnContinue.translationY = -keypadHeight.toFloat() + 56 + 68 + 32 // move the button up
+                        btnContinue.translationY = translationHeight
+                    }
                 } else {
                     // Keyboard is closed
                     isKeypadOpen = false
-                    btnContinue.translationY = 0f // move the button up
+                    btnContinue.translationY = 0f
                 }
             }
 
@@ -72,11 +76,11 @@ class LoginFragment : Fragment() {
                     btnContinue.backgroundTintList = resources.getColorStateList(R.color.brand_900)
                     btnContinue.isEnabled = true
                     if (isKeypadOpen)
-                        btnContinue.translationY = -keypadHeight.toFloat() + 56 + 68 + 32 // move the button up
+                        btnContinue.translationY = translationHeight
                 } else {
                     btnContinue.backgroundTintList = resources.getColorStateList(R.color.brand_700)
                     btnContinue.isEnabled = false
-                    btnContinue.translationY = 0f // move the button up
+                    btnContinue.translationY = 0f
                 }
             }
 
@@ -85,11 +89,11 @@ class LoginFragment : Fragment() {
                     btnContinue.backgroundTintList = resources.getColorStateList(R.color.brand_900)
                     btnContinue.isEnabled = true
                     if (isKeypadOpen)
-                        btnContinue.translationY = -keypadHeight.toFloat() + 56 + 68 + 32 // move the button up
+                        btnContinue.translationY = translationHeight
                 } else {
                     btnContinue.backgroundTintList = resources.getColorStateList(R.color.brand_700)
                     btnContinue.isEnabled = false
-                    btnContinue.translationY = 0f // move the button up
+                    btnContinue.translationY = 0f
                 }
             }
 
