@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.drevmass.R
+import com.example.drevmass.data.util.SharedProvider
 import com.example.drevmass.presentation.utils.provideNavigationHost
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -29,7 +30,10 @@ class SplashScreenFragment : Fragment() {
 
         lifecycleScope.launch {
             delay(3000)
-            findNavController().navigate(R.id.action_splashScreenFragment_to_onboardingFragment)
+            if (SharedProvider(requireContext()).isAuthorized())
+                findNavController().navigate(R.id.courseFragment)
+            else
+                findNavController().navigate(R.id.action_splashScreenFragment_to_onboardingFragment)
         }
     }
 
