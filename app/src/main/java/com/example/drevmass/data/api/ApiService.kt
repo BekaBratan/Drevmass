@@ -1,8 +1,11 @@
 package com.example.drevmass.data.api
 
+import com.example.drevmass.data.model.AuthorizationResponse
 import com.example.drevmass.data.model.LoginRequest
-import com.example.drevmass.data.model.LoginResponse
+import com.example.drevmass.data.model.RegistrationRequest
 import retrofit2.http.Body
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.HTTP
 import retrofit2.http.Header
@@ -14,6 +17,16 @@ interface ApiService {
     @POST("login")
     suspend fun login(
         @Body authorization: LoginRequest
-    ): LoginResponse
+    ): AuthorizationResponse
 
+    @POST("signup")
+    suspend fun registration(
+        @Body registration: RegistrationRequest
+    ): AuthorizationResponse
+
+    @FormUrlEncoded
+    @POST("forgot_password")
+    suspend fun forgotPassword(
+        @Field("email") email: String
+    ): AuthorizationResponse
 }

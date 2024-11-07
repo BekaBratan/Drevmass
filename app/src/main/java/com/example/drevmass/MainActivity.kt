@@ -1,21 +1,39 @@
 package com.example.drevmass
 
+import android.annotation.SuppressLint
+import android.app.Dialog
+import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
+import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.view.Window
 import android.view.WindowInsetsController
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import com.example.drevmass.data.util.SharedProvider
 import com.example.drevmass.databinding.ActivityMainBinding
+import com.example.drevmass.presentation.authorization.ForgotPasswordBottomsheet
 import com.example.drevmass.presentation.utils.NavigationHostProvider
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
+@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity(), NavigationHostProvider {
 
-    private var binding: ActivityMainBinding? = null
+    private lateinit var binding: ActivityMainBinding
 
     private val navController: NavController by lazy {
         findNavController(R.id.nav_host_fragment)
@@ -24,9 +42,9 @@ class MainActivity : AppCompatActivity(), NavigationHostProvider {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding!!.root)
+        setContentView(binding.root)
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        binding?.bottomNavigationBarMainActivity?.setOnNavigationItemSelectedListener {
+        binding.bottomNavigationBarMainActivity.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.courseFragment -> {
                     navController.navigate(R.id.courseFragment)
@@ -49,9 +67,9 @@ class MainActivity : AppCompatActivity(), NavigationHostProvider {
 
     override fun hideBottomNavigationBar(hide: Boolean) {
         if (hide) {
-            binding?.bottomNavigationBarMainActivity?.visibility = View.GONE
+            binding.bottomNavigationBarMainActivity.visibility = View.GONE
         } else {
-            binding?.bottomNavigationBarMainActivity?.visibility = View.VISIBLE
+            binding.bottomNavigationBarMainActivity.visibility = View.VISIBLE
         }
     }
 
@@ -96,6 +114,30 @@ class MainActivity : AppCompatActivity(), NavigationHostProvider {
                     R.color.white
                 )
             }
+        }
+    }
+
+    override fun showErrorNotificationBar(message: String) {
+        binding.notificationBar.ivNotification.setImageResource(R.drawable.ic_attention)
+        binding.notificationBar.tvNotification.text = message
+        binding.notificationBar.root.backgroundTintList = ContextCompat.getColorStateList(this, R.color.coral_1000)
+
+        lifecycleScope.launch {
+            binding.notificationBar.root.visibility = View.VISIBLE
+            delay(1500)
+            binding.notificationBar.root.visibility = View.GONE
+        }
+    }
+
+    override fun showSuccessNotificationBar(message: String) {
+        binding.notificationBar.ivNotification.setImageResource(R.drawable.ic_success_24)
+        binding.notificationBar.tvNotification.text = message
+        binding.notificationBar.root.backgroundTintList = ContextCompat.getColorStateList(this, R.color.green_1000)
+
+        lifecycleScope.launch {
+            binding.notificationBar.root.visibility = View.VISIBLE
+            delay(1500)
+            binding.notificationBar.root.visibility = View.GONE
         }
     }
 }

@@ -11,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.drevmass.R
+import com.example.drevmass.data.util.SharedProvider
 import com.example.drevmass.databinding.FragmentProfileBinding
 import com.example.drevmass.presentation.profile.bottomSheetDialog.ContactUsDialog
 import com.example.drevmass.presentation.utils.provideNavigationHost
@@ -73,7 +74,9 @@ class ProfileFragment : Fragment() {
         }
 
         btnLogout.setOnClickListener {
-            Toast.makeText(requireContext(), "click on Logout", Toast.LENGTH_LONG).show()
+            dialog.dismiss()
+            SharedProvider(requireContext()).clearShared()
+            findNavController().navigate(R.id.onboardingFragment)
         }
 
         dialog.show()

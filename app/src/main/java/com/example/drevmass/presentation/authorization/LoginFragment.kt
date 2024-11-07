@@ -3,6 +3,7 @@ package com.example.drevmass.presentation.authorization
 import android.annotation.SuppressLint
 import android.graphics.Rect
 import android.os.Bundle
+import android.os.Message
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.util.Patterns
@@ -17,18 +18,21 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.marginBottom
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.drevmass.R
 import com.example.drevmass.data.model.LoginRequest
 import com.example.drevmass.data.util.SharedProvider
 import com.example.drevmass.databinding.FragmentLoginBinding
 import com.example.drevmass.presentation.utils.provideNavigationHost
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @Suppress("DEPRECATION")
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
-    private val viewModel: LoginViewModel by viewModels()
+    private val viewModel: AuthorizationViewModel by viewModels()
 
     private var keypadHeight = 0f
     private var translationHeight = 0f
@@ -62,15 +66,18 @@ class LoginFragment : Fragment() {
                     password = etPassword.text.toString()
                 )
                 viewModel.login(loginRequest)
+
+//                findNavController().navigate(R.id.courseFragment)
+
             }
 
             viewModel.authorizationResponse.observe(viewLifecycleOwner) {
-                sharedProvider.saveToken(it.access_token.toString())
+                sharedProvider.saveUser(it)
                 findNavController().navigate(R.id.courseFragment)
             }
 
             viewModel.errorResponse.observe(viewLifecycleOwner) {
-                Toast.makeText(requireContext(), "$it", Toast.LENGTH_SHORT).show()
+                provideNavigationHost()?.showErrorNotificationBar("${it!!.code}")
             }
 
             root.viewTreeObserver.addOnGlobalLayoutListener {
@@ -168,7 +175,7 @@ class LoginFragment : Fragment() {
 
             tvForgotPass.setOnClickListener {
                 val bottomsheet = ForgotPasswordBottomsheet()
-                bottomsheet.show(childFragmentManager, bottomsheet.tag)
+                bottomsheet.showNow(parentFragmentManager, bottomsheet.tag)
             }
         }
     }
