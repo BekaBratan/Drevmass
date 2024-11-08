@@ -14,18 +14,28 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.marginBottom
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.drevmass.R
+import com.example.drevmass.data.model.LoginRequest
+import com.example.drevmass.data.model.RegistrationRequest
+import com.example.drevmass.data.util.SharedProvider
 import com.example.drevmass.databinding.FragmentRegistrationBinding
 import com.example.drevmass.presentation.utils.provideNavigationHost
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @Suppress("DEPRECATION")
 class RegistrationFragment : Fragment() {
 
     private lateinit var binding: FragmentRegistrationBinding
+    private val viewModel: AuthorizationViewModel by viewModels()
+
     private var keypadHeight = 0f
     private var translationHeight = 0f
     private var isKeypadOpen = false
@@ -47,8 +57,56 @@ class RegistrationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         provideNavigationHost()?.hideBottomNavigationBar(true)
         provideNavigationHost()?.fullScreenMode(true)
+        val sharedProvider = SharedProvider(requireContext())
 
         binding.run {
+
+            btnContinue.setOnClickListener {
+                val email = etEmail.text.toString()
+                val name = etName.text.toString()
+                val phone = etPhone.text.toString()
+                val password = etPassword.text.toString()
+
+                if (email.isNotEmpty() && name.isNotEmpty() && phone.isNotEmpty() && password.isNotEmpty()) {
+                    viewModel.register(RegistrationRequest(
+                        deviceToken = "deviceToken",
+                        email = email,
+                        name = name,
+                        phone_number = phone,
+                        password = password)
+                    )
+                }
+            }
+
+            viewModel.registrationResponse.observe(viewLifecycleOwner) {
+                provideNavigationHost()?.showSuccessNotificationBar("${it!!.message}")
+                viewModel.loginAfterRegister(
+                    LoginRequest(
+                        deviceToken = "deviceToken",
+                        email = etEmail.text.toString(),
+                        password = etPassword.text.toString()
+                    )
+                )
+            }
+
+            viewModel.errorResponse.observe(viewLifecycleOwner) {
+                provideNavigationHost()?.showErrorNotificationBar("${it!!.code}")
+            }
+
+            viewModel.tryAgain.observe(viewLifecycleOwner) {
+                viewModel.loginAfterRegister(
+                    LoginRequest(
+                        deviceToken = "deviceToken",
+                        email = etEmail.text.toString(),
+                        password = etPassword.text.toString()
+                    )
+                )
+            }
+
+            viewModel.authorizationResponse.observe(viewLifecycleOwner) {
+                sharedProvider.saveUser(it)
+                findNavController().navigate(R.id.courseFragment)
+            }
 
             root.viewTreeObserver.addOnGlobalLayoutListener {
                 val rect = Rect()
@@ -342,6 +400,5 @@ class RegistrationFragment : Fragment() {
 
     private fun isValidEmail(email: String): Boolean {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches()
-
     }
 }

@@ -1,7 +1,6 @@
 package com.example.drevmass.presentation.authorization
 
 import android.annotation.SuppressLint
-import android.app.Dialog
 import android.os.Bundle
 import android.util.Patterns
 import android.view.LayoutInflater
@@ -11,14 +10,18 @@ import android.view.ViewGroup
 import android.widget.EditText
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.viewModels
+import androidx.transition.Visibility
 import com.example.drevmass.R
 import com.example.drevmass.databinding.FragmentForgotPasswordBottomsheetBinding
+import com.example.drevmass.presentation.utils.provideNavigationHost
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
+@Suppress("DEPRECATION")
 class ForgotPasswordBottomsheet : BottomSheetDialogFragment() {
     private lateinit var binding: FragmentForgotPasswordBottomsheetBinding
+    private val viewModel: AuthorizationViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,13 +32,10 @@ class ForgotPasswordBottomsheet : BottomSheetDialogFragment() {
         return binding.root
     }
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val dialog = super.onCreateDialog(savedInstanceState)
-
-        dialog.setOnShowListener { dialogInterface ->
-            val bottomSheetDialog = dialogInterface as BottomSheetDialog
-            val bottomSheet = bottomSheetDialog.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
-
+    override fun onStart() {
+        super.onStart()
+        dialog?.let {
+            val bottomSheet = it.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
             bottomSheet?.let {
                 val layoutParams = it.layoutParams
                 layoutParams.height = ViewGroup.LayoutParams.FILL_PARENT // Allow it to expand based on content
@@ -45,14 +45,8 @@ class ForgotPasswordBottomsheet : BottomSheetDialogFragment() {
                 val behavior = BottomSheetBehavior.from(it)
                 behavior.state = BottomSheetBehavior.STATE_EXPANDED
             }
+            bottomSheet?.layoutParams?.height = ViewGroup.LayoutParams.MATCH_PARENT
         }
-
-        return dialog
-    }
-
-    override fun onStart() {
-        super.onStart()
-        dialog?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT)
     }
 
     @SuppressLint("ClickableViewAccessibility", "UseCompatLoadingForColorStateLists")
@@ -63,31 +57,15 @@ class ForgotPasswordBottomsheet : BottomSheetDialogFragment() {
 
             etEmail.addTextChangedListener {
                 if (etEmail.text.toString().isNotEmpty()) {
+                    tvEmailHint.visibility = View.VISIBLE
+                    setDrawableEnd(etEmail)
                     btnRecoverPass.backgroundTintList = resources.getColorStateList(R.color.brand_900)
                     btnRecoverPass.isEnabled = true
                 } else {
+                    removeDrawableEnd(etEmail)
+                    tvEmailHint.visibility = View.GONE
                     btnRecoverPass.backgroundTintList = resources.getColorStateList(R.color.brand_700)
                     btnRecoverPass.isEnabled = false
-                }
-            }
-
-            etEmail.addTextChangedListener {
-                if (etEmail.text.toString().isNotEmpty()) {
-                    setDrawableEnd(etEmail)
-                }
-            }
-
-            etEmail.setOnFocusChangeListener { _, event ->
-                if (event) {
-                    normalEditText(etEmail)
-                    if (etEmail.text.toString().isNotEmpty()){
-                        setDrawableEnd(etEmail)
-                    }
-                } else {
-                    removeDrawableEnd(etEmail)
-                    if (!isValidEmail(etEmail.text.toString()) && etEmail.text.toString().isNotEmpty()) {
-                        wrongEditText(etEmail)
-                    }
                 }
             }
 
@@ -103,9 +81,19 @@ class ForgotPasswordBottomsheet : BottomSheetDialogFragment() {
             }
 
             btnRecoverPass.setOnClickListener {
-                val bottomsheet = PasswordRecoveredBottomsheet()
-                bottomsheet.show(childFragmentManager, bottomsheet.tag)
+                viewModel.recoverPassword(etEmail.text.toString())
             }
+        }
+
+        viewModel.authorizationResponse.observe(viewLifecycleOwner) {
+            val bottomsheet = PasswordRecoveredBottomsheet(binding.etEmail.text.toString())
+            bottomsheet.show(childFragmentManager, bottomsheet.tag)
+        }
+
+        viewModel.errorResponse.observe(viewLifecycleOwner) {
+            binding.tvEmailHint.visibility = View.VISIBLE
+            binding.tvEmailHint.setTextColor(ContextCompat.getColor(requireContext(), R.color.coral_1000))
+            binding.etEmail.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.coral_1000)
         }
     }
 
