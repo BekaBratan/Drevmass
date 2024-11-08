@@ -10,8 +10,10 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import com.example.drevmass.R
 import com.example.drevmass.databinding.FragmentAboutCompanyDialogBinding
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
+@Suppress("DEPRECATION")
 class AboutCompanyDialog : BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentAboutCompanyDialogBinding
@@ -21,20 +23,23 @@ class AboutCompanyDialog : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentAboutCompanyDialogBinding.inflate(layoutInflater, container, false)
-        dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog?.setCanceledOnTouchOutside(true)
-        dialog?.window?.attributes?.windowAnimations = R.style.DialogAnimation
+    override fun onStart() {
+        super.onStart()
+        dialog?.let {
+            val bottomSheet = it.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
+            bottomSheet?.let {
+                val layoutParams = it.layoutParams
+                layoutParams.height = ViewGroup.LayoutParams.FILL_PARENT // Allow it to expand based on content
+                it.layoutParams = layoutParams
 
-        binding.tvCloseAboutCompanyDialog.setOnClickListener {
-            dialog?.dismiss()
+                // Set the BottomSheet behavior to expanded
+                val behavior = BottomSheetBehavior.from(it)
+                behavior.state = BottomSheetBehavior.STATE_EXPANDED
+            }
+            bottomSheet?.layoutParams?.height = ViewGroup.LayoutParams.MATCH_PARENT
         }
     }
-
-    override fun getTheme(): Int = R.style.BottomSheetDialogTheme
 }

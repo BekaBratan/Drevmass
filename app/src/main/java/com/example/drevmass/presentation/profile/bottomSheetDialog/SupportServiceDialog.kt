@@ -11,8 +11,10 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import com.example.drevmass.R
 import com.example.drevmass.databinding.FragmentSupportServiceDialogBinding
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
+@Suppress("DEPRECATION")
 class SupportServiceDialog : BottomSheetDialogFragment()  {
 
     private lateinit var binding: FragmentSupportServiceDialogBinding
@@ -26,18 +28,22 @@ class SupportServiceDialog : BottomSheetDialogFragment()  {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog?.setCanceledOnTouchOutside(true)
-        dialog?.window?.attributes?.windowAnimations = R.style.DialogAnimation
+    override fun onStart() {
+        super.onStart()
+        dialog?.let {
+            val bottomSheet = it.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
+            bottomSheet?.let {
+                val layoutParams = it.layoutParams
+                layoutParams.height = ViewGroup.LayoutParams.FILL_PARENT // Allow it to expand based on content
+                it.layoutParams = layoutParams
 
-        binding.toolbarSupportServiceIncluded.icBack.setOnClickListener {
-            dialog?.dismiss()
+                // Set the BottomSheet behavior to expanded
+                val behavior = BottomSheetBehavior.from(it)
+                behavior.state = BottomSheetBehavior.STATE_EXPANDED
+            }
+            bottomSheet?.layoutParams?.height = ViewGroup.LayoutParams.MATCH_PARENT
         }
     }
-
-    override fun getTheme(): Int = R.style.BottomSheetDialogTheme
 
     fun click() {
         binding.editeTextSupportService.setOnEditorActionListener { _, actionId, event ->
@@ -47,5 +53,4 @@ class SupportServiceDialog : BottomSheetDialogFragment()  {
             false
         }
     }
-
 }

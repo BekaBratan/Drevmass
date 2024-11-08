@@ -6,4 +6,5 @@ interface NavigationHostProvider {
     fun statusBarColor(isWoody: Boolean)
     fun showErrorNotificationBar(message: String)
     fun showSuccessNotificationBar(message: String)
+    fun setNavigationVisibility(visible: Boolean)
 }

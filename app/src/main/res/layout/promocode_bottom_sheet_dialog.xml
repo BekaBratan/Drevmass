@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/fui_transparent"
+    tools:context=".presentation.profile.promocode.promocodeBottomSheetDialog.PromocodeBottomSheetDialog">
+
+    <View
+        android:id="@+id/divider_sheet"
+        android:layout_width="32dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/view_bottom_sheet"
+        android:layout_marginBottom="7dp"
+        app:layout_constraintBottom_toTopOf="@id/background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/about_film_style_top_radius_32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:id="@+id/btnSelectEnglish"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:orientation="vertical"
+            android:paddingBottom="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                >
+
+                <EditText
+                    android:id="@+id/promocodeEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:background="@color/fui_transparent"
+                    android:capitalize="sentences"
+                    android:drawableStart="@drawable/ic_promocode_basket"
+                    android:drawablePadding="@dimen/dp_18"
+                    android:hint="Введите промокод"
+                    android:inputType="textEmailAddress|textCapCharacters"
+                    android:textAllCaps="true"
+                    android:textColor="@color/black"
+                    android:textColorHint="#A1A1A1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/clearPromocode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/fui_transparent"
+                    android:src="@drawable/frame"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@id/promocodeEditText"
+                    app:layout_constraintEnd_toEndOf="@id/promocodeEditText"
+                    app:layout_constraintTop_toTopOf="@id/promocodeEditText" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/divider_2dp"
+                android:backgroundTint="@color/woody"/>
+
+            <TextView
+                android:id="@+id/txt_promocode"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_18"
+                android:text="Введите промокод"
+                android:visibility="invisible"
+                android:textColor="#FA5C5C"
+                android:layout_marginTop="4dp"
+                />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                >
+
+                <ProgressBar
+                    android:id="@+id/LoginProgressBar"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:elevation="7dp"
+                    android:indeterminate="true"
+                    android:indeterminateTint="#FFFFFF"
+                    android:indeterminateTintMode="src_atop"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnApply"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_filled_sign_in"
+                    android:text="Применить"
+                    android:stateListAnimator="@null"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
