@@ -2,6 +2,7 @@ package com.example.drevmass.data.util
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import com.example.drevmass.data.model.AuthorizationResponse
 
 class SharedProvider(private val context: Context) {
@@ -33,6 +34,13 @@ class SharedProvider(private val context: Context) {
 
     fun getToken():String {
         return "${preferences.getString(tokenType, "without_token_type")} ${preferences.getString(sharedToken, "without_token")}"
+    }
+
+    fun setToken(token: String) {
+        val editor = preferences.edit()
+        editor.putString(sharedToken, token)
+        Log.d("AAA", "setToken: $token")
+        editor.apply()
     }
 
     fun clearShared() {
