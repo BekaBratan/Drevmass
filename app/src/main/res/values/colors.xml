@@ -99,5 +99,7 @@
 
     <color name="grey_E0DEDD">#E0DEDD</color>
     <color name="switchOff">#E0DEDD</color>
+    <color name="bonusRed">#FA5C5C</color>
+    <color name="disabledButtonColor">#D3C8B3</color>
 
 </resources>

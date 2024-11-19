@@ -18,6 +18,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -139,5 +140,9 @@ class MainActivity : AppCompatActivity(), NavigationHostProvider {
             delay(1500)
             binding.notificationBar.root.visibility = View.GONE
         }
+    }
+
+    override fun setNavigationVisibility(visible: Boolean) {
+        binding.bottomNavigationBarMainActivity.isVisible = visible
     }
 }

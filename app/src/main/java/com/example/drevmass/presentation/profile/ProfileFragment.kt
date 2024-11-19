@@ -1,7 +1,11 @@
 package com.example.drevmass.presentation.profile
 
 import android.app.Dialog
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,16 +13,20 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.drevmass.R
 import com.example.drevmass.data.util.SharedProvider
 import com.example.drevmass.databinding.FragmentProfileBinding
 import com.example.drevmass.presentation.profile.bottomSheetDialog.ContactUsDialog
 import com.example.drevmass.presentation.utils.provideNavigationHost
+import retrofit2.HttpException
 
 class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
+
+    private val viewModel: ProfileViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,7 +53,9 @@ class ProfileFragment : Fragment() {
             findNavController().navigate(R.id.changePasswordFragment)
         }
         binding.logoutBlock.setOnClickListener {
-            showCustomDialogBox()
+            SharedProvider(requireContext()).setToken("without_token")
+            SharedProvider(requireContext()).clearShared()
+            findNavController().navigate(R.id.splashScreenFragment)
         }
         binding.contactUsBlock.setOnClickListener {
             val bottomSheetFragment = ContactUsDialog()
@@ -57,6 +67,40 @@ class ProfileFragment : Fragment() {
         binding.notifBlock.setOnClickListener {
             findNavController().navigate(R.id.notificationFragment)
         }
+        binding.feedbackBlock.setOnClickListener {
+            val appPackageName = "kz.mobydev.drevmass"
+            val marketIntentUri = Uri.parse("market://details?id=$appPackageName")
+            val marketIntent = Intent(Intent.ACTION_VIEW, marketIntentUri)
+            marketIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY or Intent.FLAG_ACTIVITY_NEW_DOCUMENT or Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
+            try {
+                startActivity(marketIntent)
+            } catch (e: ActivityNotFoundException) {
+                val playStoreIntentUri = Uri.parse("https://play.google.com/store/apps/details?id=$appPackageName")
+                val playStoreIntent = Intent(Intent.ACTION_VIEW, playStoreIntentUri)
+                startActivity(playStoreIntent)
+            }
+        }
+
+        val shared = SharedProvider(requireContext())
+        val userToken = shared.getToken()
+        if (userToken.isNullOrBlank() || userToken.isEmpty()) {
+            findNavController().navigate(R.id.loginFragment)
+        } else {
+            viewModel.getUserInfo(userToken)
+            viewModel.getBonus(userToken)
+        }
+
+        viewModel.responseUserInfo.observe(viewLifecycleOwner) { userInfoData ->
+            binding.tvUserName.text = userInfoData.name
+            binding.tvPhoneNum.text = userInfoData.phoneNumber
+        }
+
+        viewModel.responseBonus.observe(viewLifecycleOwner) {
+            Log.d("AAA", "Bonus observer $it")
+            binding.bonusBall.text = it.bonus.toString()
+        }
+
+        viewModel.errorResponse.observe(viewLifecycleOwner) {}
     }
 
     private fun showCustomDialogBox() {

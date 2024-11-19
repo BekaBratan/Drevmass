@@ -122,6 +122,65 @@
                     app:layout_constraintStart_toStartOf="@id/bonus_block"
                     app:layout_constraintTop_toBottomOf="@id/bonus_block" />
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/deadlineBonusSection"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_16"
+                    android:layout_marginTop="@dimen/dp_12"
+                    android:background="@drawable/background_bonus"
+                    android:backgroundTint="@color/black_fade"
+                    android:paddingStart="@dimen/dp_8"
+                    android:paddingTop="@dimen/dp_6"
+                    android:paddingEnd="@dimen/dp_8"
+                    android:paddingBottom="@dimen/dp_6"
+                    android:visibility="visible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    >
+
+                    <TextView
+                        android:id="@+id/fireIcon"
+                        android:layout_width="@dimen/dp_0"
+                        android:layout_height="wrap_content"
+                        android:text="🔥"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_8"
+                        android:fontFamily="@font/sfprotextregular"
+                        android:lineHeight="@dimen/dp_18"
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dp_13"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/deadline"
+                        app:layout_constraintStart_toEndOf="@+id/fireIcon"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/deadline"
+                        android:layout_width="@dimen/dp_0"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_4"
+                        android:fontFamily="@font/sfprotextregular"
+                        android:lineHeight="@dimen/dp_18"
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dp_13"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/price"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!--Empty block of points-->

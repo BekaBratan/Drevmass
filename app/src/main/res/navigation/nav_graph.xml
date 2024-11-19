@@ -81,7 +81,7 @@
         tools:layout="@layout/fragment_bonus" />
     <fragment
         android:id="@+id/promocodeFragment"
-        android:name="com.example.drevmass.presentation.profile.PromocodeFragment"
+        android:name="com.example.drevmass.presentation.profile.promocode.PromocodeFragment"
         android:label="fragment_promocode"
         tools:layout="@layout/fragment_promocode" />
     
