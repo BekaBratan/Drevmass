@@ -96,6 +96,6 @@ class FavoriteCourseAdapter : RecyclerView.Adapter<FavoriteCourseAdapter.RcViewH
     }
 
     override fun getItemCount(): Int {
-        return 0
+        return differ.currentList.size
     }
 }
