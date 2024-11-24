@@ -3,6 +3,7 @@ package com.example.drevmass
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
+import android.content.pm.ActivityInfo
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -144,5 +145,13 @@ class MainActivity : AppCompatActivity(), NavigationHostProvider {
 
     override fun setNavigationVisibility(visible: Boolean) {
         binding.bottomNavigationBarMainActivity.isVisible = visible
+    }
+
+    override fun orientationLandscape(landscape: Boolean) {
+        if (landscape) {
+            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        } else {
+            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        }
     }
 }

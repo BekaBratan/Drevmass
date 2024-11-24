@@ -14,9 +14,12 @@ import com.example.drevmass.data.model.courseModel.getFamousProductsBasket.getFa
 import java.text.NumberFormat
 import java.util.Locale
 
-class LessonProductAdapter(private val context: Context,
-                           private val productList: List<getFamousProductsResponse>)
-    : RecyclerView.Adapter<LessonProductAdapter.ProductViewHolder>() {
+class FamousProductsBasketAdapter(
+    private val context: Context,
+    private val productList: List<getFamousProductsResponse>,
+    lessonFragment: LessonFragment
+) : RecyclerView.Adapter<FamousProductsBasketAdapter.ProductViewHolder>() {
+
     inner class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val productImage: ImageView = itemView.findViewById(R.id.imageView123)
         val productName: TextView = itemView.findViewById(R.id.title_recomend)
@@ -24,12 +27,11 @@ class LessonProductAdapter(private val context: Context,
         val productAddToBasketButton: ImageButton = itemView.findViewById(R.id.productAddToBasketButton)
 
         fun bind(product: getFamousProductsResponse) {
+            productName.text = product.title
             val numberFormat = NumberFormat.getInstance(Locale.getDefault())
             numberFormat.minimumFractionDigits = 0
             val formattedPrice = numberFormat.format(product.price)
-
-            productName.text = product.title
-            productPrice.text = "${formattedPrice} ₽"
+            productPrice.text = "${ formattedPrice} ₽"
             // Добавьте привязку других данных по аналогии
 
             Glide.with(itemView)
@@ -41,13 +43,14 @@ class LessonProductAdapter(private val context: Context,
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val inflater = LayoutInflater.from(context)
-        val itemView = inflater.inflate(R.layout.item_recommendation_adapter, parent, false)
+        val itemView = inflater.inflate(R.layout.item_recomendation_adapter, parent, false)
         return ProductViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
     }
 
-    override fun getItemCount(): Int { return productList.size}
-
+    override fun getItemCount(): Int {
+        return productList.size
+    }
 }
