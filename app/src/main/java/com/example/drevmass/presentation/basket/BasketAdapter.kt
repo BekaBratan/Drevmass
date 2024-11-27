@@ -8,22 +8,26 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.drevmass.data.model.products.Basket
+import com.example.drevmass.data.util.Constants.Companion.IMAGE_URL
 import com.example.drevmass.databinding.ItemBasketBinding
 import com.example.drevmass.presentation.utils.RcViewItemClickIdCallback
+import com.example.drevmass.presentation.utils.RcViewItemClickIdCountCallback
 
 class BasketAdapter: RecyclerView.Adapter<BasketAdapter.MyViewHolder>() {
 
-    private val diffCallback = object : DiffUtil.ItemCallback<String>() {
+    private val diffCallback = object : DiffUtil.ItemCallback<Basket>() {
         override fun areItemsTheSame(
-            oldItem: String,
-            newItem: String
+            oldItem: Basket,
+            newItem: Basket
         ): Boolean {
             return oldItem == newItem
         }
 
         override fun areContentsTheSame(
-            oldItem: String,
-            newItem: String
+            oldItem: Basket,
+            newItem: Basket
         ): Boolean {
             return oldItem == newItem
         }
@@ -31,7 +35,7 @@ class BasketAdapter: RecyclerView.Adapter<BasketAdapter.MyViewHolder>() {
     }
     private val differ = AsyncListDiffer(this, diffCallback)
 
-    fun submitList(list: List<String>){
+    fun submitList(list: List<Basket>){
         differ.submitList(list)
     }
 
@@ -40,25 +44,40 @@ class BasketAdapter: RecyclerView.Adapter<BasketAdapter.MyViewHolder>() {
         this.listenerClickAtItem = listener
     }
 
+    private var listenerClickAtMinus: RcViewItemClickIdCountCallback? = null
+    fun setOnMinusClickListener(listener: RcViewItemClickIdCountCallback) {
+        this.listenerClickAtMinus = listener
+    }
+
+    private var listenerClickAtPlus: RcViewItemClickIdCountCallback? = null
+    fun setOnPlusClickListener(listener: RcViewItemClickIdCountCallback) {
+        this.listenerClickAtPlus = listener
+    }
+
     inner class MyViewHolder(private var binding: ItemBasketBinding): RecyclerView.ViewHolder(binding.root){
         @SuppressLint("SetTextI18n")
-        fun onBind(item: String){
-            binding.tvProductName.text = item
-            binding.btnPlus.setOnClickListener(){
-                binding.tvProductCount.text = (binding.tvProductCount.text.toString().toInt() + 1).toString()
-//                listenerClickAtItem?.onClick(
-//                    binding.tvProductCost.text.toString().toInt() * binding.tvProductCount.text.toString().toInt()
-//                )
-            }
-            binding.btnMinus.setOnClickListener(){
-                if (binding.tvProductCount.text.toString().toInt() <= 1){
-//                    itemView.visibility = View.GONE
-//                    differ.currentList.remove(item)
-                } else {
-                    binding.tvProductCount.text = (binding.tvProductCount.text.toString().toInt() - 1).toString()
-//                    listenerClickAtItem?.onClick(
-//                        binding.tvProductCost.text.toString().toInt() * binding.tvProductCount.text.toString().toInt()
-//                    )
+        fun onBind(item: Basket){
+            binding.run {
+                Glide.with(itemView.context)
+                    .load(IMAGE_URL + item.product_img)
+                    .into(ivProduct)
+
+                tvProductName.text = item.product_title
+                tvProductCount.text = "${item.count}"
+                tvProductCost.text = "${item.price} ₽"
+
+                ivProduct.setOnClickListener() {
+                    listenerClickAtItem?.onClick(item.product_id)
+                }
+                tvProductName.setOnClickListener() {
+                    listenerClickAtItem?.onClick(item.product_id)
+                }
+
+                btnPlus.setOnClickListener() {
+                    listenerClickAtPlus?.onClick(item.product_id, item.count)
+                }
+                btnMinus.setOnClickListener() {
+                    listenerClickAtMinus?.onClick(item.product_id, item.count)
                 }
             }
         }
