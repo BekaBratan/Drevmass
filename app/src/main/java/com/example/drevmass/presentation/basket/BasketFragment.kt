@@ -7,12 +7,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.fragment.app.Fragment
 import com.example.drevmass.R
 import androidx.navigation.fragment.findNavController
 import com.example.drevmass.data.util.SharedProvider
 import com.example.drevmass.databinding.FragmentBasketBinding
 import com.example.drevmass.presentation.catalog.CatalogAdapter
+import com.example.drevmass.presentation.utils.CustomDividerItemDecoration
 import com.example.drevmass.presentation.utils.RcViewItemClickIdCallback
 import com.example.drevmass.presentation.utils.RcViewItemClickIdCountCallback
 import com.example.drevmass.presentation.utils.provideNavigationHost
@@ -83,6 +85,14 @@ class BasketFragment : Fragment() {
             }
 
             rvBasket.adapter = adapterBasket
+            rvBasket.addItemDecoration(
+                CustomDividerItemDecoration(
+                    getDrawable(
+                        requireContext(),
+                        R.drawable.divider_1dp
+                    )!!
+                )
+            )
 
             adapterBasket.setOnProductClickListener(object : RcViewItemClickIdCallback {
                 override fun onClick(id: Int) {
