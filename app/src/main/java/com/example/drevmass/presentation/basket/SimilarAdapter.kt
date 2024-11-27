@@ -1,27 +1,30 @@
 package com.example.drevmass.presentation.basket
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.drevmass.databinding.ItemBasketBinding
+import com.bumptech.glide.Glide
+import com.example.drevmass.data.model.products.Product
+import com.example.drevmass.data.util.Constants.Companion.IMAGE_URL
 import com.example.drevmass.databinding.ItemProductSimilarBinding
 import com.example.drevmass.presentation.utils.RcViewItemClickIdCallback
 
 class SimilarAdapter: RecyclerView.Adapter<SimilarAdapter.MyViewHolder>() {
 
-    private val diffCallback = object : DiffUtil.ItemCallback<String>() {
+    private val diffCallback = object : DiffUtil.ItemCallback<Product>() {
         override fun areItemsTheSame(
-            oldItem: String,
-            newItem: String
+            oldItem: Product,
+            newItem: Product
         ): Boolean {
             return oldItem == newItem
         }
 
         override fun areContentsTheSame(
-            oldItem: String,
-            newItem: String
+            oldItem: Product,
+            newItem: Product
         ): Boolean {
             return oldItem == newItem
         }
@@ -29,21 +32,26 @@ class SimilarAdapter: RecyclerView.Adapter<SimilarAdapter.MyViewHolder>() {
     }
     private val differ = AsyncListDiffer(this, diffCallback)
 
-    fun submitList(list: List<String>){
+    fun submitList(list: List<Product>){
         differ.submitList(list)
     }
 
     private var listenerClickAtItem: RcViewItemClickIdCallback? = null
-    fun setOnMovieClickListener(listener: RcViewItemClickIdCallback) {
+    fun setOnItemClickListener(listener: RcViewItemClickIdCallback) {
         this.listenerClickAtItem = listener
     }
 
     inner class MyViewHolder(private var binding: ItemProductSimilarBinding): RecyclerView.ViewHolder(binding.root){
-        fun onBind(item: String){
-            binding.tvProductName.text = item
+        @SuppressLint("SetTextI18n")
+        fun onBind(product: Product){
+            Glide.with(itemView.context)
+                .load(IMAGE_URL + product.image_src)
+                .into(binding.ivProduct)
+            binding.tvProductName.text = product.title
+            binding.tvProductCost.text = "${product.price} ₽"
 
             itemView.setOnClickListener {
-                listenerClickAtItem?.onClick(item.length)
+                listenerClickAtItem?.onClick(product.id)
             }
         }
     }

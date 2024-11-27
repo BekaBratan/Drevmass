@@ -23,6 +23,8 @@
         android:textAlignment="center"
         android:fontFamily="@font/sfprotextbold"
         android:textSize="17sp"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:textColor="@color/black"/>
 
     <ImageButton
