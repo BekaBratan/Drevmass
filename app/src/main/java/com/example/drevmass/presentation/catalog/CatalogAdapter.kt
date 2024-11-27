@@ -2,10 +2,12 @@ package com.example.drevmass.presentation.catalog
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.getDrawable
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.drevmass.R
 import com.example.drevmass.data.model.products.Product
 import com.example.drevmass.data.util.Constants.Companion.IMAGE_URL
 import com.example.drevmass.databinding.ItemProductHorizontalBinding
@@ -63,6 +65,10 @@ class CatalogAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     fun setOnItemClickListener(listener: RcViewItemClickIdCallback) {
         this.listenerClickAtItem = listener
     }
+    private var listenerClickAtItemCart: RcViewItemClickIdCallback? = null
+    fun setOnItemCartClickListener(listener: RcViewItemClickIdCallback) {
+        this.listenerClickAtItemCart = listener
+    }
 
     inner class TileViewHolder(private var binding: ItemProductTileBinding): RecyclerView.ViewHolder(binding.root) {
         fun onBind(product: Product) {
@@ -72,6 +78,19 @@ class CatalogAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     .into(ivProduct)
                 tvProductName.text = product.title
                 tvProductCost.text = "${product.price}"
+                if (product.basket_count > 0) {
+                    ibAddToCart.background =
+                        getDrawable(itemView.context, R.drawable.ic_busket_add_28)
+                    ibAddToCart.isEnabled = false
+                }
+                ibAddToCart.setOnClickListener {
+                    if (product.basket_count == 0) {
+                        ibAddToCart.background =
+                            getDrawable(itemView.context, R.drawable.ic_busket_add_28)
+                        listenerClickAtItemCart?.onClick(product.id)
+                        ibAddToCart.isEnabled = false
+                    }
+                }
             }
             itemView.setOnClickListener {
                 listenerClickAtItem?.onClick(product.id)

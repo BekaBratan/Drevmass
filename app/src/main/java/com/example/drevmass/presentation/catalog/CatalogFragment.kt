@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.drevmass.R
 import com.example.drevmass.data.util.SharedProvider
 import com.example.drevmass.databinding.FragmentCatalogBinding
+import com.example.drevmass.presentation.utils.CustomDividerItemDecoration
 import com.example.drevmass.presentation.utils.RcViewItemClickIdCallback
 import com.example.drevmass.presentation.utils.provideNavigationHost
 
@@ -44,7 +45,7 @@ class CatalogFragment : Fragment() {
         val listSort = listOf(
             getString(R.string.sort_by_popularity),
             getString(R.string.sort_by_price),
-            getString(R.string.sort_by_new)
+            getString(R.string.sort_by_price_down)
         )
 
         val adapter = CatalogAdapter()
@@ -52,6 +53,12 @@ class CatalogFragment : Fragment() {
             override fun onClick(id: Int) {
                 // Open product detail
                 findNavController().navigate(CatalogFragmentDirections.actionCatalogFragmentToProductDetailFragment(id))
+            }
+        })
+        adapter.setOnItemCartClickListener(object : RcViewItemClickIdCallback {
+            override fun onClick(id: Int) {
+                // Add to cart
+                viewModel.addToCart(token, 0, id, 1)
             }
         })
 
@@ -80,31 +87,28 @@ class CatalogFragment : Fragment() {
                 }
             }
 
-            ibSort.setOnClickListener {
-                if (tvSort.text == listSort[0]) {
-                    tvSort.text = listSort[1]
-                    viewModel.getProductsPriceUp(token)
-                } else if (tvSort.text == listSort[1]) {
-                    tvSort.text = listSort[2]
-                    viewModel.getProductsPriceDown(token)
-                } else {
-                    tvSort.text = listSort[0]
-                    viewModel.getProductsFamous(token)
-                }
+            llSort.setOnClickListener {
+                val sortBottomsheet = SortBottomsheet(tvSort.text.toString())
+                sortBottomsheet.setSortCallback(object : SortBottomsheet.SortCallback {
+                    override fun onSortSelected(sortOption: String) {
+                        if (sortOption == getString(R.string.sort_by_popularity)) {
+                            viewModel.getProductsFamous(token)
+                            ibSort.background = getDrawable(requireContext(), R.drawable.ic_sort)
+                        }
+                        else if (sortOption == getString(R.string.sort_by_price)) {
+                            viewModel.getProductsPriceUp(token)
+                            ibSort.background = getDrawable(requireContext(), R.drawable.ic_sort)
+                        }
+                        else if (sortOption == getString(R.string.sort_by_price_down)){
+                            viewModel.getProductsPriceDown(token)
+                            ibSort.background = getDrawable(requireContext(), R.drawable.ic_sort_down)
+                        }
+                        tvSort.text = sortOption
+                    }
+                })
+                sortBottomsheet.show(parentFragmentManager, sortBottomsheet.tag)
             }
 
-            tvSort.setOnClickListener {
-                if (tvSort.text == listSort[0]) {
-                    tvSort.text = listSort[1]
-                    viewModel.getProductsPriceUp(token)
-                } else if (tvSort.text == listSort[1]) {
-                    tvSort.text = listSort[2]
-                    viewModel.getProductsPriceDown(token)
-                } else {
-                    tvSort.text = listSort[0]
-                    viewModel.getProductsFamous(token)
-                }
-            }
 
             ibView.setOnClickListener {
                 adapter.nextLayout()
