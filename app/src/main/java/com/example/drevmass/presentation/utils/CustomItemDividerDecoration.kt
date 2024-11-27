@@ -19,11 +19,6 @@ class CustomDividerItemDecoration(private val divider: Drawable): RecyclerView.I
             val child = parent.getChildAt(i)
             val params = child.layoutParams as RecyclerView.LayoutParams
 
-            // Check if the current element is the last one
-            if (params.viewAdapterPosition == parent.adapter?.itemCount?.minus(1)) {
-                continue // Skip the last element
-            }
-
             val dividerTop = child.bottom + params.bottomMargin
             val dividerBottom = dividerTop + divider.intrinsicHeight
             divider.setBounds(dividerLeft, dividerTop, dividerRight, dividerBottom)

@@ -13,7 +13,6 @@ import com.example.drevmass.R
 import androidx.navigation.fragment.findNavController
 import com.example.drevmass.data.util.SharedProvider
 import com.example.drevmass.databinding.FragmentBasketBinding
-import com.example.drevmass.presentation.catalog.CatalogAdapter
 import com.example.drevmass.presentation.utils.CustomDividerItemDecoration
 import com.example.drevmass.presentation.utils.RcViewItemClickIdCallback
 import com.example.drevmass.presentation.utils.RcViewItemClickIdCountCallback
@@ -93,13 +92,6 @@ class BasketFragment : Fragment() {
                     )!!
                 )
             )
-
-            adapterBasket.setOnProductClickListener(object : RcViewItemClickIdCallback {
-                override fun onClick(id: Int) {
-                    // Open product detail
-//                    findNavController().navigate(R.id.productDetailFragment)
-                }
-            })
 
             rvSimilar.adapter = adapterSimilar
         }

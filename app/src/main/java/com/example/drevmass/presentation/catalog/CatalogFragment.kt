@@ -55,6 +55,12 @@ class CatalogFragment : Fragment() {
                 findNavController().navigate(CatalogFragmentDirections.actionCatalogFragmentToProductDetailFragment(id))
             }
         })
+        adapter.setOnItemCartClickListener(object : RcViewItemClickIdCallback {
+            override fun onClick(id: Int) {
+                // Add to cart
+                viewModel.addToCart(token, 0, id, 1)
+            }
+        })
 
         val gridLayoutManager = GridLayoutManager(requireContext(), 2)
         val linearLayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
