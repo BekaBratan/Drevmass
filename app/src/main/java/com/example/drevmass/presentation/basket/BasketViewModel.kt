@@ -49,6 +49,26 @@ class BasketViewModel(): ViewModel() {
         }
     }
 
+    fun deleteBasket(token: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            runCatching { ServiceBuilder.api.deleteBasket(token) }.fold(
+                onSuccess = {
+                    _messageResponse.postValue(it)
+                },
+                onFailure = { throwable ->
+                    if (throwable is HttpException) {
+                        val gson = com.google.gson.Gson()
+                        val errorBody = throwable.response()?.errorBody()?.string()
+                        val errorResponse = gson.fromJson(errorBody, ErrorResponse::class.java)
+                        _errorResponse.postValue(errorResponse)
+                    } else {
+                        _errorBody.postValue(throwable.message)
+                    }
+                }
+            )
+        }
+    }
+
     fun increaseCart(token: String, userId: Int, productId: Int, count: Int, isPromocode: String) {
         viewModelScope.launch(Dispatchers.IO) {
             runCatching { ServiceBuilder.api.increaseCart(token, AddToCartRequest(count, productId, userId)) }.fold(

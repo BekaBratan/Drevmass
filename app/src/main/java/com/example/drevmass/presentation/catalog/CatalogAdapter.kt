@@ -106,6 +106,19 @@ class CatalogAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     .into(ivProduct)
                 tvProductName.text = product.title
                 tvProductCost.text = "${product.price}"
+                if (product.basket_count > 0) {
+                    ibAddToCart.background =
+                        getDrawable(itemView.context, R.drawable.ic_busket_add_28)
+                    ibAddToCart.isEnabled = false
+                }
+                ibAddToCart.setOnClickListener {
+                    if (product.basket_count == 0) {
+                        ibAddToCart.background =
+                            getDrawable(itemView.context, R.drawable.ic_busket_add_28)
+                        listenerClickAtItemCart?.onClick(product.id)
+                        ibAddToCart.isEnabled = false
+                    }
+                }
             }
             itemView.setOnClickListener {
                 listenerClickAtItem?.onClick(product.id)
@@ -121,6 +134,19 @@ class CatalogAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     .into(ivProduct)
                 tvProductName.text = product.title
                 tvProductCost.text = "${product.price}"
+                if (product.basket_count > 0) {
+                    ibAddToCart.background =
+                        getDrawable(itemView.context, R.drawable.ic_busket_add_28)
+                    ibAddToCart.isEnabled = false
+                }
+                ibAddToCart.setOnClickListener {
+                    if (product.basket_count == 0) {
+                        ibAddToCart.background =
+                            getDrawable(itemView.context, R.drawable.ic_busket_add_28)
+                        listenerClickAtItemCart?.onClick(product.id)
+                        ibAddToCart.isEnabled = false
+                    }
+                }
             }
             itemView.setOnClickListener {
                 listenerClickAtItem?.onClick(product.id)

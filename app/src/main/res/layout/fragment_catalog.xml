@@ -7,7 +7,7 @@
     android:background="@color/bg_secondary_EFEBE9"
     tools:context=".presentation.catalog.CatalogFragment">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/svCatalog"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -80,7 +80,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvCatalog"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:isScrollContainer="false"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     tools:listitem="@layout/item_product_tile"
@@ -90,7 +90,7 @@
 
         </LinearLayout>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <include
         android:id="@+id/toolbar"
