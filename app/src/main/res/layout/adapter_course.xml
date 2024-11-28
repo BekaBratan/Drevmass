@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    android:background="@drawable/style_backgroun_24dp_corner_2dp">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imgCoursePhoto"
+        android:layout_width="96dp"
+        android:layout_height="108dp"
+        android:layout_margin="@dimen/dp_8"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img_about_company"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/CustomRoundedImageView24dp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/sectionLinerLayoutDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_12"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/tvBonusSection"
+        app:layout_constraintEnd_toStartOf="@+id/tvBonusSection"
+        app:layout_constraintStart_toEndOf="@id/imgCoursePhoto"
+        app:layout_constraintTop_toTopOf="@id/imgCoursePhoto">
+
+        <TextView
+            android:id="@+id/tvInfoCourse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="start"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tvBonusSection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_4"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="@dimen/dp_8"
+        android:background="@drawable/style_background_39dp"
+        android:backgroundTint="@color/bg_secondary_EFEBE9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvCountBonusForCourse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/dp_8"
+            android:layout_marginEnd="4dp"
+            android:fontFamily="@font/sfprotextbold"
+            android:gravity="start"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ic_bonus"
+            tools:text="+1000" />
+
+        <ImageView
+            android:id="@+id/ic_bonus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/dp_2"
+            android:background="@drawable/ic_bonus"
+            android:backgroundTint="@color/woody"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvCountBonusForCourse"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+<TextView
+    android:id="@+id/tvTitleCourse"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:maxLines="3"
+    android:textColor="@color/black"
+    android:fontFamily="@font/sfprotextsemibold"
+    app:layout_constraintTop_toBottomOf="@id/sectionLinerLayoutDescription"
+    app:layout_constraintStart_toStartOf="@id/sectionLinerLayoutDescription"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_marginEnd="@dimen/dp_8"
+    android:layout_marginTop="@dimen/dp_14"
+    android:ellipsize="end"
+    tools:text="Внедрение занятий на Древмасс за 21 день Внедрение занятий на Древмасс за 21 день Внедрение занятий на Древмасс за 21 день"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

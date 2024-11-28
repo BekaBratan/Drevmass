@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -79,5 +80,6 @@ dependencies {
     // SwtichButton
     implementation("com.kyleduo.switchbutton:library:2.1.0")
 
-
+    //android-youtube-player
+    implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:11.1.0")
 }

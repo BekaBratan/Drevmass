@@ -50,7 +50,18 @@
         android:id="@+id/courseFragment"
         android:name="com.example.drevmass.presentation.course.CourseFragment"
         android:label="fragment_course"
-        tools:layout="@layout/fragment_course" />
+        tools:layout="@layout/fragment_course">
+        <action
+            android:id="@+id/action_courseFragment_to_courseInfoFragment"
+            app:destination="@id/courseInfoFragment" >
+            <argument
+                android:name="courseId"
+                app:argType="integer" />
+        </action>
+        <action
+            android:id="@+id/action_courseFragment_to_favoriteCourseFragment"
+            app:destination="@id/favoriteCourseFragment" />
+    </fragment>
     <fragment
         android:id="@+id/catalogFragment"
         android:name="com.example.drevmass.presentation.catalog.CatalogFragment"
@@ -145,14 +156,83 @@
         android:id="@+id/courseInfoFragment"
         android:name="com.example.drevmass.presentation.course.courseInfo.CourseInfoFragment"
         android:label="fragment_course_info"
-        tools:layout="@layout/fragment_course_info" />
-
+        tools:layout="@layout/fragment_course_info">
+        <argument
+            android:name="courseId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_courseInfoFragment_to_lessonFragment"
+            app:destination="@id/lessonFragment">
+            <argument
+                android:name="courseId"
+                app:argType="integer" />
+            <argument
+                android:name="lessonId"
+                app:argType="integer" />
+        </action>
+        <action
+            android:id="@+id/action_courseInfoFragment_to_favoriteCourseFragment"
+            app:destination="@id/favoriteCourseFragment" />
+    </fragment>
     <fragment
         android:id="@+id/favoriteCourseFragment"
         android:name="com.example.drevmass.presentation.course.favouriteCourse.FavoriteCourseFragment"
         android:label="fragment_favorite_course"
-        tools:layout="@layout/fragment_favorite_course" />
-
+        tools:layout="@layout/fragment_favorite_course">
+        <action
+            android:id="@+id/action_favoriteCourseFragment_to_lessonFragment"
+            app:destination="@id/lessonFragment" >
+            <argument
+                android:name="courseId"
+                app:argType="integer" />
+            <argument
+                android:name="lessonId"
+                app:argType="integer" />
+        </action>
+        <action
+            android:id="@+id/action_favoriteCourseFragment_to_courseInfoFragment"
+            app:destination="@id/courseInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/lessonFragment"
+        android:name="com.example.drevmass.presentation.course.lessons.LessonFragment"
+        android:label="fragment_lesson"
+        tools:layout="@layout/fragment_lesson">
+        <argument
+            android:name="lessonId"
+            app:argType="integer" />
+        <argument
+            android:name="courseId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_lessonFragment_to_playerFragment"
+            app:destination="@id/playerFragment" >
+            <argument
+                android:name="courseId"
+                app:argType="integer" />
+            <argument
+                android:name="lessonId"
+                app:argType="integer" />
+            <argument
+                android:name="lessonUrl"
+                app:argType="string" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/playerFragment"
+        android:name="com.example.drevmass.presentation.course.player.PlayerFragment"
+        android:label="fragment_player"
+        tools:layout="@layout/fragment_player">
+        <argument
+            android:name="courseId"
+            app:argType="integer" />
+        <argument
+            android:name="lessonId"
+            app:argType="integer" />
+        <argument
+            android:name="lessonUrl"
+            app:argType="string" />
+    </fragment>
 
 
 </navigation>
