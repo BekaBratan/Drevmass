@@ -7,4 +7,5 @@ interface NavigationHostProvider {
     fun showErrorNotificationBar(message: String)
     fun showSuccessNotificationBar(message: String)
     fun setNavigationVisibility(visible: Boolean)
+    fun orientationLandscape(landscape: Boolean)
 }

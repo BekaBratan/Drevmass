@@ -22,4 +22,14 @@
         <item name="android:background">@color/black_overlay</item>
         <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
     </style>
+
+    <style name="TextCourseAdapterBold">
+        <item name="android:fontFamily">@font/sfprotextbold</item>
+        <item name="android:textColor">@color/grey</item>
+    </style>
+
+    <style name="TextCourseAdapterRegular">
+        <item name="android:fontFamily">@font/sfprotextregular</item>
+        <item name="android:textColor">@color/grey</item>
+    </style>
 </resources>
