@@ -15,8 +15,8 @@ import retrofit2.HttpException
 
 class AuthorizationViewModel(): ViewModel() {
 
-    private var _authorizaitonResponse: MutableLiveData<AuthorizationResponse> = MutableLiveData()
-    val authorizationResponse: MutableLiveData<AuthorizationResponse> = _authorizaitonResponse
+    private var _authorizationResponse: MutableLiveData<AuthorizationResponse> = MutableLiveData()
+    val authorizationResponse: MutableLiveData<AuthorizationResponse> = _authorizationResponse
 
     private var _errorResponse: MutableLiveData<AuthorizationResponse?> = MutableLiveData()
     val errorResponse: MutableLiveData<AuthorizationResponse?> = _errorResponse
@@ -34,7 +34,7 @@ class AuthorizationViewModel(): ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             runCatching { ServiceBuilder.api.login(authorization) }.fold(
                 onSuccess = {
-                    _authorizaitonResponse.postValue(it)
+                    _authorizationResponse.postValue(it)
                 },
                 onFailure = { throwable ->
                     if (throwable is HttpException) {
@@ -75,7 +75,7 @@ class AuthorizationViewModel(): ViewModel() {
             delay(2000)
             runCatching { ServiceBuilder.api.login(authorization) }.fold(
                 onSuccess = {
-                    _authorizaitonResponse.postValue(it)
+                    _authorizationResponse.postValue(it)
                 },
                 onFailure = {
                     _tryAgain.postValue(it.message)
@@ -88,7 +88,7 @@ class AuthorizationViewModel(): ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             runCatching { ServiceBuilder.api.forgotPassword(email) }.fold(
                 onSuccess = {
-                    _authorizaitonResponse.postValue(it)
+                    _authorizationResponse.postValue(it)
                 },
                 onFailure = { throwable ->
                     if (throwable is HttpException) {

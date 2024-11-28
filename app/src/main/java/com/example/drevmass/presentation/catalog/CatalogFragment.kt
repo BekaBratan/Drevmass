@@ -1,6 +1,8 @@
 package com.example.drevmass.presentation.catalog
 
 import android.annotation.SuppressLint
+import android.content.res.Resources
+import android.graphics.Rect
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,13 +13,16 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.drevmass.R
+import com.example.drevmass.data.util.SharedProvider
 import com.example.drevmass.databinding.FragmentCatalogBinding
+import com.example.drevmass.presentation.utils.CustomDividerItemDecoration
 import com.example.drevmass.presentation.utils.RcViewItemClickIdCallback
 import com.example.drevmass.presentation.utils.provideNavigationHost
 
 class CatalogFragment : Fragment() {
 
     private lateinit var binding: FragmentCatalogBinding
+    private lateinit var viewModel: ProductViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,37 +38,77 @@ class CatalogFragment : Fragment() {
         provideNavigationHost()?.hideBottomNavigationBar(false)
         provideNavigationHost()?.fullScreenMode(false)
 
+        val token = SharedProvider(requireContext()).getToken()
+        viewModel = ProductViewModel()
+        viewModel.getProducts(token)
+
+        val listSort = listOf(
+            getString(R.string.sort_by_popularity),
+            getString(R.string.sort_by_price),
+            getString(R.string.sort_by_price_down)
+        )
+
         val adapter = CatalogAdapter()
         adapter.setOnItemClickListener(object : RcViewItemClickIdCallback {
             override fun onClick(id: Int) {
                 // Open product detail
-                findNavController().navigate(R.id.productDetailFragment)
+                findNavController().navigate(CatalogFragmentDirections.actionCatalogFragmentToProductDetailFragment(id))
             }
         })
-        adapter.submitList(
-            listOf(
-                "name1",
-                "name2",
-                "name3",
-                "name4",
-                "name5",
-                "name6",
-                "name7",
-                "name8",
-                "name9",
-                "name10",
-                "name11",
-                "name12",
-                "name13",
-                "name14",
-            )
-        )
+        adapter.setOnItemCartClickListener(object : RcViewItemClickIdCallback {
+            override fun onClick(id: Int) {
+                // Add to cart
+                viewModel.addToCart(token, 0, id, 1)
+            }
+        })
 
         val gridLayoutManager = GridLayoutManager(requireContext(), 2)
         val linearLayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.run {
             rvCatalog.layoutManager = gridLayoutManager
             rvCatalog.adapter = adapter
+            tvSort.text = listSort[0]
+
+            toolbar.leftButton.visibility = View.GONE
+            toolbar.rightButton.visibility = View.GONE
+            toolbar.title.text = getString(R.string.catalog)
+
+            root.viewTreeObserver.addOnScrollChangedListener {
+                val rect = Rect()
+                tvCatalog.getGlobalVisibleRect(rect)
+
+                val screenHeight = Resources.getSystem().displayMetrics.heightPixels
+                val isVisible = rect.top < screenHeight && rect.bottom > 0
+
+                if (!isVisible) {
+                    toolbar.root.visibility = View.VISIBLE
+                } else {
+                    toolbar.root.visibility = View.GONE
+                }
+            }
+
+            llSort.setOnClickListener {
+                val sortBottomsheet = SortBottomsheet(tvSort.text.toString())
+                sortBottomsheet.setSortCallback(object : SortBottomsheet.SortCallback {
+                    override fun onSortSelected(sortOption: String) {
+                        if (sortOption == getString(R.string.sort_by_popularity)) {
+                            viewModel.getProductsFamous(token)
+                            ibSort.background = getDrawable(requireContext(), R.drawable.ic_sort)
+                        }
+                        else if (sortOption == getString(R.string.sort_by_price)) {
+                            viewModel.getProductsPriceUp(token)
+                            ibSort.background = getDrawable(requireContext(), R.drawable.ic_sort)
+                        }
+                        else if (sortOption == getString(R.string.sort_by_price_down)){
+                            viewModel.getProductsPriceDown(token)
+                            ibSort.background = getDrawable(requireContext(), R.drawable.ic_sort_down)
+                        }
+                        tvSort.text = sortOption
+                    }
+                })
+                sortBottomsheet.show(parentFragmentManager, sortBottomsheet.tag)
+            }
+
 
             ibView.setOnClickListener {
                 adapter.nextLayout()
@@ -97,6 +142,15 @@ class CatalogFragment : Fragment() {
                 }
                 adapter.notifyDataSetChanged()
             }
+        }
+
+
+        viewModel.productListResponse.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
+
+        viewModel.errorResponse.observe(viewLifecycleOwner) {
+            provideNavigationHost()?.showErrorNotificationBar(it!!.code)
         }
     }
 
