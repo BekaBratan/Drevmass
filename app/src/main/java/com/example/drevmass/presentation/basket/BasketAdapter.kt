@@ -31,8 +31,8 @@ class BasketAdapter: RecyclerView.Adapter<BasketAdapter.MyViewHolder>() {
         ): Boolean {
             return oldItem == newItem
         }
-
     }
+
     private val differ = AsyncListDiffer(this, diffCallback)
 
     fun submitList(list: List<Basket>){
@@ -74,10 +74,13 @@ class BasketAdapter: RecyclerView.Adapter<BasketAdapter.MyViewHolder>() {
                 }
 
                 btnPlus.setOnClickListener() {
-                    listenerClickAtPlus?.onClick(item.product_id, item.count)
+                    listenerClickAtPlus?.onClick(item.product_id, tvProductCount.text.toString().toInt())
+                    tvProductCount.text = "${tvProductCount.text.toString().toInt() + 1}"
                 }
                 btnMinus.setOnClickListener() {
-                    listenerClickAtMinus?.onClick(item.product_id, item.count)
+                    listenerClickAtMinus?.onClick(item.product_id, tvProductCount.text.toString().toInt())
+                    tvProductCount.text = "${tvProductCount.text.toString().toInt() - 1}"
+
                 }
             }
         }
