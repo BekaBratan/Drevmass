@@ -12,6 +12,7 @@ import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.drevmass.R
 import com.example.drevmass.data.util.SharedProvider
 import com.example.drevmass.databinding.FragmentCatalogBinding
@@ -23,6 +24,7 @@ class CatalogFragment : Fragment() {
 
     private lateinit var binding: FragmentCatalogBinding
     private lateinit var viewModel: ProductViewModel
+    private var isScrollingDown = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -74,18 +76,46 @@ class CatalogFragment : Fragment() {
             toolbar.title.text = getString(R.string.catalog)
 
             root.viewTreeObserver.addOnScrollChangedListener {
-                val rect = Rect()
-                tvCatalog.getGlobalVisibleRect(rect)
+                val rectTitle = Rect()
+                tvCatalog.getGlobalVisibleRect(rectTitle)
 
                 val screenHeight = Resources.getSystem().displayMetrics.heightPixels
-                val isVisible = rect.top < screenHeight && rect.bottom > 0
+                val isTitleVisible = rectTitle.top < screenHeight && rectTitle.bottom > 0
 
-                if (!isVisible) {
+                if (!isTitleVisible) {
                     toolbar.root.visibility = View.VISIBLE
                 } else {
                     toolbar.root.visibility = View.GONE
                 }
+
+                val rectBottom = Rect()
+                vBottom.getGlobalVisibleRect(rectBottom)
+
+                val isBottomVisible = rectBottom.top < screenHeight && rectBottom.bottom > 0
+
+                if (isBottomVisible || isTitleVisible) {
+                    provideNavigationHost()?.hideBottomNavigationBar(false)
+                } else {
+                    provideNavigationHost()?.hideBottomNavigationBar(true)
+                }
             }
+
+//            svCatalog.setOnScrollChangeListener(View.OnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
+//                if (scrollY > oldScrollY) {
+//                    // Scrolling down
+//                    if (!isScrollingDown) {
+//                        isScrollingDown = true
+//                        provideNavigationHost()?.hideBottomNavigationBar(true)
+//                    }
+//                } else if (scrollY < oldScrollY) {
+//                    // Scrolling up
+//                    if (isScrollingDown) {
+//                        isScrollingDown = false
+//                        provideNavigationHost()?.hideBottomNavigationBar(false)
+//                    }
+//                }
+//            })
+
 
             llSort.setOnClickListener {
                 val sortBottomsheet = SortBottomsheet(tvSort.text.toString())
@@ -157,24 +187,24 @@ class CatalogFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         provideNavigationHost()?.apply {
-            provideNavigationHost()?.hideBottomNavigationBar(false)
-            provideNavigationHost()?.fullScreenMode(false)
+            hideBottomNavigationBar(false)
+            fullScreenMode(true)
         }
     }
 
     override fun onResume() {
         super.onResume()
         provideNavigationHost()?.apply {
-            provideNavigationHost()?.hideBottomNavigationBar(false)
-            provideNavigationHost()?.fullScreenMode(false)
+            hideBottomNavigationBar(false)
+            fullScreenMode(true)
         }
     }
 
     override fun onPause() {
         super.onPause()
         provideNavigationHost()?.apply {
-            provideNavigationHost()?.hideBottomNavigationBar(false)
-            provideNavigationHost()?.fullScreenMode(false)
+            hideBottomNavigationBar(false)
+            fullScreenMode(true)
         }
     }
 

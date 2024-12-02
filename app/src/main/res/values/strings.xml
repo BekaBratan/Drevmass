@@ -72,4 +72,7 @@
     <string name="sort_by_price_down">По убыванию цены</string>
     <string name="inCart">В корзине</string>
     <string name="sort">Сортировка</string>
+    <string name="emptyBasket">В корзине пока ничего нет</string>
+    <string name="goToCatalog">Перейти в каталог</string>
+    <string name="emptyBasketMsg">Наполните её товарами из каталога</string>
 </resources>

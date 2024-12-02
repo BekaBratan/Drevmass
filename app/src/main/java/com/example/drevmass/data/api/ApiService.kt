@@ -106,6 +106,11 @@ interface ApiService {
         @Query("is_using") isUsing: String
     ): BasketResponse
 
+    @DELETE("basket")
+    suspend fun deleteBasket(
+        @Header("Authorization") token: String
+    ): MessageResponse
+
     @GET("bonus")
     suspend fun getBonus(@Header("Authorization") token: String): BonusResponse
 
