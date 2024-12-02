@@ -1,10 +1,9 @@
-package com.example.drevmass.presentation.catalog
+package com.example.drevmass.presentation.utils
 
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
-import com.example.drevmass.R
 
 class CustomDividerItemDecoration(private val divider: Drawable): RecyclerView.ItemDecoration() {
     override fun onDraw(canvas: Canvas, parent: RecyclerView, state: RecyclerView.State) {
@@ -19,11 +18,6 @@ class CustomDividerItemDecoration(private val divider: Drawable): RecyclerView.I
         for (i in 0 until childCount) {
             val child = parent.getChildAt(i)
             val params = child.layoutParams as RecyclerView.LayoutParams
-
-            // Check if the current element is the last one
-            if (params.viewAdapterPosition == parent.adapter?.itemCount?.minus(1)) {
-                continue // Skip the last element
-            }
 
             val dividerTop = child.bottom + params.bottomMargin
             val dividerBottom = dividerTop + divider.intrinsicHeight

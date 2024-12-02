@@ -39,6 +39,8 @@ android {
     }
 }
 
+apply(plugin = "androidx.navigation.safeargs.kotlin")
+
 dependencies {
 
     implementation(libs.androidx.core.ktx)

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/sh_top_24dp"
+    android:paddingHorizontal="24dp"
+    android:paddingBottom="24dp"
+    android:paddingTop="24dp"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sort"
+        android:textColor="@color/dark_900"
+        android:textSize="20sp"
+        android:fontFamily="@font/sfprodisplaysemibold"/>
+
+    <LinearLayout
+        android:id="@+id/llSortByPopularity"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/sort_by_popularity"
+            android:textColor="@color/dark_1000"
+            android:textSize="17sp"
+            android:fontFamily="@font/sfprotextregular"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:id="@+id/ivSortByPopularity"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/ic_radiobox_unchecked_24"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llSortByPrice"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/sort_by_price"
+            android:textColor="@color/dark_1000"
+            android:textSize="17sp"
+            android:fontFamily="@font/sfprotextregular"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:id="@+id/ivSortByPrice"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/ic_radiobox_unchecked_24"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llSortByPriceDown"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/sort_by_price_down"
+            android:textColor="@color/dark_1000"
+            android:textSize="17sp"
+            android:fontFamily="@font/sfprotextregular"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:id="@+id/ivSortByPriceDown"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/ic_radiobox_unchecked_24"/>
+
+    </LinearLayout>
+
+</LinearLayout>

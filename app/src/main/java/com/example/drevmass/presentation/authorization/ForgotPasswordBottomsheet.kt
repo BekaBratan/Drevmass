@@ -12,10 +12,10 @@ import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.transition.Visibility
-import com.example.drevmass.R
 import com.example.drevmass.databinding.FragmentForgotPasswordBottomsheetBinding
 import com.example.drevmass.presentation.utils.provideNavigationHost
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.example.drevmass.R
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 @Suppress("DEPRECATION")
@@ -86,7 +86,7 @@ class ForgotPasswordBottomsheet : BottomSheetDialogFragment() {
         }
 
         viewModel.authorizationResponse.observe(viewLifecycleOwner) {
-            val bottomsheet = PasswordRecoveredBottomsheet(binding.etEmail.text.toString())
+            val bottomsheet = PasswordRecoveredBottomsheet("На почту ${binding.etEmail.text} мы отправили инструкцию для сброса пароля.")
             bottomsheet.show(childFragmentManager, bottomsheet.tag)
         }
 

@@ -67,4 +67,9 @@
     <string name="have_promocode_button">У меня есть промокод</string>
     <string name="btn_registration">Продолжить</string>
     <string name="text_course_end">Вы успешно прошли курс и получаете 500 бонусов</string>
+    <string name="sort_by_popularity">По популярности</string>
+    <string name="sort_by_price">По возрастанию цены</string>
+    <string name="sort_by_price_down">По убыванию цены</string>
+    <string name="inCart">В корзине</string>
+    <string name="sort">Сортировка</string>
 </resources>
