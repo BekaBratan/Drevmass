@@ -31,7 +31,7 @@ import com.example.drevmass.presentation.course.interfaces.RcViewClickCourseCall
 import com.example.drevmass.presentation.utils.provideNavigationHost
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
-import kz.mobydev.drevmass.presentation.course.interfaces.RcViewClickFavoriteCourseCallback
+import com.example.drevmass.presentation.course.interfaces.RcViewClickFavoriteCourseCallback
 import java.util.Calendar
 
 class CourseInfoFragment : Fragment() {

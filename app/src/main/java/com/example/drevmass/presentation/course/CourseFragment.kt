@@ -36,9 +36,6 @@ class CourseFragment : Fragment() {
         return binding.root
     }
 
-
-    //private val isInternetOn = InternetUtil.isInternetOn()
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnFavoriteCourse.setOnClickListener{
@@ -49,7 +46,6 @@ class CourseFragment : Fragment() {
         scrollSystemCollapsingToolbar()
         val shared = SharedProvider(requireContext())
         viewModel.getCourseList(shared.getToken())
-        //viewModel.getAllBasket(shared.getToken(), false)
         viewModel.getBonusBanner(shared.getToken())
 
         viewModel.courseBannerBonus.observe(viewLifecycleOwner) {
@@ -68,7 +64,7 @@ class CourseFragment : Fragment() {
         }
 
         viewModel.errorResponse.observe(viewLifecycleOwner) { error ->
-            if (error is HttpException && error.code() == 500 /*&& isInternetOn*/) {
+            if (error is HttpException && error.code() == 500) {
                 // Обработка других типов ошибок или неожиданных исключений
                 val customToast = Toast.makeText(requireContext(), "Your message", Toast.LENGTH_SHORT)
                 customToast.showCustomToast("Кажется, что-то пошло не так", requireContext(), this@CourseFragment)
