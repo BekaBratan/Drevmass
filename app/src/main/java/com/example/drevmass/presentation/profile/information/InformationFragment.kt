@@ -44,12 +44,8 @@ class InformationFragment : Fragment() {
         }
 
         binding.idVk.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://vk.com/drevmass"))
-            startActivity(intent)
         }
         binding.icYoutube.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/user/tremassnn"))
-            startActivity(intent)
         }
     }
 
