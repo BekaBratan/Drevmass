@@ -110,4 +110,25 @@ class BasketViewModel(): ViewModel() {
             )
         }
     }
+
+    fun addToCart(token: String, userId: Int, productId: Int, count: Int, isPromocode: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            runCatching { ServiceBuilder.api.addToCart(token, AddToCartRequest(count, productId, userId)) }.fold(
+                onSuccess = {
+                    _messageResponse.postValue(it)
+                    getBasket(token, isPromocode)
+                },
+                onFailure = { throwable ->
+                    if (throwable is HttpException) {
+                        val gson = com.google.gson.Gson()
+                        val errorBody = throwable.response()?.errorBody()?.string()
+                        val errorResponse = gson.fromJson(errorBody, ErrorResponse::class.java)
+                        _errorResponse.postValue(errorResponse)
+                    } else {
+                        _errorBody.postValue(throwable.message)
+                    }
+                }
+            )
+        }
+    }
 }

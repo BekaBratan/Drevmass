@@ -79,6 +79,12 @@ class ProductDetailFragment : Fragment() {
                     )
                 }
             })
+            adapterSimilar.setOnItemCartClickListener(object : RcViewItemClickIdCallback {
+                override fun onClick(id: Int) {
+                    // Add to cart
+                    viewModel.addToCart(token, 0, id, 1)
+                }
+            })
 
             btnAddToCart.setOnClickListener {
                 addToCart(token)

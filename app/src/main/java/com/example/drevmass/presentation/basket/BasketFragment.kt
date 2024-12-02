@@ -99,6 +99,8 @@ class BasketFragment : Fragment() {
             }
 
             rvBasket.adapter = adapterBasket
+            // Disable animation of diffutil
+            rvBasket.itemAnimator = null
             rvBasket.addItemDecoration(
                 CustomDividerItemDecoration(
                     getDrawable(
@@ -170,6 +172,12 @@ class BasketFragment : Fragment() {
                         )
                     }
                 })
+                adapterSimilar.setOnItemCartClickListener(object : RcViewItemClickIdCallback {
+                    override fun onClick(id: Int) {
+                        // Add to cart
+                        viewModel.addToCart(token, 0, id, 1, isPromocode)
+                    }
+                })
             }
         }
     }
@@ -200,24 +208,24 @@ class BasketFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         provideNavigationHost()?.apply {
-            provideNavigationHost()?.hideBottomNavigationBar(false)
-            provideNavigationHost()?.fullScreenMode(false)
+            hideBottomNavigationBar(false)
+            fullScreenMode(true)
         }
     }
 
     override fun onResume() {
         super.onResume()
         provideNavigationHost()?.apply {
-            provideNavigationHost()?.hideBottomNavigationBar(false)
-            provideNavigationHost()?.fullScreenMode(false)
+            hideBottomNavigationBar(false)
+            fullScreenMode(true)
         }
     }
 
     override fun onPause() {
         super.onPause()
         provideNavigationHost()?.apply {
-            provideNavigationHost()?.hideBottomNavigationBar(false)
-            provideNavigationHost()?.fullScreenMode(false)
+            hideBottomNavigationBar(false)
+            fullScreenMode(true)
         }
     }
 

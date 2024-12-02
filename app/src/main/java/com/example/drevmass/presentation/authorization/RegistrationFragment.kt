@@ -348,24 +348,24 @@ class RegistrationFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         provideNavigationHost()?.apply {
-            provideNavigationHost()?.hideBottomNavigationBar(true)
-            provideNavigationHost()?.fullScreenMode(true)
+            hideBottomNavigationBar(true)
+            fullScreenMode(true)
         }
     }
 
     override fun onResume() {
         super.onResume()
         provideNavigationHost()?.apply {
-            provideNavigationHost()?.hideBottomNavigationBar(true)
-            provideNavigationHost()?.fullScreenMode(true)
+            hideBottomNavigationBar(true)
+            fullScreenMode(true)
         }
     }
 
     override fun onPause() {
         super.onPause()
         provideNavigationHost()?.apply {
-            provideNavigationHost()?.hideBottomNavigationBar(true)
-            provideNavigationHost()?.fullScreenMode(true)
+            hideBottomNavigationBar(true)
+            fullScreenMode(true)
         }
     }
 
