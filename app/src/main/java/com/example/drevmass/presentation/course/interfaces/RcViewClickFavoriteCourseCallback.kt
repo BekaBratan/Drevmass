@@ -1,4 +1,4 @@
-package kz.mobydev.drevmass.presentation.course.interfaces
+package com.example.drevmass.presentation.course.interfaces
 
 interface RcViewClickFavoriteCourseCallback {
     fun onItemFavoriteClick(lesson_id: Int)

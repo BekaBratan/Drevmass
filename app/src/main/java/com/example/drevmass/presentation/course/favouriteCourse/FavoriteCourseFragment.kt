@@ -13,8 +13,8 @@ import com.example.drevmass.data.util.SharedProvider
 import com.example.drevmass.databinding.FragmentFavoriteCourseBinding
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
-import kz.mobydev.drevmass.presentation.course.interfaces.RcViewClickCourseLessonCallback
-import kz.mobydev.drevmass.presentation.course.interfaces.RcViewClickFavoriteCourseCallback
+import com.example.drevmass.presentation.course.interfaces.RcViewClickCourseLessonCallback
+import com.example.drevmass.presentation.course.interfaces.RcViewClickFavoriteCourseCallback
 
 class FavoriteCourseFragment : Fragment() {
 

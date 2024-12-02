@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.drevmass.data.model.courseModel.FavoriteCourseListResponseItem
 import com.example.drevmass.databinding.FavoriteCourseAdapterBinding
 import com.example.drevmass.presentation.course.interfaces.RcViewClickCourseCallback
-import kz.mobydev.drevmass.presentation.course.interfaces.RcViewClickCourseLessonCallback
-import kz.mobydev.drevmass.presentation.course.interfaces.RcViewClickFavoriteCourseCallback
+import com.example.drevmass.presentation.course.interfaces.RcViewClickCourseLessonCallback
+import com.example.drevmass.presentation.course.interfaces.RcViewClickFavoriteCourseCallback
 
 class FavoriteCourseAdapter : RecyclerView.Adapter<FavoriteCourseAdapter.RcViewHolder>() {
 
@@ -53,7 +53,8 @@ class FavoriteCourseAdapter : RecyclerView.Adapter<FavoriteCourseAdapter.RcViewH
             binding.rvLessonsFavoriteDrevmass.adapter= adapterFavoriteLesson
             adapterFavoriteLesson.submitList(item.lessons)
 
-            adapterFavoriteLesson.setOnFavoriteClickListener(object : RcViewClickFavoriteCourseCallback {
+            adapterFavoriteLesson.setOnFavoriteClickListener(object :
+                RcViewClickFavoriteCourseCallback {
                 override fun onItemFavoriteClick(lesson_id: Int) {
                     listenerFavorite?.onItemFavoriteClick(lesson_id)
                     Log.d("AAA", "Favorite Clicked in CourseAdapter +")

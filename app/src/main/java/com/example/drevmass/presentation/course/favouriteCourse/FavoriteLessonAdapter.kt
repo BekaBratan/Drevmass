@@ -12,7 +12,7 @@ import com.example.drevmass.R
 import com.example.drevmass.data.model.courseModel.LessonResponse
 import com.example.drevmass.databinding.FavoriteLessonAdapterBinding
 import com.example.drevmass.presentation.course.interfaces.RcViewClickCourseCallback
-import kz.mobydev.drevmass.presentation.course.interfaces.RcViewClickFavoriteCourseCallback
+import com.example.drevmass.presentation.course.interfaces.RcViewClickFavoriteCourseCallback
 
 class FavoriteLessonAdapter : RecyclerView.Adapter<FavoriteLessonAdapter.RcViewHolder>() {
 
