@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.drevmass.R
 import com.example.drevmass.data.model.courseModel.getFamousProductsBasket.getFamousProductsResponse
+import com.example.drevmass.databinding.LessonProductAdapterBinding
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -20,34 +21,30 @@ class FamousProductsBasketAdapter(
     lessonFragment: LessonFragment
 ) : RecyclerView.Adapter<FamousProductsBasketAdapter.ProductViewHolder>() {
 
-    inner class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val productImage: ImageView = itemView.findViewById(R.id.imageView123)
-        val productName: TextView = itemView.findViewById(R.id.title_recomend)
-        val productPrice: TextView = itemView.findViewById(R.id.price_recomend)
-        val productAddToBasketButton: ImageButton = itemView.findViewById(R.id.productAddToBasketButton)
-
+    inner class ProductViewHolder(private var binding: LessonProductAdapterBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(product: getFamousProductsResponse) {
-            productName.text = product.title
+            binding.tvProductTitle.text = product.title
             val numberFormat = NumberFormat.getInstance(Locale.getDefault())
             numberFormat.minimumFractionDigits = 0
             val formattedPrice = numberFormat.format(product.price)
-            productPrice.text = "${ formattedPrice} ₽"
+            binding.tvProductPrice.text = "${ formattedPrice} ₽"
             // Добавьте привязку других данных по аналогии
 
             Glide.with(itemView)
                 .load("http://drevmasstestapi.mobydev.kz/" + product.image_src)
                 .centerCrop()
-                .into(productImage)
+                .into(binding.imgProductPhoto)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
-        val inflater = LayoutInflater.from(context)
-        val itemView = inflater.inflate(R.layout.item_recomendation_adapter, parent, false)
-        return ProductViewHolder(itemView)
+        return ProductViewHolder(
+            LessonProductAdapterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        )
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
+        holder.bind(productList[position])
     }
 
     override fun getItemCount(): Int {

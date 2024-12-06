@@ -15,13 +15,6 @@ import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
 class LessonViewModel(): ViewModel() {
-
-    private var _responseListBasket = MutableLiveData<GetAllBasketResponse>()
-    val responseListBasket: MutableLiveData<GetAllBasketResponse> = _responseListBasket
-
-    private var _response1Basket = MutableLiveData<GetAllBasketResponse>()
-    val response1Basket: MutableLiveData<GetAllBasketResponse> = _response1Basket
-
     private var _responseFamousProducts = MutableLiveData<List<getFamousProductsResponse>>()
     val responseFamousProducts: MutableLiveData<List<getFamousProductsResponse>> = _responseFamousProducts
 
@@ -108,46 +101,6 @@ class LessonViewModel(): ViewModel() {
             runCatching { ServiceBuilder.api.getFamousProducts(token) }.fold(
                 onSuccess = {
                     _responseFamousProducts.postValue(it)
-                },
-                onFailure = { throwable ->
-                    if (throwable is HttpException) {
-                        val gson = com.google.gson.Gson()
-                        val errorBody = throwable.response()?.errorBody()?.string()
-                        val errorResponse = gson.fromJson(errorBody, AuthorizationResponse::class.java)
-                        _errorResponse.postValue(errorResponse)
-                    } else {
-                        _errorBody.postValue(throwable.message)
-                    }
-                }
-            )
-        }
-    }
-
-    fun getAllBasket1(token: String, isUsing: Boolean) {
-        viewModelScope.launch(Dispatchers.IO) {
-            runCatching { ServiceBuilder.api.getAllBasket(token, isUsing) }.fold(
-                onSuccess = {
-                    _response1Basket.postValue(it)
-                },
-                onFailure = { throwable ->
-                    if (throwable is HttpException) {
-                        val gson = com.google.gson.Gson()
-                        val errorBody = throwable.response()?.errorBody()?.string()
-                        val errorResponse = gson.fromJson(errorBody, AuthorizationResponse::class.java)
-                        _errorResponse.postValue(errorResponse)
-                    } else {
-                        _errorBody.postValue(throwable.message)
-                    }
-                }
-            )
-        }
-    }
-
-    fun getAllBasket(token: String, isUsing: Boolean) {
-        viewModelScope.launch(Dispatchers.IO) {
-            runCatching { ServiceBuilder.api.getAllBasket(token, isUsing) }.fold(
-                onSuccess = {
-                    _responseListBasket.postValue(it)
                 },
                 onFailure = { throwable ->
                     if (throwable is HttpException) {

@@ -29,6 +29,7 @@
         app:itemIconTint="@color/bottom_nav_background"
         app:itemTextColor="@color/bottom_nav_background"
         app:itemRippleColor="@color/transparent"
+        app:itemActiveIndicatorStyle="@color/transparent"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
