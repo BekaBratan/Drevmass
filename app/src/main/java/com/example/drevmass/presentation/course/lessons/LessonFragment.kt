@@ -118,30 +118,8 @@ class LessonFragment : Fragment() {
         val shared = SharedProvider(requireContext())
         viewModel.getFamousProducts(shared.getToken())
         viewModel.responseFamousProducts.observe(viewLifecycleOwner) {
-            val apiService = ServiceBuilder.api
-            val myCoroutineScope = CoroutineScope(Dispatchers.Main)
-
-            myCoroutineScope.launch {
-                try {
-                    if (!shared.getToken().isNullOrEmpty()) {
-                        val basketResponse =
-                            apiService.getAllBasket("Bearer ${shared.getToken()}", isUsing = false)
-                        val basketProducts = basketResponse.basket ?: emptyList()
-                        it.forEach { product ->
-                            val isProductInBasket =
-                                basketProducts.any { it.productId == product.id }
-                            product.isAddedToCart = isProductInBasket
-                        }
-                        Log.d("Basket Update", "Basket products updated successfully.")
-                    } else {
-                        Log.d("Basket Update", "Token is null or empty.")
-                    }
-                    if (usedProducts != null) {
-                        updateRecyclerView(usedProducts)
-                    }
-                } catch (e: Exception) {
-                    Log.e("Basket Update", "Error updating basket products: ${e.message}")
-                }
+            if (usedProducts != null) {
+                updateRecyclerView(usedProducts)
             }
         }
     }
