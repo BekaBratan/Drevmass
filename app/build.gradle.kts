@@ -82,4 +82,8 @@ dependencies {
 
     //android-youtube-player
     implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:11.1.0")
+
+
+    // Shimmer
+    implementation("com.facebook.shimmer:shimmer:0.5.0")
 }

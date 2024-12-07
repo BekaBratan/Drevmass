@@ -9,6 +9,7 @@ import com.example.drevmass.data.model.ErrorResponse
 import com.example.drevmass.data.model.MessageResponse
 import com.example.drevmass.data.model.products.AddToCartRequest
 import com.example.drevmass.data.model.products.BasketResponse
+import com.example.drevmass.data.model.products.OrderRequest
 import com.example.drevmass.data.model.products.ProductDetailResponse
 import com.example.drevmass.data.model.products.ProductsResponse
 import kotlinx.coroutines.Dispatchers
@@ -117,6 +118,26 @@ class BasketViewModel(): ViewModel() {
                 onSuccess = {
                     _messageResponse.postValue(it)
                     getBasket(token, isPromocode)
+                },
+                onFailure = { throwable ->
+                    if (throwable is HttpException) {
+                        val gson = com.google.gson.Gson()
+                        val errorBody = throwable.response()?.errorBody()?.string()
+                        val errorResponse = gson.fromJson(errorBody, ErrorResponse::class.java)
+                        _errorResponse.postValue(errorResponse)
+                    } else {
+                        _errorBody.postValue(throwable.message)
+                    }
+                }
+            )
+        }
+    }
+
+    fun makeOrder(token: String, orderRequest: OrderRequest) {
+        viewModelScope.launch(Dispatchers.IO) {
+            runCatching { ServiceBuilder.api.makeOrder(token, orderRequest) }.fold(
+                onSuccess = {
+                    _messageResponse.postValue(it)
                 },
                 onFailure = { throwable ->
                     if (throwable is HttpException) {

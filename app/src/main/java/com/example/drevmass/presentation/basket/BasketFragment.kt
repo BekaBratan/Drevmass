@@ -26,6 +26,7 @@ class BasketFragment : Fragment() {
     private lateinit var binding: FragmentBasketBinding
     private lateinit var viewModel: BasketViewModel
     private var isPromocode = "true"
+    private var totalPrice = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,7 +51,7 @@ class BasketFragment : Fragment() {
 
         binding.run {
             btnArrange.setOnClickListener {
-                findNavController().navigate(R.id.action_basketFragment_to_makeOrderFragment)
+                findNavController().navigate(BasketFragmentDirections.actionBasketFragmentToMakeOrderFragment(totalPrice, isPromocode))
             }
 
             btnCatalog.setOnClickListener {
@@ -136,8 +137,9 @@ class BasketFragment : Fragment() {
 
                     tvProductPrice.text = "${it.basket_price} ₽"
 
-                    tvTotalPrice.text = "${it.total_price} ₽"
-                    tvTotalPrice2.text = "${it.total_price} ₽"
+                    totalPrice = it.total_price
+                    tvTotalPrice.text = "$totalPrice ₽"
+                    tvTotalPrice2.text = "$totalPrice ₽"
                 }
 
                 adapterBasket.submitList(it.basket)
