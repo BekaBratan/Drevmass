@@ -8,16 +8,36 @@ import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.marginBottom
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.drevmass.R
+import com.example.drevmass.data.model.products.OrderProducts
+import com.example.drevmass.data.model.products.OrderRequest
+import com.example.drevmass.data.model.products.Product
+import com.example.drevmass.data.util.SharedProvider
 import com.example.drevmass.databinding.FragmentMakeOrderBinding
+import com.example.drevmass.presentation.basket.BasketViewModel
+import com.example.drevmass.presentation.catalog.productDetail.ProductDetailFragmentArgs
+import com.example.drevmass.presentation.profile.promocode.PromocodeFragment
+import com.example.drevmass.presentation.utils.showCustomToast
+import com.example.drevmass.presentation.utils.showSuccessCustomToast
+import kotlin.getValue
 
 class MakeOrderFragment : Fragment() {
 
     private lateinit var binding: FragmentMakeOrderBinding
+    private val viewModel: BasketViewModel by viewModels()
+    private val args: MakeOrderFragmentArgs by navArgs()
+    private var token = ""
+
+    private lateinit var products: List<OrderProducts>
+    private var bonuses = 0
+
     private var keypadHeight = 0f
     private var translationHeight = 0f
     private var isKeypadOpen = false
@@ -34,6 +54,8 @@ class MakeOrderFragment : Fragment() {
     @SuppressLint("UseCompatLoadingForColorStateLists")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        token = SharedProvider(requireContext()).getToken()
+
         binding.run {
 
             root.viewTreeObserver.addOnGlobalLayoutListener {
@@ -154,8 +176,43 @@ class MakeOrderFragment : Fragment() {
             }
 
             btnSendRequest.setOnClickListener {
+                viewModel.getBasket(token, args.isUsing)
+                viewModel.basketResponse.observe(viewLifecycleOwner) {
+                    products = it.basket.map { basket ->
+                        OrderProducts(
+                            name = basket.product_title,  // Map `product_title` to `name`
+                            price = basket.price,         // Map `price` directly
+                            product_id = basket.product_id, // Map `product_id` directly
+                            quantity = basket.count       // Map `count` to `quantity`
+                        )
+                    }
+                    bonuses = it.used_bonus
+                    var orderRequest = OrderRequest(
+                        email = etEmail.text.toString(),
+                        bonus = bonuses,
+                        crmlink = "",
+                        phone_number = etPhone.text.toString(),
+                        products = products,
+                        total_price = args.totalPrice,
+                        username = etName.text.toString(),
+                    )
+                    viewModel.makeOrder(token, orderRequest)
+                }
+            }
+
+            viewModel.messageResponse.observe(viewLifecycleOwner) {
                 val bottomsheet = MakeOrderBottomsheet()
                 bottomsheet.show(childFragmentManager, bottomsheet.tag)
+            }
+
+            viewModel.errorResponse.observe(viewLifecycleOwner) {
+                val customToast =
+                    Toast.makeText(requireContext(), "Your message", Toast.LENGTH_SHORT)
+                customToast.showCustomToast(
+                    it?.message.toString(),
+                    requireContext(),
+                    this@MakeOrderFragment
+                )
             }
         }
     }

@@ -14,8 +14,11 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.navOptions
+import androidx.navigation.ui.setupWithNavController
 import com.example.drevmass.databinding.ActivityMainBinding
 import com.example.drevmass.presentation.utils.NavigationHostProvider
 import kotlinx.coroutines.delay
@@ -35,24 +38,13 @@ class MainActivity : AppCompatActivity(), NavigationHostProvider {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        binding.bottomNavigationBarMainActivity.setOnNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.courseFragment -> {
-                    navController.navigate(R.id.courseFragment)
-                }
+        val navController = navHostFragment.navController
+        val navOptions = NavOptions.Builder().setLaunchSingleTop(true).setRestoreState(true).build()
 
-                R.id.catalogFragment -> {
-                    navController.navigate(R.id.catalogFragment)
-                }
-
-                R.id.basketFragment -> {
-                    navController.navigate(R.id.basketFragment)
-                }
-                R.id.profileFragment -> {
-                    navController.navigate(R.id.profileFragment)
-                }
-                else -> null
-            } != null
+        binding.bottomNavigationBarMainActivity.setupWithNavController(navController)
+        binding.bottomNavigationBarMainActivity.setOnNavigationItemSelectedListener { item ->
+            navController.navigate(item.itemId, null, navOptions)
+            true
         }
     }
 
