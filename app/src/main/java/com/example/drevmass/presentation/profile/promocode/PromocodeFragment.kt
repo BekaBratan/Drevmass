@@ -43,6 +43,7 @@ class PromocodeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.shimmerPromocode.startShimmer()
         binding.toolbarPromocodeIncluded.icBack.setOnClickListener {
             findNavController().navigate(R.id.profileFragment)
         }
@@ -72,6 +73,8 @@ class PromocodeFragment : Fragment() {
         }
 
         viewModel.responsePromocode.observe(viewLifecycleOwner) {
+            binding.shimmerPromocode.stopShimmer()
+            binding.shimmerPromocode.visibility = View.GONE
             binding.promocode.visibility = View.VISIBLE
             binding.promocode.text = it.promocode
             binding.tvBonusUSedAllAttempt.text = "/${it.allAttempt}"

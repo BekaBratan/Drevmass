@@ -134,7 +134,7 @@ class CourseInfoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.shimmerCourseFragment.startShimmer()
         screenMode()
         scrollSystemCollapsingToolbar()
         val shared = SharedProvider(requireContext())
@@ -296,6 +296,10 @@ class CourseInfoFragment : Fragment() {
                         courseInfoAdapter.submitList(it.course.lessons)
                     }
                 }
+
+                binding.shimmerCourseFragment.stopShimmer()
+                binding.shimmerCourseFragment.visibility = View.GONE
+                binding.shimmerCourseFragmentBackground.visibility = View.GONE
             }
 
         }
@@ -330,6 +334,9 @@ class CourseInfoFragment : Fragment() {
 
         viewModel.responseMessageCourseFragment.observe(viewLifecycleOwner) {
             viewModel.getUserCourseId(shared.getToken(), args.courseId)
+            binding.shimmerCourseFragment.visibility = View.VISIBLE
+            binding.shimmerCourseFragment.startShimmer()
+            binding.shimmerCourseFragmentBackground.visibility = View.VISIBLE
         }
         /** Кнопки которых можно нажимать **/
         binding.btnStartCourse.setOnClickListener {

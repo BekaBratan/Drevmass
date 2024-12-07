@@ -102,12 +102,36 @@
                         android:fontFamily="@font/sfprodisplaysemibold"
                         android:gravity="top"
                         android:lineSpacingExtra="1sp"
-                        tools:text="0"
+                        tools:text=""
                         android:textColor="@color/white"
                         android:textSize="34sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@id/ic_bonus"
                         app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/shimmer_bonus"
+                        android:layout_width="92dp"
+                        android:layout_height="40dp"
+                        android:visibility="visible"
+                        android:layout_marginStart="@dimen/dp_9"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/ic_bonus"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:layout_width="92dp"
+                            android:layout_height="28dp"
+                            android:fontFamily="@font/sfprodisplaysemibold"
+                            android:gravity="top"
+                            android:lineSpacingExtra="1sp"
+                            tools:text=""
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/background_shimmer_text_8dp"
+                            android:textColor="@color/white"
+                            android:textSize="34sp"/>
+
+                    </com.facebook.shimmer.ShimmerFrameLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
@@ -116,11 +140,31 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sfprodisplayregular"
                     android:letterSpacing="-0.03"
-                    android:text="1 балл = 1 ₽"
+                    android:text=""
                     android:textSize="15sp"
                     android:textColor="@color/white"
                     app:layout_constraintStart_toStartOf="@id/bonus_block"
                     app:layout_constraintTop_toBottomOf="@id/bonus_block" />
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmer_bonus_detail"
+                    android:layout_width="80dp"
+                    android:layout_height="20dp"
+                    android:visibility="visible"
+                    app:layout_constraintStart_toStartOf="@id/bonus_block"
+                    app:layout_constraintTop_toBottomOf="@id/bonus_block">
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="20dp"
+                        android:fontFamily="@font/sfprodisplayregular"
+                        android:letterSpacing="-0.03"
+                        android:text=""
+                        android:textSize="15sp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/background_shimmer_text_8dp"/>
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/deadlineBonusSection"
@@ -134,11 +178,10 @@
                     android:paddingTop="@dimen/dp_6"
                     android:paddingEnd="@dimen/dp_8"
                     android:paddingBottom="@dimen/dp_6"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    >
+                    app:layout_constraintBottom_toBottomOf="parent">
 
                     <TextView
                         android:id="@+id/fireIcon"
@@ -215,7 +258,7 @@
                     android:layout_marginTop="96dp"
                     android:layout_marginEnd="16dp"
                     android:orientation="vertical"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     app:layout_constraintTop_toBottomOf="@id/history_points">
 
                     <ImageView
@@ -254,6 +297,46 @@
                     android:orientation="vertical"
                     android:visibility="gone"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmerRcBonus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <include
+                            layout="@layout/shimmer_rc_bonus_history_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <include
+                            layout="@layout/shimmer_rc_bonus_history_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <include
+                            layout="@layout/shimmer_rc_bonus_history_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <include
+                            layout="@layout/shimmer_rc_bonus_history_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <include
+                            layout="@layout/shimmer_rc_bonus_history_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </com.facebook.shimmer.ShimmerFrameLayout>
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

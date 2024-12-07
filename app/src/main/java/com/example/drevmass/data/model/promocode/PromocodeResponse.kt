@@ -1,4 +1,4 @@
-package kz.mobydev.drevmass.model.promocode
+package com.example.drevmass.data.model.promocode
 
 import com.google.gson.annotations.SerializedName
 

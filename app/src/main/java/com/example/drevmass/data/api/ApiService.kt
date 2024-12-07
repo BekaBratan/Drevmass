@@ -26,7 +26,7 @@ import com.example.drevmass.data.model.courseModel.getFamousProductsBasket.getFa
 import com.example.drevmass.data.model.notifiation.NotificationRequest
 import com.example.drevmass.data.model.notifiation.NotificationResponse
 import com.example.drevmass.data.model.products.OrderRequest
-import kz.mobydev.drevmass.model.promocode.PromocodeResponse
+import com.example.drevmass.data.model.promocode.PromocodeResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE

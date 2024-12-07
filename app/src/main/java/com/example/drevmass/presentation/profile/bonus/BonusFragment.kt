@@ -46,10 +46,19 @@ class BonusFragment : Fragment() {
             findNavController().navigate(R.id.loginFragment)
         } else {
             viewModel.getBonus(userToken)
+            binding.shimmerBonus.startShimmer()
+            binding.shimmerBonusDetail.startShimmer()
+            binding.shimmerRcBonus.startShimmer()
         }
 
         viewModel.responseBonus.observe(viewLifecycleOwner) { bonusData ->
+            binding.shimmerBonus.stopShimmer()
+            binding.shimmerBonus.visibility = View.GONE
             binding.textView.text = "1 балл = 1 ₽"
+            binding.shimmerBonusDetail.stopShimmer()
+            binding.shimmerBonusDetail.visibility = View.GONE
+            binding.shimmerRcBonus.stopShimmer()
+            binding.shimmerRcBonus.visibility = View.GONE
 
             Log.d("MyPointsFragment", "No burning data found + ${bonusData.burning.isNotEmpty()}")
             if (bonusData.burning.isNotEmpty()) {

@@ -33,6 +33,7 @@ class FavoriteCourseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         scrollSystemCollapsingToolbar()
+        binding.shimmerFrameLayoutFavoriteCourse.startShimmer()
         val shared = SharedProvider(requireContext())
         val tokenUser = shared.getToken()
         viewModel.getFavoriteCoursesAndLessons(tokenUser)
@@ -40,10 +41,14 @@ class FavoriteCourseFragment : Fragment() {
         binding.rvCourseFavoriteDrevmass.adapter = adapter
 
         viewModel.responseFavoriteList.observe(viewLifecycleOwner) {
+            binding.shimmerFrameLayoutFavoriteCourse.stopShimmer()
+            binding.shimmerFrameLayoutFavoriteCourse.visibility = View.GONE
             binding.sectionExceptionEmptyFavorite.visibility = if (it.isEmpty()) {View.VISIBLE} else View.GONE
             adapter.submitList(it)
         }
         viewModel.errorResponse.observe(viewLifecycleOwner) {
+            binding.shimmerFrameLayoutFavoriteCourse.stopShimmer()
+            binding.shimmerFrameLayoutFavoriteCourse.visibility = View.GONE
             binding.sectionExceptionEmptyFavorite.visibility = View.VISIBLE
         }
         adapter.setOnFavoriteClickListener(object : RcViewClickFavoriteCourseCallback {

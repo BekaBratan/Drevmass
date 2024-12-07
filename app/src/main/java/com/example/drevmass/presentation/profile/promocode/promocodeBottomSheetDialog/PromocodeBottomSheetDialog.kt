@@ -26,7 +26,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.launch
-import kz.mobydev.drevmass.model.promocode.PromocodeError
+import com.example.drevmass.data.model.promocode.PromocodeError
 
 class PromocodeBottomSheetDialog : BottomSheetDialogFragment() {
     private lateinit var binding: PromocodeBottomSheetDialogBinding

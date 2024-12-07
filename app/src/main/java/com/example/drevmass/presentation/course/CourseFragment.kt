@@ -38,6 +38,7 @@ class CourseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.shimmerRcCourseDrevmass.startShimmer()
         binding.btnFavoriteCourse.setOnClickListener{
             findNavController().navigate(R.id.favoriteCourseFragment)
         }
@@ -57,6 +58,8 @@ class CourseFragment : Fragment() {
         }
 
         viewModel.courseList.observe(viewLifecycleOwner) {
+            binding.shimmerRcCourseDrevmass.stopShimmer()
+            binding.shimmerRcCourseDrevmass.visibility = View.GONE
             binding.viewEmptySpace.visibility = View.GONE
             binding.rvCourseDrevmass.visibility = View.VISIBLE
             adapterCourseList.submitList(it)

@@ -40,6 +40,8 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         provideNavigationHost()?.hideBottomNavigationBar(false)
         provideNavigationHost()?.fullScreenMode(true)
+        binding.shimmerProfileUserInfo.startShimmer()
+        binding.shimmerBonusBall.startShimmer()
         binding.blockPoints.setOnClickListener {
             findNavController().navigate(R.id.bonusFragment)
         }
@@ -82,11 +84,15 @@ class ProfileFragment : Fragment() {
         viewModel.responseUserInfo.observe(viewLifecycleOwner) { userInfoData ->
             binding.tvUserName.text = userInfoData.name
             binding.tvPhoneNum.text = userInfoData.phoneNumber
+            binding.shimmerProfileUserInfo.stopShimmer()
+            binding.shimmerProfileUserInfo.visibility = View.GONE
         }
 
         viewModel.responseBonus.observe(viewLifecycleOwner) {
             Log.d("AAA", "Bonus observer $it")
             binding.bonusBall.text = it.bonus.toString()
+            binding.shimmerBonusBall.stopShimmer()
+            binding.shimmerBonusBall.visibility = View.GONE
         }
 
         viewModel.errorResponse.observe(viewLifecycleOwner) {}

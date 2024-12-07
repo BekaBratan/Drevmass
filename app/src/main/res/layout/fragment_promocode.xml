@@ -87,6 +87,41 @@
             android:fontFamily="@font/sfprotextbold"
             android:textColor="@color/white"/>
 
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmerPromocode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pc_desc"
+            android:layout_marginTop="24dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_35"
+                android:layout_marginEnd="@dimen/dp_35"
+                android:background="@drawable/background_shimmer_text_8dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tvCountLesson"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/sfprotextbold"
+                    android:gravity="start"
+                    android:textSize="22sp"
+                    android:textColor="@color/grey"
+                    android:visibility="invisible"
+                    tools:text="" />
+
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
         <ImageView
             android:id="@+id/divider_pc"
             android:layout_width="match_parent"
