@@ -25,6 +25,7 @@ import com.example.drevmass.data.model.courseModel.MessageCourseProgressResponse
 import com.example.drevmass.data.model.courseModel.getFamousProductsBasket.getFamousProductsResponse
 import com.example.drevmass.data.model.notifiation.NotificationRequest
 import com.example.drevmass.data.model.notifiation.NotificationResponse
+import com.example.drevmass.data.model.products.OrderRequest
 import kz.mobydev.drevmass.model.promocode.PromocodeResponse
 import retrofit2.Response
 import retrofit2.http.Body
@@ -109,6 +110,12 @@ interface ApiService {
     @DELETE("basket")
     suspend fun deleteBasket(
         @Header("Authorization") token: String
+    ): MessageResponse
+
+    @POST("order")
+    suspend fun makeOrder(
+        @Header("Authorization") token: String,
+        @Body order: OrderRequest
     ): MessageResponse
 
     @GET("bonus")
@@ -213,7 +220,7 @@ interface ApiService {
 
 
     @GET("products/famous")
-    suspend fun getFamousProducts(@Header("Authorization") token: String): List<getFamousProductsResponse>
+    suspend fun getFamousProducts(@Header("Authorization") token: String): ProductsResponse
 
     @GET("favorites")
     suspend fun getFavoriteCourse(@Header("Authorization") token: String): List<FavoriteCourseListResponseItem>

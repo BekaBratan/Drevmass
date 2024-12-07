@@ -82,7 +82,14 @@
         tools:layout="@layout/fragment_basket" >
         <action
             android:id="@+id/action_basketFragment_to_makeOrderFragment"
-            app:destination="@id/makeOrderFragment" />
+            app:destination="@id/makeOrderFragment">
+            <argument
+                android:name="totalPrice"
+                app:argType="integer" />
+            <argument
+                android:name="isUsing"
+                app:argType="string" />
+        </action>
         <action
             android:id="@+id/action_basketFragment_to_productDetailFragment"
             app:destination="@id/productDetailFragment">
@@ -130,7 +137,14 @@
         android:id="@+id/makeOrderFragment"
         android:name="com.example.drevmass.presentation.basket.make_order.MakeOrderFragment"
         android:label="fragment_make_order"
-        tools:layout="@layout/fragment_make_order" />
+        tools:layout="@layout/fragment_make_order">
+        <argument
+            android:name="totalPrice"
+            app:argType="integer" />
+        <argument
+            android:name="isUsing"
+            app:argType="string" />
+    </fragment>
 
     <fragment
         android:id="@+id/myDataFragment"
@@ -216,6 +230,13 @@
             <argument
                 android:name="lessonUrl"
                 app:argType="string" />
+        </action>
+        <action
+            android:id="@+id/action_lessonFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment">
+            <argument
+                android:name="productId"
+                app:argType="integer" />
         </action>
     </fragment>
     <fragment

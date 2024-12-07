@@ -12,18 +12,16 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.drevmass.R
-import com.example.drevmass.data.api.ServiceBuilder
-import com.example.drevmass.data.model.courseModel.getFamousProductsBasket.getFamousProductsResponse
+import com.example.drevmass.data.model.products.Product
+import com.example.drevmass.data.model.products.ProductsResponse
 import com.example.drevmass.data.util.SharedProvider
 import com.example.drevmass.databinding.FragmentLessonBinding
+import com.example.drevmass.presentation.basket.SimilarAdapter
+import com.example.drevmass.presentation.utils.RcViewItemClickIdCallback
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class LessonFragment : Fragment() {
 
@@ -65,7 +63,7 @@ class LessonFragment : Fragment() {
 
         Log.d("AAA", "LessonFragment - ${args.courseId} - ${args.lessonId}")
         val shared = SharedProvider(requireContext())
-        viewModel.getLesson(shared.getToken(),args.courseId, args.lessonId)
+        viewModel.getLesson(shared.getToken(), args.courseId, args.lessonId)
         viewModel.errorBody.observe(viewLifecycleOwner) {
             Log.d("AAA", "LessonFragment - $it")
         }
@@ -95,8 +93,7 @@ class LessonFragment : Fragment() {
             }
 
 
-            getFamousProducts(it.usedProducts)
-
+            updateRecyclerView(it.usedProducts)
 
         }
         binding.btnLessonFavoriteFragment.setOnClickListener {
@@ -114,41 +111,24 @@ class LessonFragment : Fragment() {
         }
     }
 
-    private fun getFamousProducts(usedProducts: List<getFamousProductsResponse>?) {
-        val shared = SharedProvider(requireContext())
-        viewModel.getFamousProducts(shared.getToken())
-        viewModel.responseFamousProducts.observe(viewLifecycleOwner) {
-            val apiService = ServiceBuilder.api
-            val myCoroutineScope = CoroutineScope(Dispatchers.Main)
-
-            myCoroutineScope.launch {
-                try {
-                    if (!shared.getToken().isNullOrEmpty()) {
-                        val basketResponse =
-                            apiService.getAllBasket("Bearer ${shared.getToken()}", isUsing = false)
-                        val basketProducts = basketResponse.basket ?: emptyList()
-                        it.forEach { product ->
-                            val isProductInBasket =
-                                basketProducts.any { it.productId == product.id }
-                            product.isAddedToCart = isProductInBasket
-                        }
-                        Log.d("Basket Update", "Basket products updated successfully.")
-                    } else {
-                        Log.d("Basket Update", "Token is null or empty.")
-                    }
-                    if (usedProducts != null) {
-                        updateRecyclerView(usedProducts)
-                    }
-                } catch (e: Exception) {
-                    Log.e("Basket Update", "Error updating basket products: ${e.message}")
-                }
-            }
-        }
-    }
-    private fun updateRecyclerView(products: List<getFamousProductsResponse>) {
-        binding.rvCourseDrevmass.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        val adapter = FamousProductsBasketAdapter(requireContext(), products, this)
+    private fun updateRecyclerView(products: List<Product>) {
+        val adapter = FamousProductsBasketAdapter()
         binding.rvCourseDrevmass.adapter = adapter
+        adapter.setOnItemClickListener(object : RcViewItemClickIdCallback {
+            override fun onClick(id: Int) {
+                findNavController().navigate(
+                    LessonFragmentDirections.actionLessonFragmentToProductDetailFragment(id)
+                )
+            }
+        })
+        adapter.setOnItemCartClickListener(object : RcViewItemClickIdCallback {
+            override fun onClick(id: Int) {
+                // Add to cart
+                viewModel.addToCart(SharedProvider(requireContext()).getToken(), 0, id, 1)
+            }
+        })
+
+        adapter.submitList(products)
     }
 
 

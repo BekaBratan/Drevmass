@@ -2,6 +2,8 @@ package com.example.drevmass.data.model.courseModel
 
 
 import com.example.drevmass.data.model.courseModel.getFamousProductsBasket.getFamousProductsResponse
+import com.example.drevmass.data.model.products.Product
+import com.example.drevmass.data.model.products.ProductsResponse
 import com.google.gson.annotations.SerializedName
 data class LessonResponse(
     @SerializedName("id")
@@ -25,5 +27,5 @@ data class LessonResponse(
     @SerializedName("completed")
     val completed: Boolean,
     @SerializedName("used_products")
-    val usedProducts: List<getFamousProductsResponse>?
+    val usedProducts: List<Product>
 )

@@ -16,9 +16,6 @@ class CourseViewModel(): ViewModel() {
     private var _courseList = MutableLiveData<List<CourseItemResponse>>()
     val courseList: MutableLiveData<List<CourseItemResponse>> = _courseList
 
-    private var _responseListBasket = MutableLiveData<GetAllBasketResponse>()
-    val responseListBasket: MutableLiveData<GetAllBasketResponse> = _responseListBasket
-
     private var _courseBannerBonus = MutableLiveData<BonusBannerResponse>()
     val courseBannerBonus: MutableLiveData<BonusBannerResponse> = _courseBannerBonus
 
@@ -67,24 +64,4 @@ class CourseViewModel(): ViewModel() {
             )
         }
     }
-
-    /*fun getAllBasket(token: String, isUsing: Boolean) {
-        viewModelScope.launch(Dispatchers.IO) {
-            runCatching { ServiceBuilder.api.getAllBasket(token, isUsing) }.fold(
-                onSuccess = {
-                    _responseListBasket.postValue(it)
-                },
-                onFailure = { throwable ->
-                    if (throwable is HttpException) {
-                        val gson = com.google.gson.Gson()
-                        val errorBody = throwable.response()?.errorBody()?.string()
-                        val errorResponse = gson.fromJson(errorBody, AuthorizationResponse::class.java)
-                        _errorResponse.postValue(errorResponse)
-                    } else {
-                        _errorBody.postValue(throwable.message)
-                    }
-                }
-            )
-        }
-    }*/
 }

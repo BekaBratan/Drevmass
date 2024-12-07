@@ -68,17 +68,6 @@ class ProfileFragment : Fragment() {
             findNavController().navigate(R.id.notificationFragment)
         }
         binding.feedbackBlock.setOnClickListener {
-            val appPackageName = "kz.mobydev.drevmass"
-            val marketIntentUri = Uri.parse("market://details?id=$appPackageName")
-            val marketIntent = Intent(Intent.ACTION_VIEW, marketIntentUri)
-            marketIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY or Intent.FLAG_ACTIVITY_NEW_DOCUMENT or Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
-            try {
-                startActivity(marketIntent)
-            } catch (e: ActivityNotFoundException) {
-                val playStoreIntentUri = Uri.parse("https://play.google.com/store/apps/details?id=$appPackageName")
-                val playStoreIntent = Intent(Intent.ACTION_VIEW, playStoreIntentUri)
-                startActivity(playStoreIntent)
-            }
         }
 
         val shared = SharedProvider(requireContext())
