@@ -11,12 +11,16 @@ import com.example.drevmass.R
 import com.example.drevmass.data.model.products.Product
 import com.example.drevmass.data.util.Constants.Companion.IMAGE_URL
 import com.example.drevmass.databinding.ItemProductHorizontalBinding
+import com.example.drevmass.databinding.ItemProductShimmerHorizontalBinding
+import com.example.drevmass.databinding.ItemProductShimmerTileBinding
+import com.example.drevmass.databinding.ItemProductShimmerVerticalBinding
 import com.example.drevmass.databinding.ItemProductTileBinding
 import com.example.drevmass.databinding.ItemProductVerticalBinding
 import com.example.drevmass.presentation.utils.RcViewItemClickIdCallback
 
 class CatalogAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    private var isShimmer = true
     private var layoutNum = 1  // Variable to toggle between layouts
 
     companion object {
@@ -52,6 +56,10 @@ class CatalogAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         if (layoutNum > 3) layoutNum = 1
     }
 
+    fun stopShimmer() {
+        isShimmer = false
+    }
+
     override fun getItemViewType(position: Int): Int {
         return when(layoutNum) {
             1 -> VIEW_TYPE_LAYOUT_1
@@ -68,6 +76,12 @@ class CatalogAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var listenerClickAtItemCart: RcViewItemClickIdCallback? = null
     fun setOnItemCartClickListener(listener: RcViewItemClickIdCallback) {
         this.listenerClickAtItemCart = listener
+    }
+
+    inner class ShimmerTileViewHolder(private var binding: ItemProductShimmerTileBinding): RecyclerView.ViewHolder(binding.root) {
+        fun onBind(product: Product) {
+            binding.root.startShimmer()
+        }
     }
 
     inner class TileViewHolder(private var binding: ItemProductTileBinding): RecyclerView.ViewHolder(binding.root) {
@@ -98,6 +112,12 @@ class CatalogAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
+    inner class ShimmerVerticalViewHolder(private var binding: ItemProductShimmerVerticalBinding): RecyclerView.ViewHolder(binding.root) {
+        fun onBind(product: Product) {
+            binding.root.startShimmer()
+        }
+    }
+
     inner class VerticalViewHolder(private var binding: ItemProductVerticalBinding): RecyclerView.ViewHolder(binding.root) {
         fun onBind(product: Product) {
             binding.run {
@@ -123,6 +143,12 @@ class CatalogAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             itemView.setOnClickListener {
                 listenerClickAtItem?.onClick(product.id)
             }
+        }
+    }
+
+    inner class ShimmerHorizontalViewHolder(private var binding: ItemProductShimmerHorizontalBinding): RecyclerView.ViewHolder(binding.root) {
+        fun onBind(product: Product) {
+            binding.root.startShimmer()
         }
     }
 
@@ -155,28 +181,52 @@ class CatalogAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return when (viewType) {
-            VIEW_TYPE_LAYOUT_1 -> TileViewHolder(
-                ItemProductTileBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-            )
-            VIEW_TYPE_LAYOUT_2 -> VerticalViewHolder(
-                ItemProductVerticalBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-            )
-            else -> HorizontalViewHolder(
-                ItemProductHorizontalBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-            )
-        }
+        if (isShimmer)
+            return when (viewType) {
+                VIEW_TYPE_LAYOUT_1 -> ShimmerTileViewHolder(
+                    ItemProductShimmerTileBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                )
+                VIEW_TYPE_LAYOUT_2 -> ShimmerVerticalViewHolder(
+                    ItemProductShimmerVerticalBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                )
+                else -> ShimmerHorizontalViewHolder(
+                    ItemProductShimmerHorizontalBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                )
+            }
+        else
+            return when (viewType) {
+                VIEW_TYPE_LAYOUT_1 -> TileViewHolder(
+                    ItemProductTileBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                )
+                VIEW_TYPE_LAYOUT_2 -> VerticalViewHolder(
+                    ItemProductVerticalBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                )
+                else -> HorizontalViewHolder(
+                    ItemProductHorizontalBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                )
+            }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when (layoutNum) {
-            1 -> onBindViewHolder(holder as TileViewHolder, position)
-            2 -> onBindViewHolder(holder as VerticalViewHolder, position)
-            3 -> onBindViewHolder(holder as HorizontalViewHolder, position)
-        }
+        if (isShimmer)
+            when (layoutNum) {
+                1 -> onBindViewHolder(holder as ShimmerTileViewHolder, position)
+                2 -> onBindViewHolder(holder as ShimmerVerticalViewHolder, position)
+                3 -> onBindViewHolder(holder as ShimmerHorizontalViewHolder, position)
+            }
+        else
+            when (layoutNum) {
+                1 -> onBindViewHolder(holder as TileViewHolder, position)
+                2 -> onBindViewHolder(holder as VerticalViewHolder, position)
+                3 -> onBindViewHolder(holder as HorizontalViewHolder, position)
+            }
     }
 
     private fun onBindViewHolder(holder: CatalogAdapter.TileViewHolder, position: Int) {
+        holder.onBind(differ.currentList[position])
+    }
+
+    private fun onBindViewHolder(holder: CatalogAdapter.ShimmerTileViewHolder, position: Int) {
         holder.onBind(differ.currentList[position])
     }
 
@@ -184,7 +234,15 @@ class CatalogAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         holder.onBind(differ.currentList[position])
     }
 
+    private fun onBindViewHolder(holder: CatalogAdapter.ShimmerVerticalViewHolder, position: Int) {
+        holder.onBind(differ.currentList[position])
+    }
+
     private fun onBindViewHolder(holder: CatalogAdapter.HorizontalViewHolder, position: Int) {
+        holder.onBind(differ.currentList[position])
+    }
+
+    private fun onBindViewHolder(holder: CatalogAdapter.ShimmerHorizontalViewHolder, position: Int) {
         holder.onBind(differ.currentList[position])
     }
 

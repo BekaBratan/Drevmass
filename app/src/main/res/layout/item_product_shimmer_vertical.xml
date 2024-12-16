@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.facebook.shimmer.ShimmerFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="8dp"
+        android:layout_marginBottom="@dimen/dp_24"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivProduct"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:shapeAppearanceOverlay="@style/style_corner_for_img_24dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/brand_400"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="12dp"
+        android:paddingVertical="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivProduct"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="88dp"
+                android:layout_height="16dp"
+                android:layout_marginTop="4dp"
+                app:shapeAppearanceOverlay="@style/style_corner_for_img_4dp"
+                android:background="@color/brand_400"/>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="219dp"
+                android:layout_height="16dp"
+                android:layout_marginTop="12dp"
+                app:shapeAppearanceOverlay="@style/style_corner_for_img_4dp"
+                android:background="@color/brand_400"/>
+
+        </LinearLayout>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ibAddToCart"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        app:shapeAppearanceOverlay="@style/style_corner_for_img_24dp"
+        android:background="@color/brand_400"/>
+
+    </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.facebook.shimmer.ShimmerFrameLayout>

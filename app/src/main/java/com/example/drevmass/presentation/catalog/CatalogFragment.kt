@@ -4,16 +4,16 @@ import android.annotation.SuppressLint
 import android.content.res.Resources
 import android.graphics.Rect
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.drevmass.R
+import com.example.drevmass.data.model.products.Product
 import com.example.drevmass.data.util.SharedProvider
 import com.example.drevmass.databinding.FragmentCatalogBinding
 import com.example.drevmass.presentation.utils.CustomDividerItemDecoration
@@ -51,6 +51,8 @@ class CatalogFragment : Fragment() {
         )
 
         val adapter = CatalogAdapter()
+        adapter.submitList(List(20) { Product() })
+        binding.llSort.isEnabled = false
         adapter.setOnItemClickListener(object : RcViewItemClickIdCallback {
             override fun onClick(id: Int) {
                 // Open product detail
@@ -176,6 +178,8 @@ class CatalogFragment : Fragment() {
 
 
         viewModel.productListResponse.observe(viewLifecycleOwner) {
+            adapter.stopShimmer()
+            binding.llSort.isEnabled = true
             adapter.submitList(it)
         }
 

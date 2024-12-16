@@ -81,6 +81,10 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">16dp</item> <!-- Adjust the corner radius as needed -->
     </style>
+    <style name="CustomRoundedImageView18dp" >
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">18dp</item> <!-- Adjust the corner radius as needed -->
+    </style>
     <style name="CustomRoundedImageView32dp" >
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">24dp</item> <!-- Adjust the corner radius as needed -->
